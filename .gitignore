@@ -1,4 +1,11 @@
-spec/fixtures
-Gemfile.lock
 pkg/
+Gemfile.lock
+vendor/
+spec/fixtures/
+.vagrant/
+.bundle/
+coverage/
 log/
+.idea/
+*.iml
+.*.sw
