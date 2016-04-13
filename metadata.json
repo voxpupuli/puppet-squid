@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "CERNOps",
   "summary": "configure squid caching proxy",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/cernops/puppet-squid",
   "project_page": "https://github.com/cernops/puppet-squid",
   "issues_url": "https://github.com/cernops/puppet-squid/issues",
