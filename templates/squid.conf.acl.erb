@@ -1,0 +1,5 @@
+# acl fragment for <%= @aclname %>
+<% @entries.sort.each do |e| -%>
+acl <%= @aclname %> <%= @type %> <%= e %>
+<% end -%>
+

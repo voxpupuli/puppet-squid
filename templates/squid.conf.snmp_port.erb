@@ -1,0 +1,10 @@
+# fragment for snmp_port <%= @port %>
+<% if @process_number -%>
+if ${process_number} = <%= @process_number %>
+<% end -%>
+snmp_port <%= @port %> <%= @options %>
+<% if @process_number -%>
+endif
+<% end -%>
+
+

@@ -1,0 +1,4 @@
+spec/fixtures
+Gemfile.lock
+pkg/
+log/

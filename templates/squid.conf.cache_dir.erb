@@ -1,0 +1,10 @@
+# fragment for cache_dir <%= @path %>
+<% if @process_number -%>
+if ${process_number} = <%= @process_number %>
+<% end -%>
+cache_dir <%= @type %> <%= @path %> <%= @options %>
+<% if @process_number -%>
+endif
+<% end -%>
+
+

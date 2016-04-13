@@ -1,0 +1,26 @@
+#
+# squid.conf.header.erb file fragment generated with puppet.
+#
+
+cache_mem                     <%= @cache_mem %>
+
+<% if @memory_shared_cache -%>
+memory_shared_cache           <%= @memory_shared_cache %>
+
+<% end -%>
+maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
+
+access_log                    <%= @access_log %>
+
+<% if @coredump_dir -%>
+coredump_dir                  <%= @coredump_dir %>
+
+<% end -%>
+<% if @max_filedescriptors -%>
+max_filedescriptors           <%= @max_filedescriptors %>
+
+<% end -%>
+<% if @workers -%>
+workers           <%= @workers %>
+
+<% end -%>
