@@ -1,7 +1,7 @@
 {
-  "name": "CERNOps-squid",
+  "name": "puppet-squid",
   "version": "0.1.0",
-  "author": "CERNOps",
+  "author": "puppet",
   "summary": "configure squid caching proxy",
   "license": "Apache-2.0",
   "source": "https://github.com/cernops/puppet-squid",
