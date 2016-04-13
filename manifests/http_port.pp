@@ -1,17 +1,16 @@
 define squid::http_port (
-   $port    = $title,
-   $options = '',
-   $order   = '05',
+  $port    = $title,
+  $options = '',
+  $order   = '05',
 ) {
 
-   validate_integer($port)
-   validate_string($options)
+  validate_integer($port)
+  validate_string($options)
 
-
-   concat::fragment{"squid_http_port_${value}":
-     target  => $squid::config,
-     content => template('squid/squid.conf.port.erb'),
-     order   => "30-${order}"
-   }
+  concat::fragment{"squid_http_port_${port}":
+    target  => $squid::config,
+    content => template('squid/squid.conf.port.erb'),
+    order   => "30-${order}",
+  }
 
 }

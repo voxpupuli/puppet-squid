@@ -15,7 +15,7 @@ class squid::config (
     group  => squid,
     mode   => '0640',
   }
- 
+
   concat::fragment{'squid_header':
     target  => $config,
     content => template('squid/squid.conf.header.erb'),
