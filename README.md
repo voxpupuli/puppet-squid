@@ -72,9 +72,6 @@ acl remote_urls url_regex http://example.com/anotherpath
 * `order` Each ACL has an order `05` by default this can be specified if order of ACL definition matters.
 
 
-### Defined Type Squid::Acl
-TBD
-
 ### Defined Type Squid::Cache\_dir
 TBD
 
