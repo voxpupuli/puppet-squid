@@ -30,7 +30,7 @@ squid::http_access{'!Safe_ports':
 }
 ```
 
-### Parameters for Squid Class
+### Parameters for squid Class
 Parameters to the squid class almost map 1 to 1 to squid.conf parameters themselves.
 
 * `config` Location of squid.conf file, defaults to `/etc/squid/squid.conf`.
@@ -50,7 +50,7 @@ class{'::squid':
 }
 ```
 
-### Defined Type Squid::Acl
+### Defined Type squid::acl
 Defines [acl entries](http://www.squid-cache.org/Doc/config/acl/) for a squid server.
 
 ```puppet
@@ -69,14 +69,14 @@ acl remote_urls url_regex http://example.org/path
 acl remote_urls url_regex http://example.com/anotherpath
 ```
 
-#### Parameters for  Type Squid::Acl
+#### Parameters for  Type squid::acl
 * `type` The acltype of the acl, must be defined, e.g url_regex, urlpath_regex, port, ..
 * `aclname` The name of acl, defaults to the `title`.
 * `entries` An array of acl entres, multple members results in multiple lines in squid.conf.
 * `order` Each ACL has an order `05` by default this can be specified if order of ACL definition matters.
 
 
-### Defined Type Squid::Cache\_dir
+### Defined Type squid::cache\_dir
 Defines [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/) for a squid server.
 
 ```puppet
@@ -95,7 +95,7 @@ cache_dir ufs 15000 32 256 min-size=32769
 endif
 ```
 
-#### Parameters for Type Squid::Cache\_dir
+#### Parameters for Type squid::cache\_dir
 * `type` the type of cache, e.g ufs. defaults to `ufs`.
 * `path` defaults to the namevar, file path to  cache.
 * `options` String of options for the cache. Defaults to empty string.
@@ -105,7 +105,7 @@ endif
 
 
 
-### Defined Type Squid::Http\_access
+### Defined Type squid::http\_access
 Defines [http_access entries](http://www.squid-cache.org/Doc/config/http_access/) for a squid server.
 
 ```puppet
@@ -120,7 +120,7 @@ Adds a squid.conf line
 http_access allow our_networks hosts
 ```
 
-#### Parameters for Type Squid::Http\_allow
+#### Parameters for Type squid::http\_allow
 * `value` defaults to the `namevar` the rule to allow or deny.
 * `action` must be `deny` or `allow`. By default it is allow. The squid.conf file is order so by default
    all allows appear before all denys. This can be overidden with the `order` parameter.
@@ -141,7 +141,7 @@ Results in a squid configuration of
 http_port 1000 accel vhost
 ```
 
-#### Parameters for Type Squid::Http\_port
+#### Parameters for Type squid::http\_port
 * `port` defautls to the namevar and is the port number.
 * `options` A string to specify any options for the default. By default and empty string.
 
@@ -162,7 +162,7 @@ snmp_port 1000
 endif
 ```
 
-#### Parameters for Type Squid::Http\_port
+#### Parameters for Type squid::http\_port
 * `port` defautls to the namevar and is the port number.
 * `options` A string to specify any options for the default. By default and empty string.
 * `process_number` If set to and integer the snmp\_port is enabled only for
