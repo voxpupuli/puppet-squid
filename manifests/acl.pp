@@ -11,7 +11,7 @@ define squid::acl (
 
 
   concat::fragment{"squid_acl_${aclname}":
-    target  => $squid::config,
+    target  => $::squid::config,
     content => template('squid/squid.conf.acl.erb'),
     order   => "10-${order}-${type}",
   }
