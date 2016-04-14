@@ -77,18 +77,95 @@ acl remote_urls url_regex http://example.com/anotherpath
 
 
 ### Defined Type Squid::Cache\_dir
-TBD
+Defines [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/) for a squid server.
+
+```puppet
+squid::cache_dir{'/data':
+  type           => 'ufs',
+  options        => '15000 32 256 min-size=32769',
+  process_number => 2,
+}
+```
+
+Results in the squid configuration of
+
+```
+if ${processor} = 2
+cache_dir ufs 15000 32 256 min-size=32769
+endif
+```
+
+#### Parameters for Type Squid::Cache\_dir
+* `type` the type of cache, e.g ufs. defaults to `ufs`.
+* `path` defaults to the namevar, file path to  cache.
+* `options` String of options for the cache. Defaults to empty string.
+* `process_number` if specfied as an integer the cache will be wrapped
+  in a `if $proceess_number` statement so the cache will be used by only
+  one process. Default is undef.
+
+
 
 ### Defined Type Squid::Http\_access
-TDB
+Defines [http_access entries](http://www.squid-cache.org/Doc/config/http_access/) for a squid server.
+
+```puppet
+squid::http_access{'our_networks hosts':
+  action => 'allow',
+}
+```
+
+Adds a squid.conf line 
+
+```
+http_access allow our_networks hosts
+```
+
+#### Parameters for Type Squid::Http\_allow
+* `value` defaults to the `namevar` the rule to allow or deny.
+* `action` must be `deny` or `allow`. By default it is allow. The squid.conf file is order so by default
+   all allows appear before all denys. This can be overidden with the `order` parameter.
+* `order` by default is `05`
 
 ### Defined Type Squid::Http\_port
-TBD
+Defines [http_port entries](http://www.squid-cache.org/Doc/config/http_port/) for a squid server.
+
+```puppet
+squid::http_port{'1000':
+  options => 'accel vhost'
+}
+```
+
+Results in a squid configuration of
+
+```
+http_port 1000 accel vhost
+```
+
+#### Parameters for Type Squid::Http\_port
+* `port` defautls to the namevar and is the port number.
+* `options` A string to specify any options for the default. By default and empty string.
 
 ### Defined Type Squid::Snmp\_port
-TBD
+Defines [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/) for a squid server.
 
+```puppet
+squid::snmp_port{'1000':
+  process_number => 3
+}
+```
 
+Results in a squid configuration of
 
+```
+if ${process_number} = 3
+snmp_port 1000
+endif
+```
+
+#### Parameters for Type Squid::Http\_port
+* `port` defautls to the namevar and is the port number.
+* `options` A string to specify any options for the default. By default and empty string.
+* `process_number` If set to and integer the snmp\_port is enabled only for
+   a particular squid thread. Defaults to undef.
 
 
