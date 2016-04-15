@@ -1,6 +1,6 @@
 {
   "name": "puppet-squid",
-  "version": "0.1.0",
+  "version": "0.1.1-rc0",
   "author": "puppet",
   "summary": "configure squid caching proxy",
   "license": "Apache-2.0",
@@ -8,25 +8,47 @@
   "project_page": "https://github.com/cernops/puppet-squid",
   "issues_url": "https://github.com/cernops/puppet-squid/issues",
   "dependencies": [
-    {"name":"puppetlabs-concat","version_requirement":">= 1.0.0"},
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"}
+    {
+      "name": "puppetlabs-concat",
+      "version_requirement": ">= 1.0.0"
+    },
+    {
+      "name": "puppetlabs-stdlib",
+      "version_requirement": ">= 1.0.0"
+    }
   ],
   "operatingsystem_support": [
-   {
-    "operatingsystem": "RedHat",
-    "operatingsystemrelease": ["5", "6", "7"]
-   },
-   {
-     "operatingsystem": "CentOS",
-     "operatingsystemrelease": [ "5","6","7"]
-   },
-   {
-     "operatingsystem": "OracleLinux",
-     "operatingsystemrelease": [ "5","6","7"]
-   },
-   {
-     "operatingsystem": "Scientific",
-     "operatingsystemrelease": ["5","6","7"]
-   }
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "OracleLinux",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
   ]
 }
