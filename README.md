@@ -1,5 +1,5 @@
-Squid module for Puppet
-========================
+Puppet module for Squid
+=======================
 
 [![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/squid.svg)](https://forge.puppetlabs.com/puppet/squid)
 [![Build Status](https://travis-ci.org/voxpupuli/puppet-squid.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-squid)
