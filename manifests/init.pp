@@ -7,6 +7,8 @@ class squid (
   $coredump_dir                  = $squid::params::coredump_dir,
   $max_filedescriptors           = $squid::params::max_filedescriptors,
   $workers                       = $squid::params::workers,
+  $acls                          = $squid::params::acls,
+  $http_access                   = $squid::params::http_access,
 ) inherits ::squid::params {
 
   validate_re($cache_mem,'\d+ MB')
@@ -26,11 +28,19 @@ class squid (
     validate_integer($workers)
   }
 
+  if $acls {
+    validate_hash($acls)
+  }
+  if $http_access {
+    validate_hash($http_access)
+  }
 
   anchor{'squid::begin':} ->
   class{'::squid::install':} ->
   class{'::squid::config':} ~>
   class{'::squid::service':} ->
   anchor{'squid::end':}
+
+
 
 }

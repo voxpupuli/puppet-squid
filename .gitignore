@@ -9,3 +9,4 @@ log/
 .idea/
 *.iml
 .*.sw
+.*swp

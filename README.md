@@ -41,6 +41,8 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `coredump_dir` defaults to undef. [coredump_dir docs](http://www.squid-cache.org/Doc/config/coredump_dir/).
 * `max_filedescriptors` defaults to undef. [max_filedescriptors docs](http://www.squid-cache.org/Doc/config/max_filedescriptors/).
 * `workers` defaults to undef. [workers docs](http://www.squid-cache.org/Doc/config/workers/).
+* `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
+* `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 
 ```puppet
 class{'::squid':
@@ -49,6 +51,23 @@ class{'::squid':
   coredump_dir = '/var/spool/squid',
 }
 ```
+
+```puppet
+class{'::squid':
+  cache_mem    = '512 MB',
+  workers      = 3,
+  coredump_dir = '/var/spool/squid',
+  acls         = { 'remote_urls' => {
+                       type    => 'url_regex',
+                       entries => ['http://example.org/path',
+                                   'http://example.com/anotherpath'],
+                       },
+                 },
+  http_access  = { 'our_networks hosts' =>  { action => 'allow', },
+}
+```
+
+The acls and http_access lines above are equivalent to their examples below.
 
 ### Defined Type squid::acl
 Defines [acl entries](http://www.squid-cache.org/Doc/config/acl/) for a squid server.
@@ -68,6 +87,8 @@ would result in a multi entry squid acl
 acl remote_urls url_regex http://example.org/path
 acl remote_urls url_regex http://example.com/anotherpath
 ```
+
+These may be defined as a hash passed to ::squid
 
 #### Parameters for  Type squid::acl
 * `type` The acltype of the acl, must be defined, e.g url_regex, urlpath_regex, port, ..
@@ -120,9 +141,11 @@ Adds a squid.conf line
 http_access allow our_networks hosts
 ```
 
+These may be defined as a hash passed to ::squid
+
 #### Parameters for Type squid::http\_allow
 * `value` defaults to the `namevar` the rule to allow or deny.
-* `action` must be `deny` or `allow`. By default it is allow. The squid.conf file is order so by default
+* `action` must be `deny` or `allow`. By default it is allow. The squid.conf file is ordered so by default
    all allows appear before all denys. This can be overidden with the `order` parameter.
 * `order` by default is `05`
 

@@ -7,6 +7,8 @@ class squid::config (
   $coredump_dir                  = $squid::coredump_dir,
   $max_filedescriptors           = $squid::max_filedescriptors,
   $workers                       = $squid::workers,
+  $acls                          = $squid::acls,
+  $http_access                   = $squid::http_access,
 ) inherits squid {
 
   concat{$config:
@@ -20,5 +22,12 @@ class squid::config (
     target  => $config,
     content => template('squid/squid.conf.header.erb'),
     order   => '01',
+  }
+
+  if $acls {
+    create_resources('squid::acl', $acls)
+  }
+  if $http_access {
+    create_resources('squid::http_access', $http_access)
   }
 }
