@@ -7,6 +7,7 @@
   "source": "https://github.com/cernops/puppet-squid",
   "project_page": "https://github.com/cernops/puppet-squid",
   "issues_url": "https://github.com/cernops/puppet-squid/issues",
+  "tags": ["squid", "cache", "http", "web"],
   "dependencies": [
     {
       "name": "puppetlabs-concat",
