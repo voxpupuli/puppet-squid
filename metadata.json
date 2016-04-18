@@ -1,13 +1,18 @@
 {
   "name": "puppet-squid",
-  "version": "0.1.1",
+  "version": "0.1.2-rc0",
   "author": "puppet",
   "summary": "configure squid caching proxy",
   "license": "Apache-2.0",
   "source": "https://github.com/cernops/puppet-squid",
   "project_page": "https://github.com/cernops/puppet-squid",
   "issues_url": "https://github.com/cernops/puppet-squid/issues",
-  "tags": ["squid", "cache", "http", "web"],
+  "tags": [
+    "squid",
+    "cache",
+    "http",
+    "web"
+  ],
   "dependencies": [
     {
       "name": "puppetlabs-concat",
