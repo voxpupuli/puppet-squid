@@ -5,6 +5,7 @@ require 'metadata-json-lint/rake_task'
 require 'puppet_blacksmith/rake_tasks'
 require 'voxpupuli/release/rake_tasks'
 require 'rubocop/rake_task'
+require 'puppet-strings/rake_tasks'
 
 RuboCop::RakeTask.new
 
@@ -19,6 +20,7 @@ PuppetLint.configuration.send('disable_single_quote_string_with_variables')
 exclude_paths = %w(
   pkg/**/*
   vendor/**/*
+  .vendor/**/*
   spec/**/*
 )
 PuppetLint.configuration.ignore_paths = exclude_paths
