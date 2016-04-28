@@ -8,4 +8,6 @@ class squid::params {
   $coredump_dir                  = undef
   $max_filedescriptors           = undef
   $workers                       = undef
+  $acls                          = undef
+  $http_access                   = undef
 }
