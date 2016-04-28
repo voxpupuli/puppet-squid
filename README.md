@@ -165,7 +165,7 @@ http_port 1000 accel vhost
 ```
 
 #### Parameters for Type squid::http\_port
-* `port` defautls to the namevar and is the port number.
+* `port` defaults to the namevar and is the port number.
 * `options` A string to specify any options for the default. By default and empty string.
 
 ### Defined Type Squid::Snmp\_port
