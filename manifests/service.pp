@@ -1,8 +1,8 @@
-class squid::service {
+class squid::service inherits squid {
 
   service{'squid':
-    ensure => 'running',
-    enable => true,
+    ensure => $squid::ensure_service,
+    enable => $squid::enable_service,
   }
 
 }

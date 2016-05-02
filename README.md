@@ -33,6 +33,8 @@ squid::http_access{'!Safe_ports':
 ### Parameters for squid Class
 Parameters to the squid class almost map 1 to 1 to squid.conf parameters themselves.
 
+* `ensure_service` The ensure value of the squid service, defaults to `running`.
+* `enable_service` The enable value of the squid service, defaults to `true`.
 * `config` Location of squid.conf file, defaults to `/etc/squid/squid.conf`.
 * `cache_mem` defaults to `256 MB`. [cache_mem docs](http://www.squid-cache.org/Doc/config/cache_mem/).
 * `memory_cache_shared` defaults to undef. [memory_cache_shared docs](http://www.squid-cache.org/Doc/config/memory_cache_shared/).
