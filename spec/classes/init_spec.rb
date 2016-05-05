@@ -11,7 +11,7 @@ describe 'squid' do
     it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
     it { should contain_concat_fragment('squid_header').with_content(/^cache_mem\s+256 MB$/) }
     it { should contain_concat_fragment('squid_header').with_content(/^maximum_object_size_in_memory\s+512 KB$/) }
-    it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/logs/squid/access.log\s+squid$}) }
+    it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
     it { should contain_concat_fragment('squid_header').without_content(/^memory_cache_shared/) }
     it { should contain_concat_fragment('squid_header').without_content(/^coredump_dir/) }
     it { should contain_concat_fragment('squid_header').without_content(/^max_filedescriptors/) }
