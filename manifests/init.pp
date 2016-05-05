@@ -1,4 +1,6 @@
 class squid (
+  $ensure_service                = $squid::params::ensure_service,
+  $enable_service                = $squid::params::enable_service,
   $config                        = $squid::params::config,
   $cache_mem                     = $squid::params::cache_mem,
   $memory_cache_shared           = $squid::params::memory_cache_shared,
@@ -11,6 +13,8 @@ class squid (
   $http_access                   = $squid::params::http_access,
 ) inherits ::squid::params {
 
+  validate_string($ensure_service)
+  validate_bool($enable_service)
   validate_re($cache_mem,'\d+ MB')
   validate_string($config)
   if $memory_cache_shared {

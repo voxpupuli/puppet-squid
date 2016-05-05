@@ -1,5 +1,7 @@
 class squid::params {
 
+  $ensure_service                = 'running'
+  $enable_service                = true
   $config                        = '/etc/squid/squid.conf'
   $cache_mem                     = '256 MB'
   $memory_cache_shared           = undef
