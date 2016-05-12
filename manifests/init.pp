@@ -11,6 +11,7 @@ class squid (
   $workers                       = $squid::params::workers,
   $acls                          = $squid::params::acls,
   $http_access                   = $squid::params::http_access,
+  $auth_params                   = $squid::params::auth_params,
 ) inherits ::squid::params {
 
   validate_string($ensure_service)
@@ -37,6 +38,9 @@ class squid (
   }
   if $http_access {
     validate_hash($http_access)
+  }
+  if $auth_params {
+    validate_hash($auth_params)
   }
 
   anchor{'squid::begin':} ->

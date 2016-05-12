@@ -9,6 +9,7 @@ class squid::config (
   $workers                       = $squid::workers,
   $acls                          = $squid::acls,
   $http_access                   = $squid::http_access,
+  $auth_params                   = $squid::auth_params,
 ) inherits squid {
 
   concat{$config:
@@ -29,5 +30,8 @@ class squid::config (
   }
   if $http_access {
     create_resources('squid::http_access', $http_access)
+  }
+  if $auth_params {
+    create_resources('squid::auth_param', $auth_params)
   }
 }

@@ -1,0 +1,4 @@
+# auth_param fragment for <%= @scheme %>
+<% @entries.sort.each do |e| -%>
+auth_param <%= @scheme %> <%= e %>
+<% end -%>
