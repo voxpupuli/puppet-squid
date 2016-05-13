@@ -15,7 +15,8 @@ describe 'squid::http_port' do
   end
   context 'when parameters are set' do
     let(:params) do
-      { port: 2000,
+      {
+        port: 2000,
         options:  'special for 2000',
         order: '08',
       }

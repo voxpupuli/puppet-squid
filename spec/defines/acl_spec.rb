@@ -10,9 +10,10 @@ describe 'squid::acl' do
   let(:title) { 'myacl' }
   context 'when parameters are set' do
     let(:params) do
-      {  type: 'urlregex',
-         order: '07',
-         entries: ['http://example.org/', 'http://example.com/'],
+      {
+        type: 'urlregex',
+        order: '07',
+        entries: ['http://example.org/', 'http://example.com/'],
       }
     end
     it { should contain_concat_fragment('squid_acl_myacl').with_target('/tmp/squid.conf') }

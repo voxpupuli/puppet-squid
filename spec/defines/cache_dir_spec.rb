@@ -10,10 +10,11 @@ describe 'squid::cache_dir' do
   let(:title) { '/data' }
   context 'when parameters are set' do
     let(:params) do
-      {  type: 'special',
-         order: '07',
-         process_number: 2,
-         options: 'my options for special type'
+      {
+        type: 'special',
+        order: '07',
+        process_number: 2,
+        options: 'my options for special type'
       }
     end
     it { should contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
@@ -26,9 +27,10 @@ describe 'squid::cache_dir' do
 
   context 'when parameters are set excluding process_number' do
     let(:params) do
-      {  type: 'special',
-         order: '07',
-         options: 'my options for special type'
+      {
+        type: 'special',
+        order: '07',
+        options: 'my options for special type'
       }
     end
     it { should contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }

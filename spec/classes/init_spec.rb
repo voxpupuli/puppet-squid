@@ -20,7 +20,8 @@ describe 'squid' do
 
   context 'with all parameters set' do
     let :params do
-      { config: '/tmp/squid.conf',
+      {
+        config: '/tmp/squid.conf',
         cache_mem: '1024 MB',
         memory_cache_shared: 'on',
         access_log: '/var/log/out.log',
@@ -40,12 +41,15 @@ describe 'squid' do
 
   context 'with one acl parameter set' do
     let :params do
-      { config: '/tmp/squid.conf',
-        acls: { 'myacl' => { 'type' => 'urlregex',
-                             'order' => '07',
-                             'entries' => ['http://example.org/', 'http://example.com/'],
-                           },
-              },
+      {
+        config: '/tmp/squid.conf',
+        acls: {
+          'myacl' => {
+            'type' => 'urlregex',
+            'order' => '07',
+            'entries' => ['http://example.org/', 'http://example.com/'],
+          },
+        },
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -56,16 +60,20 @@ describe 'squid' do
 
   context 'with two acl parameters set' do
     let :params do
-      { config: '/tmp/squid.conf',
-        acls: { 'myacl' => { 'type' => 'urlregex',
-                             'order' => '07',
-                             'entries' => ['http://example.org/', 'http://example.com/'],
-                           },
-                'mysecondacl' => { 'type' => 'urlregex',
-                                   'order' => '08',
-                                   'entries' => ['http://example2.org/', 'http://example2.com/'],
-                                 },
-              },
+      {
+        config: '/tmp/squid.conf',
+        acls: {
+          'myacl' => {
+            'type' => 'urlregex',
+            'order' => '07',
+            'entries' => ['http://example.org/', 'http://example.com/'],
+          },
+          'mysecondacl' => {
+            'type' => 'urlregex',
+            'order' => '08',
+            'entries' => ['http://example2.org/', 'http://example2.com/'],
+          },
+        },
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -79,12 +87,15 @@ describe 'squid' do
 
   context 'with one http_access parameter set' do
     let :params do
-      { config: '/tmp/squid.conf',
-        http_access: { 'myrule' => { 'action' => 'deny',
-                                     'value' => 'this and that',
-                                     'order' => '08',
-                                   },
-                     },
+      {
+        config: '/tmp/squid.conf',
+        http_access: {
+          'myrule' => {
+            'action' => 'deny',
+            'value' => 'this and that',
+            'order' => '08',
+          },
+        },
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -95,16 +106,20 @@ describe 'squid' do
 
   context 'with two http_access parameters set' do
     let :params do
-      { config: '/tmp/squid.conf',
-        http_access: { 'myrule' => { 'action' => 'deny',
-                                     'value'  => 'this and that',
-                                     'order'  => '08',
-                                  },
-                       'secondrule' => { 'action' => 'deny',
-                                         'value'  => 'this too',
-                                         'order'  => '09',
-                                       },
-                     },
+      {
+        config: '/tmp/squid.conf',
+        http_access: {
+          'myrule' => {
+            'action' => 'deny',
+            'value'  => 'this and that',
+            'order'  => '08',
+          },
+          'secondrule' => {
+            'action' => 'deny',
+            'value'  => 'this too',
+            'order'  => '09',
+          },
+        },
 
       }
     end

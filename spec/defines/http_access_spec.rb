@@ -15,7 +15,8 @@ describe 'squid::http_access' do
   end
   context 'when parameters are set' do
     let(:params) do
-      { action: 'deny',
+      {
+        action: 'deny',
         value: 'this and that',
         order: '08',
       }
