@@ -95,7 +95,7 @@ These may be defined as a hash passed to ::squid
 #### Parameters for  Type squid::acl
 * `type` The acltype of the acl, must be defined, e.g url_regex, urlpath_regex, port, ..
 * `aclname` The name of acl, defaults to the `title`.
-* `entries` An array of acl entres, multple members results in multiple lines in squid.conf.
+* `entries` An array of acl entries, multiple members results in multiple lines in squid.conf.
 * `order` Each ACL has an order `05` by default this can be specified if order of ACL definition matters.
 
 
@@ -193,4 +193,31 @@ endif
 * `process_number` If set to and integer the snmp\_port is enabled only for
    a particular squid thread. Defaults to undef.
 
+### Defined Type squid::auth\_param
+Defines [auth_param entries](http://www.squid-cache.org/Doc/config/auth_param/) for a squid server.
 
+```puppet
+squid::auth_param{ 'basic auth_param'
+  scheme    => 'basic',
+  entries   => ['program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
+                'children 5',
+                'realm Squid Basic Authentication',
+                'credentialsttl 5 hours'],
+}
+```
+
+would result in multi entry squid auth_param
+
+```
+auth_param basic program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd
+auth_param basic children 5
+auth_param basic realm Squid Basic Authentication
+auth_param basic credentialsttl 5 hours
+```
+
+These may be defined as a hash passed to ::squid
+
+#### Parameters for  Type squid::auth_param
+* `scheme` the scheme used for authentication must be defined
+* `entries` An array of entries, multiple members results in multiple lines in squid.conf
+* `order` by default is '40'
