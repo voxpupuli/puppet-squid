@@ -12,6 +12,9 @@ class squid (
   $acls                          = $squid::params::acls,
   $http_access                   = $squid::params::http_access,
   $auth_params                   = $squid::params::auth_params,
+  $http_ports                    = $squid::params::http_ports,
+  $snmp_ports                    = $squid::params::snmp_ports,
+  $cache_dirs                    = $squid::params::cache_dirs,
 ) inherits ::squid::params {
 
   validate_string($ensure_service)
@@ -41,6 +44,15 @@ class squid (
   }
   if $auth_params {
     validate_hash($auth_params)
+  }
+  if $http_ports {
+    validate_hash($http_ports)
+  }
+  if $snmp_ports {
+    validate_hash($snmp_ports)
+  }
+  if $cache_dirs {
+    validate_hash($cache_dirs)
   }
 
   anchor{'squid::begin':} ->

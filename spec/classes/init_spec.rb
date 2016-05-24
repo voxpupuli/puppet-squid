@@ -131,4 +131,36 @@ describe 'squid' do
     it { should contain_concat_fragment('squid_http_access_this too').with_order('20-09-deny') }
     it { should contain_concat_fragment('squid_http_access_this too').with_content(/^http_access\s+deny\s+this too$/) }
   end
+
+  context 'with http_port parameters set' do
+    let :params do
+      { config: '/tmp/squid.conf',
+        http_ports: { 2000 =>  { 'options' => 'special for 2000' } }, }
+    end
+    it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+    it { should contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
+    it { should contain_concat_fragment('squid_http_port_2000').with_content(/^http_port\s+2000\s+special for 2000$/) }
+  end
+
+  context 'with snmp_port parameters set' do
+    let :params do
+      { config: '/tmp/squid.conf',
+        snmp_ports: { 2000 =>  { 'options'        => 'special for 2000',
+                                 'process_number' => 3, }, }, }
+    end
+    it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+    it { should contain_concat_fragment('squid_snmp_port_2000').with_content(/^snmp_port\s+2000\s+special for 2000$/) }
+    it { should contain_concat_fragment('squid_snmp_port_2000').with_content(/^if \${process_number} = 3$/) }
+    it { should contain_concat_fragment('squid_snmp_port_2000').with_content(/^endif$/) }
+  end
+
+  context 'with cache_dir parameters set' do
+    let :params do
+      { config: '/tmp/squid.conf',
+        cache_dirs: { '/data' => { 'type'    => 'special',
+                                   'options' => 'my options for special type', }, }, }
+    end
+    it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+    it { should contain_file('/data').with_ensure('directory') }
+  end
 end

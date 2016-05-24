@@ -10,6 +10,9 @@ class squid::config (
   $acls                          = $squid::acls,
   $http_access                   = $squid::http_access,
   $auth_params                   = $squid::auth_params,
+  $http_ports                    = $squid::http_ports,
+  $snmp_ports                    = $squid::snmp_ports,
+  $cache_dirs                    = $squid::cache_dirs,
 ) inherits squid {
 
   concat{$config:
@@ -33,5 +36,14 @@ class squid::config (
   }
   if $auth_params {
     create_resources('squid::auth_param', $auth_params)
+  }
+  if $http_ports {
+    create_resources('squid::http_port', $http_ports)
+  }
+  if $snmp_ports {
+    create_resources('squid::snmp_port', $snmp_ports)
+  }
+  if $cache_dirs {
+    create_resources('squid::cache_dir', $cache_dirs)
   }
 }
