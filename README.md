@@ -45,6 +45,9 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `workers` defaults to undef. [workers docs](http://www.squid-cache.org/Doc/config/workers/).
 * `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
+* `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
+* `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
+* `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 
 ```puppet
 class{'::squid':
@@ -66,10 +69,13 @@ class{'::squid':
                        },
                  },
   http_access  = { 'our_networks hosts' =>  { action => 'allow', },
+  http_ports   = { '10000' =>  { options => 'accel vhost'} },
+  snmp_ports   = { '1000' =>  { process_number => 3 },
+  cache_dirs   = { '/data/ => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 },
 }
 ```
 
-The acls and http_access lines above are equivalent to their examples below.
+The acls, http_access, http_ports, snmp_port, cache_dirs lines above are equivalent to their examples below.
 
 ### Defined Type squid::acl
 Defines [acl entries](http://www.squid-cache.org/Doc/config/acl/) for a squid server.
@@ -155,7 +161,7 @@ These may be defined as a hash passed to ::squid
 Defines [http_port entries](http://www.squid-cache.org/Doc/config/http_port/) for a squid server.
 
 ```puppet
-squid::http_port{'1000':
+squid::http_port{'10000':
   options => 'accel vhost'
 }
 ```
@@ -163,7 +169,7 @@ squid::http_port{'1000':
 Results in a squid configuration of
 
 ```
-http_port 1000 accel vhost
+http_port 10000 accel vhost
 ```
 
 #### Parameters for Type squid::http\_port
