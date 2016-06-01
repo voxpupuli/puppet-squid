@@ -1,3 +1,6 @@
+## 2016-06-01 Release 0.2.2
+* Correct documentation examples.
+
 ## 2016-06-01 Release 0.2.1
 
 * All defined types can now be loaded as a hash to *init* and
