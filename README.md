@@ -51,27 +51,27 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 
 ```puppet
 class{'::squid':
-  cache_mem    = '512 MB',
-  workers      = 3,
-  coredump_dir = '/var/spool/squid',
+  cache_mem    => '512 MB',
+  workers      => 3,
+  coredump_dir => '/var/spool/squid',
 }
 ```
 
 ```puppet
 class{'::squid':
-  cache_mem    = '512 MB',
-  workers      = 3,
-  coredump_dir = '/var/spool/squid',
-  acls         = { 'remote_urls' => {
+  cache_mem    => '512 MB',
+  workers      => 3,
+  coredump_dir => '/var/spool/squid',
+  acls         => { 'remote_urls' => {
                        type    => 'url_regex',
                        entries => ['http://example.org/path',
                                    'http://example.com/anotherpath'],
                        },
-                 },
-  http_access  = { 'our_networks hosts' =>  { action => 'allow', },
-  http_ports   = { '10000' =>  { options => 'accel vhost'} },
-  snmp_ports   = { '1000' =>  { process_number => 3 },
-  cache_dirs   = { '/data/ => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 },
+                  },
+  http_access  => { 'our_networks hosts' => { action => 'allow', },
+  http_ports   => { '10000' => { options => 'accel vhost'} },
+  snmp_ports   => { '1000' => { process_number => 3 },
+  cache_dirs   => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 }},
 }
 ```
 
