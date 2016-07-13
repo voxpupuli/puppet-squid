@@ -21,8 +21,8 @@ define squid::cache_dir (
 
   file{$path:
     ensure => directory,
-    owner  => squid,
-    group  => squid,
+    owner  => $::squid::daemon_user,
+    group  => $::squid::daemon_group,
     mode   => '0750',
   }
 
