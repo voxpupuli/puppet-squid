@@ -18,7 +18,7 @@ describe 'squid::auth_param' do
       {
         scheme: 'basic',
         order: '07',
-        entries: entries,
+        entries: entries
       }
     end
     it { should contain_concat__fragment('squid_auth_param_auth').with_target('/tmp/squid.conf') }

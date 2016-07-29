@@ -27,7 +27,7 @@ describe 'squid' do
         access_log: '/var/log/out.log',
         coredump_dir: '/tmp/core',
         max_filedescriptors: 1000,
-        workers: 8,
+        workers: 8
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -47,9 +47,9 @@ describe 'squid' do
           'myacl' => {
             'type' => 'urlregex',
             'order' => '07',
-            'entries' => ['http://example.org/', 'http://example.com/'],
-          },
-        },
+            'entries' => ['http://example.org/', 'http://example.com/']
+          }
+        }
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -66,14 +66,14 @@ describe 'squid' do
           'myacl' => {
             'type' => 'urlregex',
             'order' => '07',
-            'entries' => ['http://example.org/', 'http://example.com/'],
+            'entries' => ['http://example.org/', 'http://example.com/']
           },
           'mysecondacl' => {
             'type' => 'urlregex',
             'order' => '08',
-            'entries' => ['http://example2.org/', 'http://example2.com/'],
-          },
-        },
+            'entries' => ['http://example2.org/', 'http://example2.com/']
+          }
+        }
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -93,9 +93,9 @@ describe 'squid' do
           'myrule' => {
             'action' => 'deny',
             'value' => 'this and that',
-            'order' => '08',
-          },
-        },
+            'order' => '08'
+          }
+        }
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -112,14 +112,14 @@ describe 'squid' do
           'myrule' => {
             'action' => 'deny',
             'value'  => 'this and that',
-            'order'  => '08',
+            'order'  => '08'
           },
           'secondrule' => {
             'action' => 'deny',
             'value'  => 'this too',
-            'order'  => '09',
-          },
-        },
+            'order'  => '09'
+          }
+        }
 
       }
     end
@@ -135,7 +135,7 @@ describe 'squid' do
   context 'with http_port parameters set' do
     let :params do
       { config: '/tmp/squid.conf',
-        http_ports: { 2000 =>  { 'options' => 'special for 2000' } }, }
+        http_ports: { 2000 =>  { 'options' => 'special for 2000' } } }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
     it { should contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
@@ -146,7 +146,7 @@ describe 'squid' do
     let :params do
       { config: '/tmp/squid.conf',
         snmp_ports: { 2000 =>  { 'options'        => 'special for 2000',
-                                 'process_number' => 3, }, }, }
+                                 'process_number' => 3 } } }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
     it { should contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^snmp_port\s+2000\s+special for 2000$}) }
@@ -158,7 +158,7 @@ describe 'squid' do
     let :params do
       { config: '/tmp/squid.conf',
         cache_dirs: { '/data' => { 'type'    => 'special',
-                                   'options' => 'my options for special type', }, }, }
+                                   'options' => 'my options for special type' } } }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
     it { should contain_file('/data').with_ensure('directory') }

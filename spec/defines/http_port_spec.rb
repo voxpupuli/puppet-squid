@@ -18,7 +18,7 @@ describe 'squid::http_port' do
       {
         port: 2000,
         options:  'special for 2000',
-        order: '08',
+        order: '08'
       }
     end
     it { should contain_concat_fragment('squid_http_port_2000').with_target('/tmp/squid.conf') }

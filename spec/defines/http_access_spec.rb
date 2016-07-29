@@ -18,7 +18,7 @@ describe 'squid::http_access' do
       {
         action: 'deny',
         value: 'this and that',
-        order: '08',
+        order: '08'
       }
     end
     it { should contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
