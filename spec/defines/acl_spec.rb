@@ -13,7 +13,7 @@ describe 'squid::acl' do
       {
         type: 'urlregex',
         order: '07',
-        entries: ['http://example.org/', 'http://example.com/'],
+        entries: ['http://example.org/', 'http://example.com/']
       }
     end
     it { should contain_concat_fragment('squid_acl_myacl').with_target('/tmp/squid.conf') }
