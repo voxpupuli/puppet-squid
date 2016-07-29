@@ -24,7 +24,7 @@ describe 'squid::auth_param' do
     it { should contain_concat__fragment('squid_auth_param_auth').with_target('/tmp/squid.conf') }
     it { should contain_concat__fragment('squid_auth_param_auth').with_order('40-07-basic') }
     entries.each do |entry|
-      it { should contain_concat__fragment('squid_auth_param_auth').with_content(/auth_param basic #{entry}/) }
+      it { should contain_concat__fragment('squid_auth_param_auth').with_content(%r{auth_param basic #{entry}}) }
     end
   end
 end

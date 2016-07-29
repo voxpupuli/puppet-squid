@@ -11,7 +11,7 @@ describe 'squid::http_port' do
   context 'when parameters are unset' do
     it { should contain_concat_fragment('squid_http_port_1000').with_target('/tmp/squid.conf') }
     it { should contain_concat_fragment('squid_http_port_1000').with_order('30-05') }
-    it { should contain_concat_fragment('squid_http_port_1000').with_content(/^http_port\s+1000\s*$/) }
+    it { should contain_concat_fragment('squid_http_port_1000').with_content(%r{^http_port\s+1000\s*$}) }
   end
   context 'when parameters are set' do
     let(:params) do
@@ -23,6 +23,6 @@ describe 'squid::http_port' do
     end
     it { should contain_concat_fragment('squid_http_port_2000').with_target('/tmp/squid.conf') }
     it { should contain_concat_fragment('squid_http_port_2000').with_order('30-08') }
-    it { should contain_concat_fragment('squid_http_port_2000').with_content(/^http_port\s+2000\s+special for 2000$/) }
+    it { should contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
   end
 end
