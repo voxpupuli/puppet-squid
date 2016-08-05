@@ -5,4 +5,4 @@ is_pe: false
 macaddress: "AA:AA:AA:AA:AA:AA"
 selinux_config_mode: "disabled"
 operatingsystem: "Debian"
-operatingsystemrelease: "8.0"
+operatingsystemrelease: "7.0"
