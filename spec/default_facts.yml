@@ -4,3 +4,5 @@ ipaddress: "172.16.254.254"
 is_pe: false
 macaddress: "AA:AA:AA:AA:AA:AA"
 selinux_config_mode: "disabled"
+operatingsystem: "Debian"
+operatingsystemrelease: "8.0"
