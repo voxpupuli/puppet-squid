@@ -1,3 +1,7 @@
+# Class: squid::params
+#
+# This class manages Squid parameters
+
 class squid::params {
 
   $ensure_service                = 'running'
@@ -15,9 +19,9 @@ class squid::params {
   $snmp_ports                    = undef
   $cache_dirs                    = undef
 
-  case $operatingsystem {
+  case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
-      case $operatingsystemrelease {
+      case $::operatingsystemrelease {
         /^8.*/: {
           $package_name          = 'squid3'
           $service_name          = 'squid3'
