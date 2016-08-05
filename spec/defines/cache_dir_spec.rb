@@ -20,8 +20,8 @@ describe 'squid::cache_dir' do
     it { should contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
     it { should contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
     it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special /data my options for special type$}) }
-    it { should contain_concat_fragment('squid_cache_dir_/data').with_content(/^endif$/) }
-    it { should contain_concat_fragment('squid_cache_dir_/data').with_content(/^if \${process_number} = 2$/) }
+    it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^endif$}) }
+    it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^if \${process_number} = 2$}) }
     it { should contain_file('/data').with_ensure('directory') }
   end
 
@@ -36,7 +36,7 @@ describe 'squid::cache_dir' do
     it { should contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
     it { should contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
     it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special \/data my options for special type$}) }
-    it { should contain_concat_fragment('squid_cache_dir_/data').without_content(/^endif$/) }
-    it { should contain_concat_fragment('squid_cache_dir_/data').without_content(/^if \${process_number}$/) }
+    it { should contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^endif$}) }
+    it { should contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^if \${process_number}$}) }
   end
 end
