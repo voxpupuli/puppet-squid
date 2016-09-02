@@ -13,6 +13,7 @@ class squid::config (
   $http_access                   = $::squid::http_access,
   $auth_params                   = $::squid::auth_params,
   $http_ports                    = $::squid::http_ports,
+  $https_ports                   = $::squid::https_ports,
   $snmp_ports                    = $::squid::snmp_ports,
   $cache_dirs                    = $::squid::cache_dirs,
   $extra_config_sections         = $::squid::extra_config_sections,
@@ -42,6 +43,9 @@ class squid::config (
   }
   if $http_ports {
     create_resources('squid::http_port', $http_ports)
+  }
+  if $https_ports {
+    create_resources('squid::https_port', $https_ports)
   }
   if $snmp_ports {
     create_resources('squid::snmp_port', $snmp_ports)

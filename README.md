@@ -52,6 +52,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
+* `https_ports` defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 * `extra_config_sections` defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
@@ -166,10 +167,15 @@ These may be defined as a hash passed to ::squid
 
 ### Defined Type Squid::Http\_port
 Defines [http_port entries](http://www.squid-cache.org/Doc/config/http_port/) for a squid server.
+By setting optional `ssl` parameter to `true` will create [https_port entries](http://www.squid-cache.org/Doc/config/https_port/) instead.
 
 ```puppet
 squid::http_port{'10000':
   options => 'accel vhost'
+}
+squid::http_port{'10001':
+  ssl     => true,
+  options => 'cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key'
 }
 ```
 
@@ -177,11 +183,21 @@ Results in a squid configuration of
 
 ```
 http_port 10000 accel vhost
+https_port 10001 cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key
 ```
 
 #### Parameters for Type squid::http\_port
 * `port` defaults to the namevar and is the port number.
 * `options` A string to specify any options for the default. By default and empty string.
+* `ssl` A boolean.  When set to `true` creates [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).  Defaults to `false`.
+
+### Defined Type Squid::Https\_port
+Defines [https_port entries](http://www.squid-cache.org/Doc/config/https_port/) for a squid server.
+As an alternative to using the Squid::Http\_port defined type with `ssl` set to `true`, you can use this type instead.  The result is the same. Internally this type uses Squid::Http\_port to create the configuration entries.
+
+#### Parameters for Type squid::https\_port
+* `port` defaults to the namevar and is the port number.
+* `options` A string to specify any options to add to the https_port line.  Defaults to an empty string.
 
 ### Defined Type Squid::Snmp\_port
 Defines [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/) for a squid server.

@@ -30,6 +30,15 @@ describe 'squid::http_port' do
         it { should contain_concat_fragment('squid_http_port_2000').with_order('30-08') }
         it { should contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
       end
+      context 'when ssl => true' do
+        let(:title) { '3000' }
+        let(:params) do
+          {
+            ssl: true
+          }
+        end
+        it { should contain_concat_fragment('squid_https_port_3000').with_content(%r{^https_port\s+3000\s*$}) }
+      end
     end
   end
 end
