@@ -1,8 +1,3 @@
 class squid::install  {
-
-  package{'squid':
-    ensure => present,
-  }
-
+  ensure_packages($::squid::package_name)
 }
-

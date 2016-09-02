@@ -1,5 +1,20 @@
 class squid::params {
 
+  case $::operatingsystem {
+    'RedHat', 'CentOS', 'OracleLinux', 'Scientific': {
+      if $::operatingsystemmajrelease == '5' {
+        $manage_repo  = false
+        $package_name = 'squid'
+      } else {
+        $manage_repo  = true
+        $package_name = ['squid', 'squid-helpers']
+      }
+    }
+    default: {
+      $manage_repo  = false
+      $package_name = 'squid'
+    }
+  }
   $ensure_service                = 'running'
   $enable_service                = true
   $config                        = '/etc/squid/squid.conf'

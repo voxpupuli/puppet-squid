@@ -1,6 +1,8 @@
 class squid (
   $ensure_service                = $squid::params::ensure_service,
   $enable_service                = $squid::params::enable_service,
+  $package_name                  = $squid::params::package_name,
+  $manage_repo                   = $squid::params::manage_repo,
   $config                        = $squid::params::config,
   $cache_mem                     = $squid::params::cache_mem,
   $memory_cache_shared           = $squid::params::memory_cache_shared,
@@ -19,6 +21,7 @@ class squid (
 
   validate_string($ensure_service)
   validate_bool($enable_service)
+  validate_bool($manage_repo)
   validate_re($cache_mem,'\d+ MB')
   validate_string($config)
   if $memory_cache_shared {
@@ -55,12 +58,11 @@ class squid (
     validate_hash($cache_dirs)
   }
 
-  anchor{'squid::begin':} ->
-  class{'::squid::install':} ->
-  class{'::squid::config':} ~>
-  class{'::squid::service':} ->
-  anchor{'squid::end':}
+  contain ::squid::repo
+  contain ::squid::install
+  contain ::squid::config
+  contain ::squid::service
 
-
+  Class['squid::repo'] -> Class['squid::install'] -> Class['squid::config'] ~> Class['squid::service']
 
 }
