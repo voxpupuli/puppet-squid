@@ -1,7 +1,7 @@
 class squid (
   $ensure_service                = $squid::params::ensure_service,
   $enable_service                = $squid::params::enable_service,
-  $package_name                  = $squid::params::package_name,
+  $package_name                  = undef,
   $manage_repo                   = $squid::params::manage_repo,
   $config                        = $squid::params::config,
   $cache_mem                     = $squid::params::cache_mem,
@@ -56,6 +56,12 @@ class squid (
   }
   if $cache_dirs {
     validate_hash($cache_dirs)
+  }
+
+  if $manage_repo {
+    $package_name_real = pick($package_name, $::squid::params::managed_repo_package_name)
+  } else {
+    $package_name_real = pick($package_name, $::squid::params::package_name)
   }
 
   contain ::squid::repo

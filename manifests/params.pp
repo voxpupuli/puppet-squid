@@ -2,17 +2,16 @@ class squid::params {
 
   case $::operatingsystem {
     'RedHat', 'CentOS', 'OracleLinux', 'Scientific': {
+      $manage_repo = false
       if $::operatingsystemmajrelease == '5' {
-        $manage_repo  = false
-        $package_name = 'squid'
+        $managed_repo_package_name = 'squid'
       } else {
-        $manage_repo  = true
-        $package_name = ['squid', 'squid-helpers']
+        $managed_repo_package_name = ['squid', 'squid-helpers']
       }
     }
     default: {
-      $manage_repo  = false
-      $package_name = 'squid'
+      $manage_repo = false
+      $managed_repo_package_name = 'squid'
     }
   }
   $ensure_service                = 'running'
@@ -31,4 +30,5 @@ class squid::params {
   $http_ports                    = undef
   $snmp_ports                    = undef
   $cache_dirs                    = undef
+  $package_name                  = 'squid'
 }

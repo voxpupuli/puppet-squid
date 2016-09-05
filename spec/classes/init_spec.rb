@@ -178,15 +178,60 @@ describe 'squid' do
             end
             it { is_expected.not_to contain_package('squid-helpers') }
           when '6'
-            it 'manage_repo is true on EL6' do
-              is_expected.to contain_yumrepo('squid')
+            it 'manage_repo is false on EL6' do
+              is_expected.not_to contain_yumrepo('squid')
             end
+            it { is_expected.not_to contain_package('squid-helpers') }
+          when '7'
+            it 'manage_repo is false on EL7' do
+              is_expected.not_to contain_yumrepo('squid')
+            end
+            it { is_expected.not_to contain_package('squid-helpers') }
+          end
+          context 'when package_name overridden' do
+            let :params do
+              {
+                package_name: 'mysquidpackage'
+              }
+            end
+            it { is_expected.to contain_package('mysquidpackage') }
+            it { is_expected.not_to contain_package('squid') }
+            it { is_expected.not_to contain_package('squid-helpers') }
+          end
+        end
+        context 'when manage_repo = true' do
+          let :params do
+            {
+              manage_repo: true
+            }
+          end
+          case facts[:operatingsystemmajrelease]
+          when '5'
+            it { is_expected.to compile.and_raise_error(%r{Managing a repo on (CentOS|OracleLinux|RedHat|Scientific) 5 is currently not implemented}) }
+          when '6'
+            it { is_expected.to contain_yumrepo('squid') }
+            it { is_expected.to contain_package('squid') }
             it { is_expected.to contain_package('squid-helpers') }
           when '7'
-            it 'manage_repo is true on EL7' do
-              is_expected.to contain_yumrepo('squid')
-            end
+            it { is_expected.to contain_yumrepo('squid') }
+            it { is_expected.to contain_package('squid') }
             it { is_expected.to contain_package('squid-helpers') }
+          end
+          context 'when package_name overridden' do
+            let :params do
+              {
+                manage_repo: true,
+                package_name: 'mysquidpackage'
+              }
+            end
+            case facts[:operatingsystemmajrelease]
+            when '5'
+              it { is_expected.to compile.and_raise_error(%r{Managing a repo on (CentOS|OracleLinux|RedHat|Scientific) 5 is currently not implemented}) }
+            else
+              it { is_expected.to contain_package('mysquidpackage') }
+              it { is_expected.not_to contain_package('squid') }
+              it { is_expected.not_to contain_package('squid-helpers') }
+            end
           end
         end
       end
