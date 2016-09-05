@@ -21,6 +21,7 @@ class squid (
   $cache_dirs                    = $squid::params::cache_dirs,
   $daemon_user                   = $squid::params::daemon_user,
   $daemon_group                  = $squid::params::daemon_group,
+  $extra_config_sections         = {},
 ) inherits ::squid::params {
 
   validate_string($ensure_service)
@@ -65,12 +66,12 @@ class squid (
     validate_hash($cache_dirs)
   }
 
+  validate_hash($extra_config_sections)
+
   anchor{'squid::begin':} ->
   class{'::squid::install':} ->
   class{'::squid::config':} ~>
   class{'::squid::service':} ->
   anchor{'squid::end':}
-
-
 
 }
