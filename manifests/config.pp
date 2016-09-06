@@ -1,5 +1,7 @@
 class squid::config (
   $config                        = $squid::config,
+  $config_user                   = $squid::config_user,
+  $config_group                  = $squid::config_group,
   $cache_mem                     = $squid::cache_mem,
   $memory_cache_shared           = $squid::memory_cache_shared,
   $maximum_object_size_in_memory = $squid::maximum_object_size_in_memory,
@@ -17,8 +19,8 @@ class squid::config (
 
   concat{$config:
     ensure => present,
-    owner  => root,
-    group  => squid,
+    owner  => $config_user,
+    group  => $config_group,
     mode   => '0640',
   }
 
