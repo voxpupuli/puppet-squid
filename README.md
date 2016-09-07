@@ -36,6 +36,8 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `ensure_service` The ensure value of the squid service, defaults to `running`.
 * `enable_service` The enable value of the squid service, defaults to `true`.
 * `config` Location of squid.conf file, defaults to `/etc/squid/squid.conf`.
+* `config_user` user which owns the config file, defaults to `root`.
+* `config_group` group which owns the config file, defaults to `squid`.
 * `cache_mem` defaults to `256 MB`. [cache_mem docs](http://www.squid-cache.org/Doc/config/cache_mem/).
 * `memory_cache_shared` defaults to undef. [memory_cache_shared docs](http://www.squid-cache.org/Doc/config/memory_cache_shared/).
 * `maximum_object_size_in_memory` defaults to `512 KB`. [maximum_object_size_in_memory docs](http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/)
@@ -46,6 +48,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
+* `service_name` name of the squid service to manage, defaults to `squid`.
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 

@@ -22,21 +22,27 @@ describe 'squid' do
     let :params do
       {
         config: '/tmp/squid.conf',
+        config_user: 'nobody',
+        config_group: 'nobody',
         cache_mem: '1024 MB',
         memory_cache_shared: 'on',
         access_log: '/var/log/out.log',
         coredump_dir: '/tmp/core',
+        service_name: 'squid3',
         max_filedescriptors: 1000,
         workers: 8
       }
     end
     it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+    it { should contain_concat('/tmp/squid.conf').with_owner('nobody') }
+    it { should contain_concat('/tmp/squid.conf').with_group('nobody') }
     it { should contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+1024 MB$}) }
     it { should contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
     it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+/var/log/out.log$}) }
     it { should contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
     it { should contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
     it { should contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
+    it { should contain_service('squid3').with_ensure('running') }
   end
 
   context 'with one acl parameter set' do

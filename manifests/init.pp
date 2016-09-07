@@ -2,6 +2,8 @@ class squid (
   $ensure_service                = $squid::params::ensure_service,
   $enable_service                = $squid::params::enable_service,
   $config                        = $squid::params::config,
+  $config_user                   = $squid::params::config_user,
+  $config_group                  = $squid::params::config_group,
   $cache_mem                     = $squid::params::cache_mem,
   $memory_cache_shared           = $squid::params::memory_cache_shared,
   $maximum_object_size_in_memory = $squid::params::maximum_object_size_in_memory,
@@ -13,6 +15,7 @@ class squid (
   $http_access                   = $squid::params::http_access,
   $auth_params                   = $squid::params::auth_params,
   $http_ports                    = $squid::params::http_ports,
+  $service_name                  = $squid::params::service_name,
   $snmp_ports                    = $squid::params::snmp_ports,
   $cache_dirs                    = $squid::params::cache_dirs,
 ) inherits ::squid::params {

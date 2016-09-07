@@ -3,6 +3,8 @@ class squid::params {
   $ensure_service                = 'running'
   $enable_service                = true
   $config                        = '/etc/squid/squid.conf'
+  $config_user                   = 'root'
+  $config_group                  = 'squid'
   $cache_mem                     = '256 MB'
   $memory_cache_shared           = undef
   $maximum_object_size_in_memory = '512 KB'
@@ -14,6 +16,7 @@ class squid::params {
   $http_access                   = undef
   $auth_params                   = undef
   $http_ports                    = undef
+  $service_name                  = 'squid'
   $snmp_ports                    = undef
   $cache_dirs                    = undef
 }
