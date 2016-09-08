@@ -1,7 +1,10 @@
 class squid (
   $ensure_service                = $squid::params::ensure_service,
   $enable_service                = $squid::params::enable_service,
+  $service_name                  = $squid::params::service_name,
   $config                        = $squid::params::config,
+  $group                         = $squid::params::group,
+  $package_name                  = $squid::params::package_name,
   $cache_mem                     = $squid::params::cache_mem,
   $memory_cache_shared           = $squid::params::memory_cache_shared,
   $maximum_object_size_in_memory = $squid::params::maximum_object_size_in_memory,
@@ -15,6 +18,8 @@ class squid (
   $http_ports                    = $squid::params::http_ports,
   $snmp_ports                    = $squid::params::snmp_ports,
   $cache_dirs                    = $squid::params::cache_dirs,
+  $daemon_user                   = $squid::params::daemon_user,
+  $daemon_group                  = $squid::params::daemon_group,
 ) inherits ::squid::params {
 
   validate_string($ensure_service)
