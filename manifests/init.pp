@@ -3,7 +3,8 @@ class squid (
   $enable_service                = $squid::params::enable_service,
   $service_name                  = $squid::params::service_name,
   $config                        = $squid::params::config,
-  $group                         = $squid::params::group,
+  $config_user                   = $squid::params::config_user,
+  $config_group                  = $squid::params::config_group,
   $package_name                  = $squid::params::package_name,
   $cache_mem                     = $squid::params::cache_mem,
   $memory_cache_shared           = $squid::params::memory_cache_shared,
@@ -26,6 +27,10 @@ class squid (
   validate_bool($enable_service)
   validate_re($cache_mem,'\d+ MB')
   validate_string($config)
+  validate_string($config_user)
+  validate_string($config_group)
+  validate_string($daemon_user)
+  validate_string($daemon_group)
   if $memory_cache_shared {
     validate_re($memory_cache_shared,['^on$','^off$'])
   }
