@@ -18,6 +18,23 @@ describe 'squid' do
           it { should contain_concat('/etc/squid3/squid.conf').with_owner('root') }
           it { should contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
           it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+        when 'Ubuntu'
+          case facts[:operatingsystemrelease]
+          when '14.04'
+            it { should contain_package('squid3').with_ensure('present') }
+            it { should contain_service('squid3').with_ensure('running') }
+            it { should contain_concat('/etc/squid3/squid.conf').with_group('root') }
+            it { should contain_concat('/etc/squid3/squid.conf').with_owner('root') }
+            it { should contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
+            it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+          when '16.04'
+            it { should contain_package('squid').with_ensure('present') }
+            it { should contain_service('squid').with_ensure('running') }
+            it { should contain_concat('/etc/squid/squid.conf').with_group('root') }
+            it { should contain_concat('/etc/squid/squid.conf').with_owner('root') }
+            it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
+            it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+          end
         else
           it { should contain_package('squid').with_ensure('present') }
           it { should contain_service('squid').with_ensure('running') }

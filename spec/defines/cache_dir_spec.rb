@@ -28,6 +28,23 @@ describe 'squid::cache_dir' do
         it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^endif$}) }
         it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^if \${process_number} = 2$}) }
         it { should contain_file('/data').with_ensure('directory') }
+        case facts[:operatingsystem]
+        when 'Debian'
+          it { should contain_file('/data').with_owner('proxy') }
+          it { should contain_file('/data').with_group('proxy') }
+        when 'Ubuntu'
+          case facts[:operatingsystemrelease]
+          when '14.04'
+            it { should contain_file('/data').with_owner('proxy') }
+            it { should contain_file('/data').with_group('proxy') }
+          when '16.06'
+            it { should contain_file('/data').with_owner('proxy') }
+            it { should contain_file('/data').with_group('proxy') }
+          end
+        else
+          it { should contain_file('/data').with_owner('squid') }
+          it { should contain_file('/data').with_group('squid') }
+        end
       end
 
       context 'when parameters are set excluding process_number' do
