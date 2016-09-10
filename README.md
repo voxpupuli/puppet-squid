@@ -36,11 +36,17 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `ensure_service` The ensure value of the squid service, defaults to `running`.
 * `enable_service` The enable value of the squid service, defaults to `true`.
 * `config` Location of squid.conf file, defaults to `/etc/squid/squid.conf`.
+* `config_user` user which owns the config file, default depends on `$operatingsystem`
+* `config_group` group which owns the config file, default depends on `$operatingsystem`
+* `daemon_user` user which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
+* `daemon_group` group which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
 * `cache_mem` defaults to `256 MB`. [cache_mem docs](http://www.squid-cache.org/Doc/config/cache_mem/).
 * `memory_cache_shared` defaults to undef. [memory_cache_shared docs](http://www.squid-cache.org/Doc/config/memory_cache_shared/).
 * `maximum_object_size_in_memory` defaults to `512 KB`. [maximum_object_size_in_memory docs](http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/)
 * `access_log` defaults to `daemon:/var/logs/squid/access.log squid`. [access_log docs](http://www.squid-cache.org/Doc/config/access_log/)
 * `coredump_dir` defaults to undef. [coredump_dir docs](http://www.squid-cache.org/Doc/config/coredump_dir/).
+* `package_name` name of the squid package to manage, default depends on `$operatingsystem`
+* `service_name` name of the squid service to manage, default depends on `$operatingsystem`
 * `max_filedescriptors` defaults to undef. [max_filedescriptors docs](http://www.squid-cache.org/Doc/config/max_filedescriptors/).
 * `workers` defaults to undef. [workers docs](http://www.squid-cache.org/Doc/config/workers/).
 * `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
