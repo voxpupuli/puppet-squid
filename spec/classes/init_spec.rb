@@ -10,13 +10,41 @@ describe 'squid' do
         it { should contain_class('squid::install') }
         it { should contain_class('squid::config') }
         it { should contain_class('squid::service') }
-        it { should contain_package('squid').with_ensure('present') }
-        it { should contain_service('squid').with_ensure('running') }
-        it { should contain_concat('/etc/squid/squid.conf').with_group('squid') }
-        it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
+        case facts[:operatingsystem]
+        when 'Debian'
+          it { should contain_package('squid3').with_ensure('present') }
+          it { should contain_service('squid3').with_ensure('running') }
+          it { should contain_concat('/etc/squid3/squid.conf').with_group('root') }
+          it { should contain_concat('/etc/squid3/squid.conf').with_owner('root') }
+          it { should contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
+          it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+        when 'Ubuntu'
+          case facts[:operatingsystemrelease]
+          when '14.04'
+            it { should contain_package('squid3').with_ensure('present') }
+            it { should contain_service('squid3').with_ensure('running') }
+            it { should contain_concat('/etc/squid3/squid.conf').with_group('root') }
+            it { should contain_concat('/etc/squid3/squid.conf').with_owner('root') }
+            it { should contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
+            it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+          when '16.04'
+            it { should contain_package('squid').with_ensure('present') }
+            it { should contain_service('squid').with_ensure('running') }
+            it { should contain_concat('/etc/squid/squid.conf').with_group('root') }
+            it { should contain_concat('/etc/squid/squid.conf').with_owner('root') }
+            it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
+            it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+          end
+        else
+          it { should contain_package('squid').with_ensure('present') }
+          it { should contain_service('squid').with_ensure('running') }
+          it { should contain_concat('/etc/squid/squid.conf').with_group('squid') }
+          it { should contain_concat('/etc/squid/squid.conf').with_owner('root') }
+          it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
+          it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+        end
         it { should contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
         it { should contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
         it { should contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
         it { should contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
         it { should contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }

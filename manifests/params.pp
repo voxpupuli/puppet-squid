@@ -1,12 +1,14 @@
+# Class: squid::params
+#
+# This class manages Squid parameters
+
 class squid::params {
 
   $ensure_service                = 'running'
   $enable_service                = true
-  $config                        = '/etc/squid/squid.conf'
   $cache_mem                     = '256 MB'
   $memory_cache_shared           = undef
   $maximum_object_size_in_memory = '512 KB'
-  $access_log                    = 'daemon:/var/log/squid/access.log squid'
   $coredump_dir                  = undef
   $max_filedescriptors           = undef
   $workers                       = undef
@@ -16,4 +18,51 @@ class squid::params {
   $http_ports                    = undef
   $snmp_ports                    = undef
   $cache_dirs                    = undef
+
+  case $::operatingsystem {
+    /^(Debian|Ubuntu)$/: {
+      case $::operatingsystemrelease {
+        /^(8.*|14\.04)$/: {
+          $package_name          = 'squid3'
+          $service_name          = 'squid3'
+          $config                = '/etc/squid3/squid.conf'
+          $config_user           = 'root'
+          $config_group          = 'root'
+          $access_log            = 'daemon:/var/log/squid3/access.log squid'
+          $daemon_user           = 'proxy'
+          $daemon_group          = 'proxy'
+        }
+        /^16\.04$/: {
+          $package_name          = 'squid'
+          $service_name          = 'squid'
+          $config                = '/etc/squid/squid.conf'
+          $config_user           = 'root'
+          $config_group          = 'root'
+          $access_log            = 'daemon:/var/log/squid/access.log squid'
+          $daemon_user           = 'proxy'
+          $daemon_group          = 'proxy'
+        }
+        default: {
+          $package_name          = 'squid'
+          $service_name          = 'squid'
+          $config                = '/etc/squid/squid.conf'
+          $config_user           = 'root'
+          $config_group          = 'squid'
+          $access_log            = 'daemon:/var/log/squid/access.log squid'
+          $daemon_user           = 'squid'
+          $daemon_group          = 'squid'
+        }
+      }
+    }
+    default: {
+      $package_name              = 'squid'
+      $service_name              = 'squid'
+      $config                    = '/etc/squid/squid.conf'
+      $config_user               = 'root'
+      $config_group              = 'squid'
+      $access_log                = 'daemon:/var/log/squid/access.log squid'
+      $daemon_user               = 'squid'
+      $daemon_group              = 'squid'
+    }
+  }
 }
