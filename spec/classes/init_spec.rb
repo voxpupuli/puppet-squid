@@ -168,18 +168,28 @@ describe 'squid' do
       context 'with http_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',
-            http_ports: { 2000 =>  { 'options' => 'special for 2000' } } }
+            http_ports: { 2000 => { 'options' => 'special for 2000' } } }
         end
         it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { should contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
         it { should contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
       end
 
+      context 'with https_port parameters set' do
+        let :params do
+          { config: '/tmp/squid.conf',
+            https_ports: { 2001 => { 'options' => 'special for 2001' } } }
+        end
+        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { should contain_concat_fragment('squid_https_port_2001').with_order('30-05') }
+        it { should contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
+      end
+
       context 'with snmp_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',
-            snmp_ports: { 2000 =>  { 'options'        => 'special for 2000',
-                                     'process_number' => 3 } } }
+            snmp_ports: { 2000 => { 'options'        => 'special for 2000',
+                                    'process_number' => 3 } } }
         end
         it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { should contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^snmp_port\s+2000\s+special for 2000$}) }

@@ -16,6 +16,7 @@ class squid::params {
   $http_access                   = undef
   $auth_params                   = undef
   $http_ports                    = undef
+  $https_ports                   = undef
   $snmp_ports                    = undef
   $cache_dirs                    = undef
 
