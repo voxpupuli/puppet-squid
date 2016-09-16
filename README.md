@@ -54,6 +54,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
+* `extra_config_sections` defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
 
 ```puppet
 class{'::squid':
@@ -200,7 +201,7 @@ endif
 ```
 
 #### Parameters for Type squid::http\_port
-* `port` defautls to the namevar and is the port number.
+* `port` defaults to the namevar and is the port number.
 * `options` A string to specify any options for the default. By default and empty string.
 * `process_number` If set to and integer the snmp\_port is enabled only for
    a particular squid thread. Defaults to undef.
@@ -233,3 +234,29 @@ These may be defined as a hash passed to ::squid
 * `scheme` the scheme used for authentication must be defined
 * `entries` An array of entries, multiple members results in multiple lines in squid.conf
 * `order` by default is '40'
+
+### Defined Type squid::extra\_config\_section
+Squid has a large number of configuration directives.  Not all of these have been exposed individually in this module.  For those that haven't, the `extra_config_section` defined type can be used.
+
+```puppet
+squid::extra_config_section {'mail settings':
+  order          => '60',
+  config_entries => {
+    'mail_from'    => 'squid@example.com',
+    'mail_program' => 'mail',
+  },
+}
+```
+
+Results in a squid configuration of
+
+```
+# mail settings
+mail_from squid@example.com
+mail_program mail
+```
+
+#### Parameters for Type squid::extra\_config\_section
+* `comment` defaults to the namevar and is used as a section comment in `squid.conf`.
+* `config_entries` A hash of configuration entries to create in this section.  The hash key is the name of the configuration directive.  The value is either a string, or an array of strings to use as the configuration directive options.
+* `order` by default is '60'.  It can be used to configure where in `squid.conf` this configuration section should occur.

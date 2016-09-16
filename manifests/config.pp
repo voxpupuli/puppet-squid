@@ -1,20 +1,21 @@
 class squid::config (
-  $config                        = $squid::config,
-  $config_user                   = $squid::config_user,
-  $config_group                  = $squid::config_group,
-  $cache_mem                     = $squid::cache_mem,
-  $memory_cache_shared           = $squid::memory_cache_shared,
-  $maximum_object_size_in_memory = $squid::maximum_object_size_in_memory,
-  $access_log                    = $squid::access_log,
-  $coredump_dir                  = $squid::coredump_dir,
-  $max_filedescriptors           = $squid::max_filedescriptors,
-  $workers                       = $squid::workers,
-  $acls                          = $squid::acls,
-  $http_access                   = $squid::http_access,
-  $auth_params                   = $squid::auth_params,
-  $http_ports                    = $squid::http_ports,
-  $snmp_ports                    = $squid::snmp_ports,
-  $cache_dirs                    = $squid::cache_dirs,
+  $config                        = $::squid::config,
+  $config_user                   = $::squid::config_user,
+  $config_group                  = $::squid::config_group,
+  $cache_mem                     = $::squid::cache_mem,
+  $memory_cache_shared           = $::squid::memory_cache_shared,
+  $maximum_object_size_in_memory = $::squid::maximum_object_size_in_memory,
+  $access_log                    = $::squid::access_log,
+  $coredump_dir                  = $::squid::coredump_dir,
+  $max_filedescriptors           = $::squid::max_filedescriptors,
+  $workers                       = $::squid::workers,
+  $acls                          = $::squid::acls,
+  $http_access                   = $::squid::http_access,
+  $auth_params                   = $::squid::auth_params,
+  $http_ports                    = $::squid::http_ports,
+  $snmp_ports                    = $::squid::snmp_ports,
+  $cache_dirs                    = $::squid::cache_dirs,
+  $extra_config_sections         = $::squid::extra_config_sections,
 ) inherits squid {
 
   concat{$config:
@@ -48,4 +49,5 @@ class squid::config (
   if $cache_dirs {
     create_resources('squid::cache_dir', $cache_dirs)
   }
+  create_resources('squid::extra_config_section', $extra_config_sections)
 }

@@ -196,6 +196,35 @@ describe 'squid' do
         it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { should contain_file('/data').with_ensure('directory') }
       end
+
+      context 'with extra_config_sections parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            extra_config_sections: {
+              'mail settings' => {
+                'order' => 22,
+                'config_entries' => {
+                  'mail_from'    => 'squid@example.com',
+                  'mail_program' => 'mail'
+                }
+              },
+              'other settings' => {
+                'order' => 42,
+                'config_entries' => {
+                  'dns_timeout' => '5 seconds'
+                }
+              }
+            }
+          }
+        end
+        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { should contain_squid__extra_config_section('mail settings') }
+        it { should contain_squid__extra_config_section('other settings') }
+        it { should contain_concat_fragment('squid_extra_config_section_mail settings').with_content(%r{^mail_from\s+squid@example\.com$}) }
+        it { should contain_concat_fragment('squid_extra_config_section_mail settings').with_content(%r{^mail_program\s+mail$}) }
+        it { should contain_concat_fragment('squid_extra_config_section_other settings').with_content(%r{^dns_timeout\s+5 seconds$}) }
+      end
     end
   end
 end
