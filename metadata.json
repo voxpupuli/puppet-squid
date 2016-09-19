@@ -1,12 +1,12 @@
 {
   "name": "puppet-squid",
   "version": "0.2.3-rc0",
-  "author": "puppet",
+  "author": "Vox Pupuli",
   "summary": "configure squid caching proxy",
   "license": "Apache-2.0",
-  "source": "https://github.com/cernops/puppet-squid",
-  "project_page": "https://github.com/cernops/puppet-squid",
-  "issues_url": "https://github.com/cernops/puppet-squid/issues",
+  "source": "https://github.com/voxpupuli/puppet-squid",
+  "project_page": "https://github.com/voxpupuli/puppet-squid",
+  "issues_url": "https://github.com/voxpupuli/puppet-squid/issues",
   "tags": [
     "squid",
     "cache",
