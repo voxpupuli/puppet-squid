@@ -1,3 +1,11 @@
+## 2016-09-19 Release  0.3.0
+* Add `https_port` defined type.
+* Add `extra_config_section` permits extra random configuration.
+* The `auth_params` defintions now appear before ACLs as it should.
+* New parameters to specify owner of configuration,  daemon name
+  and  executer to control cache directory.
+* Addition of debian and ubuntu support.
+
 ## 2016-06-01 Release 0.2.2
 * Correct documentation examples.
 
