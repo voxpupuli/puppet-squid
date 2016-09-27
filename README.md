@@ -226,7 +226,7 @@ endif
 Defines [auth_param entries](http://www.squid-cache.org/Doc/config/auth_param/) for a squid server.
 
 ```puppet
-squid::auth_param{ 'basic auth_param'
+squid::auth_param{ 'basic auth_param':
   scheme    => 'basic',
   entries   => ['program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
                 'children 5',
