@@ -21,10 +21,10 @@ describe 'squid::acl' do
             entries: ['http://example.org/', 'http://example.com/']
           }
         end
-        it { should contain_concat_fragment('squid_acl_myacl').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
-        it { should contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
-        it { should contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
       end
     end
   end

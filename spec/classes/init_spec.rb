@@ -6,49 +6,49 @@ describe 'squid' do
         facts
       end
       context 'with defaults for all parameters' do
-        it { should contain_class('squid') }
-        it { should contain_class('squid::install') }
-        it { should contain_class('squid::config') }
-        it { should contain_class('squid::service') }
+        it { is_expected.to contain_class('squid') }
+        it { is_expected.to contain_class('squid::install') }
+        it { is_expected.to contain_class('squid::config') }
+        it { is_expected.to contain_class('squid::service') }
         case facts[:operatingsystem]
         when 'Debian'
-          it { should contain_package('squid3').with_ensure('present') }
-          it { should contain_service('squid3').with_ensure('running') }
-          it { should contain_concat('/etc/squid3/squid.conf').with_group('root') }
-          it { should contain_concat('/etc/squid3/squid.conf').with_owner('root') }
-          it { should contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
-          it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+          it { is_expected.to contain_package('squid3').with_ensure('present') }
+          it { is_expected.to contain_service('squid3').with_ensure('running') }
+          it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_group('root') }
+          it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_owner('root') }
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
         when 'Ubuntu'
           case facts[:operatingsystemrelease]
           when '14.04'
-            it { should contain_package('squid3').with_ensure('present') }
-            it { should contain_service('squid3').with_ensure('running') }
-            it { should contain_concat('/etc/squid3/squid.conf').with_group('root') }
-            it { should contain_concat('/etc/squid3/squid.conf').with_owner('root') }
-            it { should contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
-            it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+            it { is_expected.to contain_package('squid3').with_ensure('present') }
+            it { is_expected.to contain_service('squid3').with_ensure('running') }
+            it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_group('root') }
+            it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_owner('root') }
+            it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
+            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
           when '16.04'
-            it { should contain_package('squid').with_ensure('present') }
-            it { should contain_service('squid').with_ensure('running') }
-            it { should contain_concat('/etc/squid/squid.conf').with_group('root') }
-            it { should contain_concat('/etc/squid/squid.conf').with_owner('root') }
-            it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
-            it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+            it { is_expected.to contain_package('squid').with_ensure('present') }
+            it { is_expected.to contain_service('squid').with_ensure('running') }
+            it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('root') }
+            it { is_expected.to contain_concat('/etc/squid/squid.conf').with_owner('root') }
+            it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
+            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
           end
         else
-          it { should contain_package('squid').with_ensure('present') }
-          it { should contain_service('squid').with_ensure('running') }
-          it { should contain_concat('/etc/squid/squid.conf').with_group('squid') }
-          it { should contain_concat('/etc/squid/squid.conf').with_owner('root') }
-          it { should contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
-          it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+          it { is_expected.to contain_package('squid').with_ensure('present') }
+          it { is_expected.to contain_service('squid').with_ensure('running') }
+          it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('squid') }
+          it { is_expected.to contain_concat('/etc/squid/squid.conf').with_owner('root') }
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
         end
-        it { should contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
-        it { should contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
-        it { should contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
-        it { should contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }
-        it { should contain_concat_fragment('squid_header').without_content(%r{^workers}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^workers}) }
       end
 
       context 'with all parameters set' do
@@ -63,13 +63,13 @@ describe 'squid' do
             workers: 8
           }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+1024 MB$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^access_log\s+/var/log/out.log$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
-        it { should contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+1024 MB$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+/var/log/out.log$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
       end
 
       context 'with one acl parameter set' do
@@ -85,10 +85,10 @@ describe 'squid' do
             }
           }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
-        it { should contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
-        it { should contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
       end
 
       context 'with two acl parameters set' do
@@ -109,13 +109,13 @@ describe 'squid' do
             }
           }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
-        it { should contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
-        it { should contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
-        it { should contain_concat_fragment('squid_acl_mysecondacl').with_order('10-08-urlregex') }
-        it { should contain_concat_fragment('squid_acl_mysecondacl').with_content(%r{^acl\s+mysecondacl\s+urlregex\shttp://example2.org/$}) }
-        it { should contain_concat_fragment('squid_acl_mysecondacl').with_content(%r{^acl\s+mysecondacl\s+urlregex\shttp://example2.com/$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_mysecondacl').with_order('10-08-urlregex') }
+        it { is_expected.to contain_concat_fragment('squid_acl_mysecondacl').with_content(%r{^acl\s+mysecondacl\s+urlregex\shttp://example2.org/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_mysecondacl').with_content(%r{^acl\s+mysecondacl\s+urlregex\shttp://example2.com/$}) }
       end
 
       context 'with one http_access parameter set' do
@@ -131,10 +131,10 @@ describe 'squid' do
             }
           }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
-        it { should contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
       end
 
       context 'with two http_access parameters set' do
@@ -156,13 +156,13 @@ describe 'squid' do
 
           }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
-        it { should contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
-        it { should contain_concat_fragment('squid_http_access_this too').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_http_access_this too').with_order('20-09-deny') }
-        it { should contain_concat_fragment('squid_http_access_this too').with_content(%r{^http_access\s+deny\s+this too$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_order('20-09-deny') }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_content(%r{^http_access\s+deny\s+this too$}) }
       end
 
       context 'with http_port parameters set' do
@@ -170,9 +170,9 @@ describe 'squid' do
           { config: '/tmp/squid.conf',
             http_ports: { 2000 => { 'options' => 'special for 2000' } } }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
-        it { should contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
+        it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
       end
 
       context 'with https_port parameters set' do
@@ -180,9 +180,9 @@ describe 'squid' do
           { config: '/tmp/squid.conf',
             https_ports: { 2001 => { 'options' => 'special for 2001' } } }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_https_port_2001').with_order('30-05') }
-        it { should contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_order('30-05') }
+        it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
       end
 
       context 'with snmp_port parameters set' do
@@ -191,10 +191,10 @@ describe 'squid' do
             snmp_ports: { 2000 => { 'options'        => 'special for 2000',
                                     'process_number' => 3 } } }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^snmp_port\s+2000\s+special for 2000$}) }
-        it { should contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^if \${process_number} = 3$}) }
-        it { should contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^endif$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^snmp_port\s+2000\s+special for 2000$}) }
+        it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^if \${process_number} = 3$}) }
+        it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^endif$}) }
       end
 
       context 'with cache_dir parameters set' do
@@ -203,8 +203,8 @@ describe 'squid' do
             cache_dirs: { '/data' => { 'type'    => 'special',
                                        'options' => 'my options for special type' } } }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_file('/data').with_ensure('directory') }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_file('/data').with_ensure('directory') }
       end
 
       context 'with extra_config_sections parameter set' do
@@ -228,12 +228,12 @@ describe 'squid' do
             }
           }
         end
-        it { should contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { should contain_squid__extra_config_section('mail settings') }
-        it { should contain_squid__extra_config_section('other settings') }
-        it { should contain_concat_fragment('squid_extra_config_section_mail settings').with_content(%r{^mail_from\s+squid@example\.com$}) }
-        it { should contain_concat_fragment('squid_extra_config_section_mail settings').with_content(%r{^mail_program\s+mail$}) }
-        it { should contain_concat_fragment('squid_extra_config_section_other settings').with_content(%r{^dns_timeout\s+5 seconds$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_squid__extra_config_section('mail settings') }
+        it { is_expected.to contain_squid__extra_config_section('other settings') }
+        it { is_expected.to contain_concat_fragment('squid_extra_config_section_mail settings').with_content(%r{^mail_from\s+squid@example\.com$}) }
+        it { is_expected.to contain_concat_fragment('squid_extra_config_section_mail settings').with_content(%r{^mail_program\s+mail$}) }
+        it { is_expected.to contain_concat_fragment('squid_extra_config_section_other settings').with_content(%r{^dns_timeout\s+5 seconds$}) }
       end
     end
   end

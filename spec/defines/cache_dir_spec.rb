@@ -22,28 +22,28 @@ describe 'squid::cache_dir' do
             options: 'my options for special type'
           }
         end
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special /data my options for special type$}) }
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^endif$}) }
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^if \${process_number} = 2$}) }
-        it { should contain_file('/data').with_ensure('directory') }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special /data my options for special type$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^endif$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^if \${process_number} = 2$}) }
+        it { is_expected.to contain_file('/data').with_ensure('directory') }
         case facts[:operatingsystem]
         when 'Debian'
-          it { should contain_file('/data').with_owner('proxy') }
-          it { should contain_file('/data').with_group('proxy') }
+          it { is_expected.to contain_file('/data').with_owner('proxy') }
+          it { is_expected.to contain_file('/data').with_group('proxy') }
         when 'Ubuntu'
           case facts[:operatingsystemrelease]
           when '14.04'
-            it { should contain_file('/data').with_owner('proxy') }
-            it { should contain_file('/data').with_group('proxy') }
+            it { is_expected.to contain_file('/data').with_owner('proxy') }
+            it { is_expected.to contain_file('/data').with_group('proxy') }
           when '16.06'
-            it { should contain_file('/data').with_owner('proxy') }
-            it { should contain_file('/data').with_group('proxy') }
+            it { is_expected.to contain_file('/data').with_owner('proxy') }
+            it { is_expected.to contain_file('/data').with_group('proxy') }
           end
         else
-          it { should contain_file('/data').with_owner('squid') }
-          it { should contain_file('/data').with_group('squid') }
+          it { is_expected.to contain_file('/data').with_owner('squid') }
+          it { is_expected.to contain_file('/data').with_group('squid') }
         end
       end
 
@@ -55,11 +55,11 @@ describe 'squid::cache_dir' do
             options: 'my options for special type'
           }
         end
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
-        it { should contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special \/data my options for special type$}) }
-        it { should contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^endif$}) }
-        it { should contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^if \${process_number}$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special \/data my options for special type$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^endif$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^if \${process_number}$}) }
       end
     end
   end
