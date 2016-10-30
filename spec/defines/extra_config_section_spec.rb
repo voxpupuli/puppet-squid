@@ -30,8 +30,8 @@ describe 'squid::extra_config_section' do
             }
           }
         end
-        it { should contain_concat_fragment('squid_extra_config_section_my config section').with_target('/tmp/squid.conf') }
-        it { should contain_concat_fragment('squid_extra_config_section_my config section').with_order('60-my config section') }
+        it { is_expected.to contain_concat_fragment('squid_extra_config_section_my config section').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_extra_config_section_my config section').with_order('60-my config section') }
         it 'config section' do
           content = catalogue.resource('concat_fragment', 'squid_extra_config_section_my config section').send(:parameters)[:content]
           expect(content).to match(expected_config_section)
