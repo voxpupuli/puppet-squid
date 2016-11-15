@@ -57,6 +57,7 @@ describe 'squid' do
             config: '/tmp/squid.conf',
             cache_mem: '1024 MB',
             memory_cache_shared: 'on',
+            logformat: 'squid %tl.%03tu %6tr %>a %Ss/%03Hs',
             access_log: '/var/log/out.log',
             coredump_dir: '/tmp/core',
             max_filedescriptors: 1000,
@@ -66,6 +67,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+1024 MB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^logformat\s+squid %tl.%03tu %6tr %>a %Ss/%03Hs$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+/var/log/out.log$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
