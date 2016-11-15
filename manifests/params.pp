@@ -19,6 +19,7 @@ class squid::params {
   $https_ports                   = undef
   $snmp_ports                    = undef
   $cache_dirs                    = undef
+  $logformat                     = undef
 
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
