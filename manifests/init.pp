@@ -9,6 +9,7 @@ class squid (
   $cache_mem                     = $squid::params::cache_mem,
   $memory_cache_shared           = $squid::params::memory_cache_shared,
   $maximum_object_size_in_memory = $squid::params::maximum_object_size_in_memory,
+  $logformat                     = $squid::params::logformat,
   $access_log                    = $squid::params::access_log,
   $coredump_dir                  = $squid::params::coredump_dir,
   $max_filedescriptors           = $squid::params::max_filedescriptors,
@@ -37,6 +38,7 @@ class squid (
     validate_re($memory_cache_shared,['^on$','^off$'])
   }
   validate_re($maximum_object_size_in_memory,'\d+ KB')
+  validate_string($logformat)
   validate_string($access_log)
   if $coredump_dir {
     validate_string($coredump_dir)

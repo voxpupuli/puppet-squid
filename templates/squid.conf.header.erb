@@ -10,6 +10,9 @@ memory_cache_shared           <%= @memory_cache_shared %>
 <% end -%>
 maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
 
+<% if @logformat -%>
+logformat                     <%= @logformat %>
+<% end -%>
 access_log                    <%= @access_log %>
 
 <% if @coredump_dir -%>
