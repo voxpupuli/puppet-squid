@@ -15,6 +15,8 @@ class squid::config (
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
   $snmp_ports                    = $::squid::snmp_ports,
+  $ssl_bump                      = $::squid::ssl_bump,
+  $sslproxy_cert_error           = $::squid::sslproxy_cert_error,
   $cache_dirs                    = $::squid::cache_dirs,
   $extra_config_sections         = $::squid::extra_config_sections,
 ) inherits squid {
@@ -52,6 +54,12 @@ class squid::config (
   }
   if $cache_dirs {
     create_resources('squid::cache_dir', $cache_dirs)
+  }
+  if $ssl_bump {
+    create_resources('squid::ssl_bump', $ssl_bump)
+  }
+  if $sslproxy_cert_error {
+    create_resources('squid::sslproxy_cert_error', $sslproxy_cert_error)
   }
   create_resources('squid::extra_config_section', $extra_config_sections)
 }

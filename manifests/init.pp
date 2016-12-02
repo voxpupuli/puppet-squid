@@ -23,6 +23,8 @@ class squid (
   $cache_dirs                    = $squid::params::cache_dirs,
   $daemon_user                   = $squid::params::daemon_user,
   $daemon_group                  = $squid::params::daemon_group,
+  $ssl_bump                      = $squid::params::ssl_bump,
+  $sslproxy_cert_error           = $squid::params::sslproxy_cert_error,
   $extra_config_sections         = {},
 ) inherits ::squid::params {
 
@@ -70,6 +72,12 @@ class squid (
   }
   if $cache_dirs {
     validate_hash($cache_dirs)
+  }
+  if $ssl_bump {
+    validate_hash($ssl_bump)
+  }
+  if $sslproxy_cert_error {
+    validate_hash($sslproxy_cert_error)
   }
 
   validate_hash($extra_config_sections)
