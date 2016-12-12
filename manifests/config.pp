@@ -11,6 +11,7 @@ class squid::config (
   $workers                       = $::squid::workers,
   $acls                          = $::squid::acls,
   $http_access                   = $::squid::http_access,
+  $icp_access                    = $::squid::icp_access,
   $auth_params                   = $::squid::auth_params,
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
@@ -37,6 +38,9 @@ class squid::config (
   }
   if $http_access {
     create_resources('squid::http_access', $http_access)
+  }
+  if $icp_access {
+    create_resources('squid::icp_access', $icp_access)
   }
   if $auth_params {
     create_resources('squid::auth_param', $auth_params)

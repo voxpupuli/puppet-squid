@@ -14,6 +14,7 @@ class squid::params {
   $workers                       = undef
   $acls                          = undef
   $http_access                   = undef
+  $icp_access                    = undef
   $auth_params                   = undef
   $http_ports                    = undef
   $https_ports                   = undef
