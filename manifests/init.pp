@@ -16,6 +16,7 @@ class squid (
   $workers                       = $squid::params::workers,
   $acls                          = $squid::params::acls,
   $http_access                   = $squid::params::http_access,
+  $icp_access                    = $squid::params::icp_access,
   $auth_params                   = $squid::params::auth_params,
   $http_ports                    = $squid::params::http_ports,
   $https_ports                   = $squid::params::https_ports,
@@ -57,6 +58,9 @@ class squid (
   }
   if $http_access {
     validate_hash($http_access)
+  }
+  if $icp_access {
+    validate_hash($icp_access)
   }
   if $auth_params {
     validate_hash($auth_params)

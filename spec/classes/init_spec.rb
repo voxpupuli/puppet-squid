@@ -205,6 +205,53 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_all').with_content(%r{^sslproxy_cert_error\s+allow\s+all$}) }
       end
 
+      context 'with one icp_access parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            icp_access: {
+              'myrule' => {
+                'action' => 'deny',
+                'value' => 'this and that',
+                'order' => '08'
+              }
+            }
+          }
+        end
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_order('30-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_content(%r{^icp_access\s+deny\s+this and that$}) }
+      end
+
+      context 'with two icp_access parameters set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            icp_access: {
+              'myrule' => {
+                'action' => 'deny',
+                'value'  => 'this and that',
+                'order'  => '08'
+              },
+              'secondrule' => {
+                'action' => 'deny',
+                'value'  => 'this too',
+                'order'  => '09'
+              }
+            }
+
+          }
+        end
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_order('30-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_content(%r{^icp_access\s+deny\s+this and that$}) }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this too').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this too').with_order('30-09-deny') }
+        it { is_expected.to contain_concat_fragment('squid_icp_access_this too').with_content(%r{^icp_access\s+deny\s+this too$}) }
+      end
+
       context 'with http_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',

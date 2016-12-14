@@ -53,6 +53,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
 * `https_ports` defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).
+* `icp_access` defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 * `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
@@ -157,6 +158,23 @@ Adds a squid.conf line
 
 ```
 http_access allow our_networks hosts
+```
+
+These may be defined as a hash passed to ::squid
+
+### Defined Type squid::icp\_access
+Defines [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/) for a squid server.
+
+```puppet
+squid::icp_access{'our_networks hosts':
+  action => 'allow',
+}
+```
+
+Adds a squid.conf line 
+
+```
+icp_access allow our_networks hosts
 ```
 
 These may be defined as a hash passed to ::squid
