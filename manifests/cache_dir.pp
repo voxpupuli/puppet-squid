@@ -20,10 +20,11 @@ define squid::cache_dir (
   }
 
   file{$path:
-    ensure => directory,
-    owner  => $::squid::daemon_user,
-    group  => $::squid::daemon_group,
-    mode   => '0750',
+    ensure  => directory,
+    owner   => $::squid::daemon_user,
+    group   => $::squid::daemon_group,
+    mode    => '0750',
+    require => Package[$::squid::package_name],
   }
 
 }
