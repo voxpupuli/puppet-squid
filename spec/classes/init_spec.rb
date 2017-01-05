@@ -167,6 +167,44 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_content(%r{^http_access\s+deny\s+this too$}) }
       end
 
+      context 'with one ssl_bump parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            ssl_bump: {
+              'myrule' => {
+                'action' => 'bump',
+                'value' => 'step1',
+                'order' => '08'
+              }
+            }
+          }
+        end
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_ssl_bump_bump_step1').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_ssl_bump_bump_step1').with_order('25-08-bump') }
+        it { is_expected.to contain_concat_fragment('squid_ssl_bump_bump_step1').with_content(%r{^ssl_bump\s+bump\s+step1$}) }
+      end
+
+      context 'with one sslproxy_cert_error parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            sslproxy_cert_error: {
+              'myrule' => {
+                'action' => 'allow',
+                'value' => 'all',
+                'order' => '08'
+              }
+            }
+          }
+        end
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_all').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_all').with_order('35-08-allow') }
+        it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_all').with_content(%r{^sslproxy_cert_error\s+allow\s+all$}) }
+      end
+
       context 'with one icp_access parameter set' do
         let :params do
           {

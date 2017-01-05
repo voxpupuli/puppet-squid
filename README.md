@@ -56,6 +56,8 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `icp_access` defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
+* `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
+* `sslproxy_cert_error` defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/).
 * `extra_config_sections` defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
 
 ```puppet
@@ -268,6 +270,51 @@ These may be defined as a hash passed to ::squid
 * `scheme` the scheme used for authentication must be defined
 * `entries` An array of entries, multiple members results in multiple lines in squid.conf
 * `order` by default is '40'
+
+### Defined Type squid::ssl\_bump
+Defines [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/) for a squid server.
+
+```puppet
+squid::ssl_bump{'all':
+  action => 'bump',
+}
+```
+
+Adds a squid.conf line 
+
+```
+ssl_bump bump all
+```
+
+These may be defined as a hash passed to ::squid
+
+#### Parameters for Type squid::ssl\_bump
+* `value` The type of the ssl_bump, must be defined, e.g bump, peek, ..
+* `action` The name of acl, defaults to `bump`.
+* `order` by default is `05`
+
+### Defined Type squid::sslproxy\_cert\_error
+Defines [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/) for a squid server.
+
+```puppet
+squid::sslproxy_cert_error{'all':
+  action => 'allow',
+}
+```
+
+Adds a squid.conf line 
+
+```
+sslproxy_cert_error allow all
+```
+
+These may be defined as a hash passed to ::squid
+
+#### Parameters for Type squid::sslproxy\_cert\_error
+* `value` defaults to the `namevar` the rule to allow or deny.
+* `action` must be `deny` or `allow`. By default it is allow. The squid.conf file is ordered so by default
+   all allows appear before all denys. This can be overidden with the `order` parameter.
+* `order` by default is `05`
 
 ### Defined Type squid::extra\_config\_section
 Squid has a large number of configuration directives.  Not all of these have been exposed individually in this module.  For those that haven't, the `extra_config_section` defined type can be used.
