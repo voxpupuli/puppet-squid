@@ -1,4 +1,4 @@
-# acl fragment for <%= @aclname %>
+# <%= @comment %>
 <% @entries.sort.each do |e| -%>
 acl <%= @aclname %> <%= @type %> <%= e %>
 <% end -%>

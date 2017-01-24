@@ -18,13 +18,15 @@ describe 'squid::acl' do
           {
             type: 'urlregex',
             order: '07',
-            entries: ['http://example.org/', 'http://example.com/']
+            entries: ['http://example.org/', 'http://example.com/'],
+            comment: 'Example company website'
           }
         end
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^# Example company website$}) }
       end
     end
   end

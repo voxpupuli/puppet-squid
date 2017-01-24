@@ -107,7 +107,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }
-        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^# acl fragment for myacl$}) }
       end
 
       context 'with two acl parameters set' do
@@ -167,9 +167,10 @@ describe 'squid' do
                 'order'  => '08'
               },
               'secondrule' => {
-                'action' => 'deny',
-                'value'  => 'this too',
-                'order'  => '09'
+                'action'  => 'deny',
+                'value'   => 'this too',
+                'order'   => '09',
+                'comment' => 'Deny this and too'
               }
             }
 
@@ -179,9 +180,11 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^# http_access fragment for this and that$}) }
         it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_order('20-09-deny') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_content(%r{^http_access\s+deny\s+this too$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_content(%r{^# Deny this and too$}) }
       end
 
       context 'with one ssl_bump parameter set' do

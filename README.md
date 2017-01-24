@@ -157,6 +157,21 @@ squid::http_access{'our_networks hosts':
 Adds a squid.conf line 
 
 ```
+# http_access fragment for out_networks hosts
+http_access allow our_networks hosts
+```
+
+```puppet
+squid::http_access{'our_networks hosts':
+  action    => 'allow',
+  comment   => 'Our networks hosts are allowed',
+}
+```
+
+Adds a squid.conf line
+
+```
+# Our networks hosts are allowed
 http_access allow our_networks hosts
 ```
 
