@@ -41,8 +41,15 @@ describe 'squid' do
               it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
             end
           end
+        when 'FreeBSD'
+          it { is_expected.to contain_package('squid').with_ensure('present') }
+          it { is_expected.to contain_service('squid').with_ensure('running') }
+          it { is_expected.to contain_concat('/usr/local/etc/squid/squid.conf').with_group('squid') }
+          it { is_expected.to contain_concat('/usr/local/etc/squid/squid.conf').with_owner('root') }
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/usr/local/etc/squid/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
         else
-          context 'when on any other non-debian OS' do
+          context 'when on any other supported OS' do
             it { is_expected.to contain_package('squid').with_ensure('present') }
             it { is_expected.to contain_service('squid').with_ensure('running') }
             it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('squid') }
