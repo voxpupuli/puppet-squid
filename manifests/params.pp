@@ -59,6 +59,16 @@ class squid::params {
         }
       }
     }
+    'FreeBSD': {
+      $package_name              = 'squid'
+      $service_name              = 'squid'
+      $config                    = '/usr/local/etc/squid/squid.conf'
+      $config_user               = 'root'
+      $config_group              = 'squid'
+      $access_log                = 'daemon:/var/log/squid/access.log squid'
+      $daemon_user               = 'squid'
+      $daemon_group              = 'squid'
+    }
     default: {
       $package_name              = 'squid'
       $service_name              = 'squid'
