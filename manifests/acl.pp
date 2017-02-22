@@ -3,10 +3,13 @@ define squid::acl (
   $aclname = $title,
   $entries = [],
   $order   = '05',
+  $comment = "acl fragment for ${aclname}",
+
 ) {
 
   validate_string($type)
   validate_string($aclname)
+  validate_string($comment)
   validate_array($entries)
 
 
