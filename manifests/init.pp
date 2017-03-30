@@ -86,10 +86,10 @@ class squid (
 
   validate_hash($extra_config_sections)
 
-  anchor{'squid::begin':} ->
-  class{'::squid::install':} ->
-  class{'::squid::config':} ~>
-  class{'::squid::service':} ->
-  anchor{'squid::end':}
+  anchor{'squid::begin':}
+  -> class{'::squid::install':}
+  -> class{'::squid::config':}
+  ~> class{'::squid::service':}
+  -> anchor{'squid::end':}
 
 }
