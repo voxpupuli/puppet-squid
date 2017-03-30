@@ -1,6 +1,6 @@
 {
   "name": "puppet-squid",
-  "version": "0.5.0",
+  "version": "0.5.1-rc0",
   "author": "Vox Pupuli",
   "summary": "configure squid caching proxy",
   "license": "Apache-2.0",
@@ -47,8 +47,8 @@
     {
       "operatingsystem": "FreeBSD",
       "operatingsystemrelease": [
-         "10",
-         "11"
+        "10",
+        "11"
       ]
     },
     {
