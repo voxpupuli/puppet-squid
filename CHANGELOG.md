@@ -1,5 +1,11 @@
 # Changelog
 
+## 2017-03-30 - Release 0.5.0
+
+* Add beaker acceptance tests
+* An optional $comment param for http_access and acl (#47)
+* Add support for freebsd
+
 ## 2017-01-12 - Release 0.4.0
 
 Last release with Puppet 3 support!
