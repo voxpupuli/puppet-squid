@@ -1,9 +1,12 @@
 Puppet module for Squid
 =======================
 
-[![Puppet Forge](http://img.shields.io/puppetforge/v/puppet/squid.svg)](https://forge.puppetlabs.com/puppet/squid)
-[![Build Status](https://travis-ci.org/voxpupuli/puppet-squid.svg?branch=master)](https://travis-ci.org/voxpupuli/puppet-squid)
-
+[![Build Status](https://travis-ci.org/voxpupuli/puppet-squid.png?branch=master)](https://travis-ci.org/voxpupuli/puppet-squid)
+[![Code Coverage](https://coveralls.io/repos/github/voxpupuli/puppet-squid/badge.svg?branch=master)](https://coveralls.io/github/voxpupuli/puppet-squid)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/puppet/squid.svg)](https://forge.puppetlabs.com/puppet/squid)
+[![Puppet Forge - downloads](https://img.shields.io/puppetforge/dt/puppet/squid.svg)](https://forge.puppetlabs.com/puppet/squid)
+[![Puppet Forge - endorsement](https://img.shields.io/puppetforge/e/puppet/squid.svg)](https://forge.puppetlabs.com/puppet/squid)
+[![Puppet Forge - scores](https://img.shields.io/puppetforge/f/puppet/squid.svg)](https://forge.puppetlabs.com/puppet/squid)
 
 Description
 -----------
