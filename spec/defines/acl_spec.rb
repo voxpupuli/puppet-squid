@@ -28,6 +28,17 @@ describe 'squid::acl' do
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^# Example company website$}) }
       end
+      context 'when type contains special characters, a :' do
+         let(:params) do
+          {
+            type: 'ssl::servername',
+            order: '07',
+	    entries: ['.foo.bar',],
+            comment: 'Example company website'
+          }
+        end
+        it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-sslservername') }
+      end
     end
   end
 end
