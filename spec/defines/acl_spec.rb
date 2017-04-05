@@ -33,7 +33,7 @@ describe 'squid::acl' do
           {
             type: 'ssl::servername',
             order: '07',
-	    entries: ['.foo.bar',],
+	          entries: ['.foo.bar'],
             comment: 'Example company website'
           }
         end
