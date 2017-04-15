@@ -18,6 +18,7 @@ describe 'squid::https_port' do
           options: 'some options'
         }
       end
+
       it 'uses `squid::http_port` with `ssl` set to true' do
         is_expected.to contain_squid__http_port('4000').with_ssl(true)
       end

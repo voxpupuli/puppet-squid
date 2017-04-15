@@ -13,6 +13,7 @@ describe 'squid::http_access' do
         '
       end
       let(:title) { 'myrule' }
+
       context 'when parameters are unset' do
         it { is_expected.to contain_concat_fragment('squid_http_access_myrule').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_access_myrule').with_order('20-05-allow') }
@@ -28,6 +29,7 @@ describe 'squid::http_access' do
             comment: 'Deny this and that'
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }

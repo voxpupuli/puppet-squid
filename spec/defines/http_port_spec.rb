@@ -13,6 +13,7 @@ describe 'squid::http_port' do
         '
       end
       let(:title) { '1000' }
+
       context 'when parameters are unset' do
         it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_order('30-05') }
@@ -26,6 +27,7 @@ describe 'squid::http_port' do
             order: '08'
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_order('30-08') }
         it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
@@ -37,6 +39,7 @@ describe 'squid::http_port' do
             ssl: true
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_https_port_3000').with_content(%r{^https_port\s+3000\s*$}) }
       end
     end
