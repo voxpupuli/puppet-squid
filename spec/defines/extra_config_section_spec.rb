@@ -12,14 +12,13 @@ describe 'squid::extra_config_section' do
           }
         '
       end
+      let(:title) { 'my config section' }
 
       expected_config_section  = %(# my config section\n)
       expected_config_section += %(ssl_bump server-first all\n)
       expected_config_section += %(sslcrtd_program /usr/lib64/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB\n)
       expected_config_section += %(sslcrtd_children 8 startup=1 idle=1\n)
       expected_config_section += %(\n)
-
-      let(:title) { 'my config section' }
 
       context 'when config entry parameters are strings' do
         let(:params) do
