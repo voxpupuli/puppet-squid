@@ -13,6 +13,7 @@ describe 'squid::cache_dir' do
         '
       end
       let(:title) { '/data' }
+
       context 'when parameters are set' do
         let(:params) do
           {
@@ -22,6 +23,7 @@ describe 'squid::cache_dir' do
             options: 'my options for special type'
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special /data my options for special type$}) }
@@ -63,6 +65,7 @@ describe 'squid::cache_dir' do
             options: 'my options for special type'
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special \/data my options for special type$}) }

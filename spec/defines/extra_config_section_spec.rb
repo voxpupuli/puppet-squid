@@ -12,6 +12,7 @@ describe 'squid::extra_config_section' do
           }
         '
       end
+      let(:title) { 'my config section' }
 
       expected_config_section  = %(# my config section\n)
       expected_config_section += %(ssl_bump server-first all\n)
@@ -19,7 +20,6 @@ describe 'squid::extra_config_section' do
       expected_config_section += %(sslcrtd_children 8 startup=1 idle=1\n)
       expected_config_section += %(\n)
 
-      let(:title) { 'my config section' }
       context 'when config entry parameters are strings' do
         let(:params) do
           {
@@ -30,6 +30,7 @@ describe 'squid::extra_config_section' do
             }
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_extra_config_section_my config section').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_extra_config_section_my config section').with_order('60-my config section') }
         it 'config section' do
@@ -47,6 +48,7 @@ describe 'squid::extra_config_section' do
             }
           }
         end
+
         it 'config section' do
           content = catalogue.resource('concat_fragment', 'squid_extra_config_section_my config section').send(:parameters)[:content]
           expect(content).to match(expected_config_section)

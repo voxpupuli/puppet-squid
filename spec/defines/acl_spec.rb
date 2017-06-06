@@ -13,6 +13,7 @@ describe 'squid::acl' do
         '
       end
       let(:title) { 'myacl' }
+
       context 'when parameters are set' do
         let(:params) do
           {
@@ -22,6 +23,7 @@ describe 'squid::acl' do
             comment: 'Example company website'
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_order('10-07-urlregex') }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.org/$}) }

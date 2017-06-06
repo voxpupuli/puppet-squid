@@ -13,6 +13,7 @@ describe 'squid::auth_param' do
         '
       end
       let(:title) { 'auth' }
+
       context 'when parameters are set' do
         entries = ['program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
                    'children 5',
@@ -26,6 +27,7 @@ describe 'squid::auth_param' do
             entries: entries
           }
         end
+
         it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_order('05-07-basic') }
         entries.each do |entry|

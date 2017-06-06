@@ -13,6 +13,7 @@ describe 'squid::snmp_port' do
         '
       end
       let(:title) { '1000' }
+
       context 'when parameters are unset' do
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').with_order('40-05') }
@@ -29,6 +30,7 @@ describe 'squid::snmp_port' do
             process_number: 3
           }
         end
+
         it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_order('40-08') }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^snmp_port\s+2000\s+special for 2000$}) }
