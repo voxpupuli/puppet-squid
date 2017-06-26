@@ -4,8 +4,8 @@
 
 cache_mem                     <%= @cache_mem %>
 
-<% if @memory_cache_shared -%>
-memory_cache_shared           <%= @memory_cache_shared %>
+<% unless @memory_cache_shared.nil? -%>
+memory_cache_shared           <%= (@memory_cache_shared == 'on' || @memory_cache_shared == true)?'on':'off' %>
 
 <% end -%>
 maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
