@@ -15,6 +15,7 @@ class squid::config (
   $auth_params                   = $::squid::auth_params,
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
+  $refresh_patterns              = $::squid::refresh_patterns,
   $snmp_ports                    = $::squid::snmp_ports,
   $ssl_bump                      = $::squid::ssl_bump,
   $sslproxy_cert_error           = $::squid::sslproxy_cert_error,
@@ -58,6 +59,9 @@ class squid::config (
   }
   if $cache_dirs {
     create_resources('squid::cache_dir', $cache_dirs)
+  }
+  if $refresh_patterns {
+    create_resources('squid::refresh_pattern', $refresh_patterns)
   }
   if $ssl_bump {
     create_resources('squid::ssl_bump', $ssl_bump)

@@ -93,6 +93,50 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
       end
 
+      context 'with memory_cache_shared parameter set to true' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            memory_cache_shared: true
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
+      end
+
+      context 'with memory_cache_shared parameter set to on' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            memory_cache_shared: 'on'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
+      end
+
+      context 'with memory_cache_shared parameter set to false' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            memory_cache_shared: false
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
+      end
+
+      context 'with memory_cache_shared parameter set to off' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            memory_cache_shared: 'off'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
+      end
+
       context 'with one acl parameter set' do
         let :params do
           {
