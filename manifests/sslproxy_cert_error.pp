@@ -1,12 +1,9 @@
 define squid::sslproxy_cert_error (
-  $action = 'allow',
-  $value  = $title,
-  $order   = '05',
+  Enum['allow', 'deny']
+          $action = 'allow',
+  String  $value  = $title,
+  String  $order  = '05',
 ) {
-
-  validate_re($action,['^allow$','^deny$'])
-  validate_string($value)
-
 
   concat::fragment{"squid_sslproxy_cert_error_${action}_${value}":
     target  => $squid::config,

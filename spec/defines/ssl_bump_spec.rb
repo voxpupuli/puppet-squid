@@ -32,6 +32,15 @@ describe 'squid::ssl_bump' do
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_peek_step1').with_order('25-08-peek') }
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_peek_step1').with_content(%r{^ssl_bump\s+peek\s+step1$}) }
       end
+      context 'with unknown action' do
+        let(:params) do
+          {
+            action: 'unknown_action'
+          }
+        end
+
+        it { is_expected.to compile.and_raise_error(%r{parameter 'action' expects a match}) }
+      end
     end
   end
 end

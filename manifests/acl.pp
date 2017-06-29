@@ -1,17 +1,10 @@
 define squid::acl (
-  $type,
-  $aclname = $title,
-  $entries = [],
-  $order   = '05',
-  $comment = "acl fragment for ${aclname}",
-
+  String $type,
+  String $aclname = $title,
+  Array  $entries = [],
+  String $order   = '05',
+  String $comment = "acl fragment for ${aclname}",
 ) {
-
-  validate_string($type)
-  validate_string($aclname)
-  validate_string($comment)
-  validate_array($entries)
-
 
   concat::fragment{"squid_acl_${aclname}":
     target  => $::squid::config,

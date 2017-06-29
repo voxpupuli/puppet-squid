@@ -35,6 +35,15 @@ describe 'squid::http_access' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^# Deny this and that$}) }
       end
+      context 'with unknown action' do
+        let(:params) do
+          {
+            action: 'unknown_action'
+          }
+        end
+
+        it { is_expected.to compile.and_raise_error(%r{parameter 'action' expects a match}) }
+      end
     end
   end
 end

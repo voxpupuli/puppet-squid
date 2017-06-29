@@ -1,13 +1,10 @@
 define squid::http_port (
-  $port    = $title,
-  $ssl     = false,
-  $options = '',
-  $order   = '05',
+  Variant[Pattern[/\d+/], Integer]
+          $port    = $title,
+  Boolean $ssl     = false,
+  String  $options = '',
+  String  $order   = '05',
 ) {
-
-  validate_bool($ssl)
-  validate_integer($port)
-  validate_string($options)
 
   $protocol = $ssl ? {
     true    => 'https',

@@ -1,17 +1,10 @@
 define squid::cache_dir (
-  $type           = ufs,
-  $path           = $title,
-  $options        = '',
-  $process_number = undef,
-  $order          = '05',
+  String            $type           = ufs,
+  String            $path           = $title,
+  String            $options        = '',
+  Optional[Integer] $process_number = undef,
+  String            $order          = '05',
 ) {
-
-  validate_string($type)
-  validate_string($path)
-  validate_string($options)
-  if $process_number {
-    validate_integer($process_number)
-  }
 
   concat::fragment{"squid_cache_dir_${path}":
     target  => $squid::config,
