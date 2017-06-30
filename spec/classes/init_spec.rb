@@ -378,14 +378,14 @@ describe 'squid' do
             config: '/tmp/squid.conf',
             extra_config_sections: {
               'mail settings' => {
-                'order' => 22,
+                'order' => '22',
                 'config_entries' => {
                   'mail_from'    => 'squid@example.com',
                   'mail_program' => 'mail'
                 }
               },
               'other settings' => {
-                'order' => 42,
+                'order' => '42',
                 'config_entries' => {
                   'dns_timeout' => '5 seconds'
                 }

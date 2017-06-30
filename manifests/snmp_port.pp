@@ -1,15 +1,10 @@
 define squid::snmp_port (
-  $port           = $title,
-  $options        = '',
-  $process_number = undef,
-  $order          = '05',
+  Variant[Pattern[/\d+/], Integer]
+                    $port           = $title,
+  String            $options        = '',
+  String            $order          = '05',
+  Optional[Integer] $process_number = undef,
 ) {
-
-  validate_integer($port)
-  validate_string($options)
-  if $process_number {
-    validate_integer($process_number)
-  }
 
   concat::fragment{"squid_snmp_port_${port}":
     target  => $squid::config,

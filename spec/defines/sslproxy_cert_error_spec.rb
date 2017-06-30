@@ -32,6 +32,15 @@ describe 'squid::sslproxy_cert_error' do
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_deny_this and that').with_order('35-08-deny') }
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_deny_this and that').with_content(%r{^sslproxy_cert_error\s+deny\s+this and that$}) }
       end
+      context 'with unknown action' do
+        let(:params) do
+          {
+            action: 'unknown_action'
+          }
+        end
+
+        it { is_expected.to compile.and_raise_error(%r{parameter 'action' expects a match}) }
+      end
     end
   end
 end

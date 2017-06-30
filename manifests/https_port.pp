@@ -1,11 +1,9 @@
 define squid::https_port (
-  $port    = $title,
-  $options = '',
-  $order   = '05',
+  Variant[Pattern[/\d+/], Integer]
+          $port    = $title,
+  String  $options = '',
+  String  $order   = '05',
 ) {
-
-  validate_integer($port)
-  validate_string($options)
 
   squid::http_port { "${port}": # lint:ignore:only_variable_string
     ssl     => true,
