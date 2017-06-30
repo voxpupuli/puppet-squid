@@ -83,10 +83,10 @@ class{'::squid':
                                    'http://example.com/anotherpath'],
                        },
                   },
-  http_access  => { 'our_networks hosts' => { action => 'allow', },
-  http_ports   => { '10000' => { options => 'accel vhost'} },
-  snmp_ports   => { '1000' => { process_number => 3 },
-  cache_dirs   => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 }},
+  http_access  => { 'our_networks hosts' => { action => 'allow', }},
+  http_ports   => { '10000' => { options => 'accel vhost', }},
+  snmp_ports   => { '1000' => { process_number => 3, }},
+  cache_dirs   => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2, }},
 }
 ```
 
@@ -422,6 +422,30 @@ Results in a squid configuration of
 # mail settings
 mail_from squid@example.com
 mail_program mail
+```
+
+And using an array:
+
+```puppet
+squid::extra_config_section { 'refresh patterns':
+  order          => '60',
+  config_entries => [{
+    'refresh_pattern' => ['^ftp:           1440    20%     10080',
+                          '^gopher:        1440    0%      1440',
+                          '-i (/cgi-bin/|\?) 0     0%      0',
+                          '.               0       20%     4320'],
+  }],
+}
+```
+
+Results in a squid configuration of
+
+```
+# refresh_patterns
+refresh_pattern ^ftp:           1440    20%     10080
+refresh_pattern ^gopher:        1440    0%      1440
+refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
+refresh_pattern .               0       20%     4320
 ```
 
 #### Parameters for Type squid::extra\_config\_section
