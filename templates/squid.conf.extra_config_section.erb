@@ -1,5 +1,15 @@
 # <%= @comment %>
+<% if @config_entries.is_a?(Array) -%>
+<% @config_entries.each do |i| -%>
+<% i.each do |k, v| -%>
+<% v.each do |v2| -%>
+<%= k %> <%= v2 %>
+<% end -%>
+<% end -%>
+<% end -%>
+<% else -%>
 <% @config_entries.each do |k,v| -%>
 <%= k %> <%= v.is_a?(Array) ? v.join(' ') : v %>
+<% end -%>
 <% end -%>
 
