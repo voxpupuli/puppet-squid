@@ -423,13 +423,12 @@ mail_program mail
 And using an array:
 
 ```puppet
-squid::extra_config_section { 'refresh patterns':
+squid::extra_config_section { 'always_directs':
   order          => '60',
   config_entries => [{
-    'refresh_pattern' => ['^ftp:           1440    20%     10080',
-                          '^gopher:        1440    0%      1440',
-                          '-i (/cgi-bin/|\?) 0     0%      0',
-                          '.               0       20%     4320'],
+    'always_direct' => ['deny    www.reallyreallybadplace.com',
+                        'allow   my-good-dst',
+                        'allow   my-other-good-dst'],
   }],
 }
 ```
@@ -437,11 +436,10 @@ squid::extra_config_section { 'refresh patterns':
 Results in a squid configuration of
 
 ```
-# refresh_patterns
-refresh_pattern ^ftp:           1440    20%     10080
-refresh_pattern ^gopher:        1440    0%      1440
-refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
-refresh_pattern .               0       20%     4320
+# always_directs
+always_direct deny    www.reallyreallybadplace.com
+always_direct allow   my-good-dst
+always_direct allow   my-other-good-dst
 ```
 
 #### Parameters for Type squid::extra\_config\_section
