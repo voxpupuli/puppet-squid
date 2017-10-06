@@ -402,6 +402,8 @@ These may be defined as a hash passed to ::squid
 ### Defined Type squid::extra\_config\_section
 Squid has a large number of configuration directives.  Not all of these have been exposed individually in this module.  For those that haven't, the `extra_config_section` defined type can be used.
 
+Using a hash of config_entries:
+
 ```puppet
 squid::extra_config_section { 'mail settings':
   order          => '60',
@@ -420,7 +422,29 @@ mail_from squid@example.com
 mail_program mail
 ```
 
-And using an array:
+Using an array of config_entries:
+
+```puppet
+squid::extra_config_section { 'ssl_bump settings':
+  order          => '60',
+  config_entries => {
+    'ssl_bump'         => ['server-first', 'all'],
+    'sslcrtd_program'  => ['/usr/lib64/squid/ssl_crtd', '-s', '/var/lib/ssl_db', '-M', '4MB'],
+    'sslcrtd_children' => ['8', 'startup=1', 'idle=1'],
+  }
+}
+```
+
+Results in a squid configuration of
+
+```
+# ssl_bump settings
+ssl_bump server-first all
+sslcrtd_program /usr/lib64/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB
+sslcrtd_children 8 startup=1 idle=1
+```
+
+Using an array of hashes of config_entries:
 
 ```puppet
 squid::extra_config_section { 'always_directs':
