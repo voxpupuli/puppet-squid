@@ -6,24 +6,26 @@ class squid::params {
 
   $ensure_service                = 'running'
   $enable_service                = true
-  $cache_mem                     = '256 MB'
-  $memory_cache_shared           = undef
-  $maximum_object_size_in_memory = '512 KB'
-  $coredump_dir                  = undef
-  $max_filedescriptors           = undef
-  $workers                       = undef
+
+  $access_log                    = undef
   $acls                          = undef
-  $http_access                   = undef
-  $icp_access                    = undef
   $auth_params                   = undef
+  $cache_dirs                    = undef
+  $cache_mem                     = undef
+  $coredump_dir                  = undef
+  $http_access                   = undef
   $http_ports                    = undef
   $https_ports                   = undef
+  $icp_access                    = undef
+  $logformat                     = undef
+  $max_filedescriptors           = undef
+  $maximum_object_size_in_memory = undef
+  $memory_cache_shared           = undef
   $refresh_patterns              = undef
   $snmp_ports                    = undef
   $ssl_bump                      = undef
   $sslproxy_cert_error           = undef
-  $cache_dirs                    = undef
-  $logformat                     = undef
+  $workers                       = undef
 
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
@@ -34,7 +36,6 @@ class squid::params {
           $config                = '/etc/squid3/squid.conf'
           $config_user           = 'root'
           $config_group          = 'root'
-          $access_log            = 'daemon:/var/log/squid3/access.log squid'
           $daemon_user           = 'proxy'
           $daemon_group          = 'proxy'
         }
@@ -44,7 +45,6 @@ class squid::params {
           $config                = '/etc/squid/squid.conf'
           $config_user           = 'root'
           $config_group          = 'root'
-          $access_log            = 'daemon:/var/log/squid/access.log squid'
           $daemon_user           = 'proxy'
           $daemon_group          = 'proxy'
         }
@@ -54,7 +54,6 @@ class squid::params {
           $config                = '/etc/squid/squid.conf'
           $config_user           = 'root'
           $config_group          = 'root'
-          $access_log            = 'daemon:/var/log/squid/access.log squid'
           $daemon_user           = 'proxy'
           $daemon_group          = 'proxy'
         }
@@ -64,7 +63,6 @@ class squid::params {
           $config                = '/etc/squid/squid.conf'
           $config_user           = 'root'
           $config_group          = 'squid'
-          $access_log            = 'daemon:/var/log/squid/access.log squid'
           $daemon_user           = 'squid'
           $daemon_group          = 'squid'
         }
@@ -76,7 +74,6 @@ class squid::params {
       $config                    = '/usr/local/etc/squid/squid.conf'
       $config_user               = 'root'
       $config_group              = 'squid'
-      $access_log                = 'daemon:/var/log/squid/access.log squid'
       $daemon_user               = 'squid'
       $daemon_group              = 'squid'
     }
@@ -86,7 +83,6 @@ class squid::params {
       $config                    = '/etc/squid/squid.conf'
       $config_user               = 'root'
       $config_group              = 'squid'
-      $access_log                = 'daemon:/var/log/squid/access.log squid'
       $daemon_user               = 'squid'
       $daemon_group              = 'squid'
     }

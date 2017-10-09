@@ -19,7 +19,7 @@ describe 'squid' do
             it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_group('root') }
             it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_owner('root') }
             it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+            it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^access_log}) }
           end
         when 'Ubuntu'
           case facts[:operatingsystemrelease]
@@ -30,7 +30,7 @@ describe 'squid' do
               it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_group('root') }
               it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_owner('root') }
               it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
-              it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
+              it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^access_log}) }
             end
           when '16.04'
             context 'when on Ubuntu 16.04' do
@@ -39,7 +39,7 @@ describe 'squid' do
               it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('root') }
               it { is_expected.to contain_concat('/etc/squid/squid.conf').with_owner('root') }
               it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
-              it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+              it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^access_log}) }
             end
           end
         when 'FreeBSD'
@@ -49,7 +49,7 @@ describe 'squid' do
             it { is_expected.to contain_concat('/usr/local/etc/squid/squid.conf').with_group('squid') }
             it { is_expected.to contain_concat('/usr/local/etc/squid/squid.conf').with_owner('root') }
             it { is_expected.to contain_concat_fragment('squid_header').with_target('/usr/local/etc/squid/squid.conf') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+            it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^access_log}) }
           end
         else
           context 'when on any other supported OS' do
@@ -58,11 +58,11 @@ describe 'squid' do
             it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('squid') }
             it { is_expected.to contain_concat('/etc/squid/squid.conf').with_owner('root') }
             it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
+            it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^access_log}) }
           end
         end
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^cache_mem}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^maximum_object_size_in_memory}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }
@@ -73,24 +73,24 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            cache_mem: '1024 MB',
-            memory_cache_shared: 'on',
-            logformat: 'squid %tl.%03tu %6tr %>a %Ss/%03Hs',
             access_log: '/var/log/out.log',
+            cache_mem: '1024 MB',
             coredump_dir: '/tmp/core',
+            logformat: 'squid %tl.%03tu %6tr %>a %Ss/%03Hs',
             max_filedescriptors: 1000,
+            memory_cache_shared: 'on',
             workers: 8
           }
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+1024 MB$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^logformat\s+squid %tl.%03tu %6tr %>a %Ss/%03Hs$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+/var/log/out.log$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log                    /var/log/out.log$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem                     1024 MB$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir                  /tmp/core$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^logformat                     squid %tl.%03tu %6tr %>a %Ss/%03Hs$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors           1000$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared           on$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers                       8$}) }
       end
 
       context 'with memory_cache_shared parameter set to true' do
@@ -101,7 +101,7 @@ describe 'squid' do
           }
         end
 
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
+        it { is_expected.to raise_error(Puppet::PreformattedError) }
       end
 
       context 'with memory_cache_shared parameter set to on' do
@@ -113,17 +113,6 @@ describe 'squid' do
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
-      end
-
-      context 'with memory_cache_shared parameter set to false' do
-        let :params do
-          {
-            config: '/tmp/squid.conf',
-            memory_cache_shared: false
-          }
-        end
-
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
       end
 
       context 'with memory_cache_shared parameter set to off' do
