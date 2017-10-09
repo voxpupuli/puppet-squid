@@ -20,15 +20,15 @@ The set up a simple squid server with a cache to forward
 http port 80 requests.
 
 ```puppet
-class{'::squid':}
-squid::acl{'Safe_ports':
+class { 'squid': }
+squid::acl { 'Safe_ports':
   type    => port,
   entries => ['80'],
 }
-squid::http_access{'Safe_ports':
+squid::http_access { 'Safe_ports':
   action => allow,
 }
-squid::http_access{'!Safe_ports':
+squid::http_access{ '!Safe_ports':
   action => deny,
 }
 ```
@@ -65,7 +65,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `extra_config_sections` defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
 
 ```puppet
-class{'::squid':
+class { 'squid':
   cache_mem    => '512 MB',
   workers      => 3,
   coredump_dir => '/var/spool/squid',
@@ -73,20 +73,20 @@ class{'::squid':
 ```
 
 ```puppet
-class{'::squid':
+class { 'squid':
   cache_mem    => '512 MB',
   workers      => 3,
   coredump_dir => '/var/spool/squid',
   acls         => { 'remote_urls' => {
-                       type    => 'url_regex',
-                       entries => ['http://example.org/path',
-                                   'http://example.com/anotherpath'],
-                       },
+                      type    => 'url_regex',
+                      entries => ['http://example.org/path',
+                                  'http://example.com/anotherpath'],
+                    },
                   },
   http_access  => { 'our_networks hosts' => { action => 'allow', }},
   http_ports   => { '10000' => { options => 'accel vhost', }},
   snmp_ports   => { '1000' => { process_number => 3, }},
-  cache_dirs   => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2, }},
+  cache_dirs   => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 }},
 }
 ```
 
@@ -96,11 +96,10 @@ The acls, http_access, http_ports, snmp_port, cache_dirs lines above are equival
 Defines [acl entries](http://www.squid-cache.org/Doc/config/acl/) for a squid server.
 
 ```puppet
-squid::acl{'remote_urls':
+squid::acl { 'remote_urls':
    type    => 'url_regex',
    entries => ['http://example.org/path',
                'http://example.com/anotherpath'],
-
 }
 ```
 
@@ -119,12 +118,11 @@ These may be defined as a hash passed to ::squid
 * `entries` An array of acl entries, multiple members results in multiple lines in squid.conf.
 * `order` Each ACL has an order `05` by default this can be specified if order of ACL definition matters.
 
-
 ### Defined Type squid::cache\_dir
 Defines [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/) for a squid server.
 
 ```puppet
-squid::cache_dir{'/data':
+squid::cache_dir { '/data':
   type           => 'ufs',
   options        => '15000 32 256 min-size=32769',
   process_number => 2,
@@ -147,13 +145,11 @@ endif
   in a `if $proceess_number` statement so the cache will be used by only
   one process. Default is undef.
 
-
-
 ### Defined Type squid::http\_access
 Defines [http_access entries](http://www.squid-cache.org/Doc/config/http_access/) for a squid server.
 
 ```puppet
-squid::http_access{'our_networks hosts':
+squid::http_access { 'our_networks hosts':
   action => 'allow',
 }
 ```
@@ -166,7 +162,7 @@ http_access allow our_networks hosts
 ```
 
 ```puppet
-squid::http_access{'our_networks hosts':
+squid::http_access { 'our_networks hosts':
   action    => 'allow',
   comment   => 'Our networks hosts are allowed',
 }
@@ -185,7 +181,7 @@ These may be defined as a hash passed to ::squid
 Defines [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/) for a squid server.
 
 ```puppet
-squid::icp_access{'our_networks hosts':
+squid::icp_access { 'our_networks hosts':
   action => 'allow',
 }
 ```
@@ -209,10 +205,10 @@ Defines [http_port entries](http://www.squid-cache.org/Doc/config/http_port/) fo
 By setting optional `ssl` parameter to `true` will create [https_port entries](http://www.squid-cache.org/Doc/config/https_port/) instead.
 
 ```puppet
-squid::http_port{'10000':
+squid::http_port { '10000':
   options => 'accel vhost'
 }
-squid::http_port{'10001':
+squid::http_port { '10001':
   ssl     => true,
   options => 'cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key'
 }
@@ -238,24 +234,23 @@ As an alternative to using the Squid::Http\_port defined type with `ssl` set to 
 * `port` defaults to the namevar and is the port number.
 * `options` A string to specify any options to add to the https_port line.  Defaults to an empty string.
 
-
 ### Defined Type squid::refresh_pattern
 Defines [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/) for a squid server.
 
 ```puppet
-squid::refresh_pattern{'^ftp':
-   min     => 1440,
-   max     => 10080,
-   percent => 20,
-   order   => 60,
+squid::refresh_pattern { '^ftp':
+  min     => 1440,
+  max     => 10080,
+  percent => 20,
+  order   => 60,
 }
 
-squid::refresh_pattern{'(/cgi-bin/|\?)':
-   case_sensitive => falke,
-   min            => 0,
-   max            => 0,
-   percent        => 0,
-   order          => 61,
+squid::refresh_pattern { '(/cgi-bin/|\?)':
+  case_sensitive => falke,
+  min            => 0,
+  max            => 0,
+  percent        => 0,
+  order          => 61,
 }
 ```
 
@@ -305,12 +300,11 @@ squid::refresh_patterns:
 * `options` See squid documentation for available options.
 * `order` Each refresh_pattern has an order `05` by default this can be specified if order of refresh_pattern definition matters.
 
-
 ### Defined Type Squid::Snmp\_port
 Defines [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/) for a squid server.
 
 ```puppet
-squid::snmp_port{'1000':
+squid::snmp_port { '1000':
   process_number => 3
 }
 ```
@@ -333,12 +327,14 @@ endif
 Defines [auth_param entries](http://www.squid-cache.org/Doc/config/auth_param/) for a squid server.
 
 ```puppet
-squid::auth_param{ 'basic auth_param':
-  scheme    => 'basic',
-  entries   => ['program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
-                'children 5',
-                'realm Squid Basic Authentication',
-                'credentialsttl 5 hours'],
+squid::auth_param { 'basic auth_param':
+  scheme  => 'basic',
+  entries => [
+    'program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
+    'children 5',
+    'realm Squid Basic Authentication',
+    'credentialsttl 5 hours',
+  ],
 }
 ```
 
@@ -362,7 +358,7 @@ These may be defined as a hash passed to ::squid
 Defines [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/) for a squid server.
 
 ```puppet
-squid::ssl_bump{'all':
+squid::ssl_bump { 'all':
   action => 'bump',
 }
 ```
@@ -384,7 +380,7 @@ These may be defined as a hash passed to ::squid
 Defines [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/) for a squid server.
 
 ```puppet
-squid::sslproxy_cert_error{'all':
+squid::sslproxy_cert_error { 'all':
   action => 'allow',
 }
 ```
@@ -406,8 +402,10 @@ These may be defined as a hash passed to ::squid
 ### Defined Type squid::extra\_config\_section
 Squid has a large number of configuration directives.  Not all of these have been exposed individually in this module.  For those that haven't, the `extra_config_section` defined type can be used.
 
+Using a hash of config_entries:
+
 ```puppet
-squid::extra_config_section {'mail settings':
+squid::extra_config_section { 'mail settings':
   order          => '60',
   config_entries => {
     'mail_from'    => 'squid@example.com',
@@ -424,16 +422,37 @@ mail_from squid@example.com
 mail_program mail
 ```
 
-And using an array:
+Using an array of config_entries:
 
 ```puppet
-squid::extra_config_section { 'refresh patterns':
+squid::extra_config_section { 'ssl_bump settings':
+  order          => '60',
+  config_entries => {
+    'ssl_bump'         => ['server-first', 'all'],
+    'sslcrtd_program'  => ['/usr/lib64/squid/ssl_crtd', '-s', '/var/lib/ssl_db', '-M', '4MB'],
+    'sslcrtd_children' => ['8', 'startup=1', 'idle=1'],
+  }
+}
+```
+
+Results in a squid configuration of
+
+```
+# ssl_bump settings
+ssl_bump server-first all
+sslcrtd_program /usr/lib64/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB
+sslcrtd_children 8 startup=1 idle=1
+```
+
+Using an array of hashes of config_entries:
+
+```puppet
+squid::extra_config_section { 'always_directs':
   order          => '60',
   config_entries => [{
-    'refresh_pattern' => ['^ftp:           1440    20%     10080',
-                          '^gopher:        1440    0%      1440',
-                          '-i (/cgi-bin/|\?) 0     0%      0',
-                          '.               0       20%     4320'],
+    'always_direct' => ['deny    www.reallyreallybadplace.com',
+                        'allow   my-good-dst',
+                        'allow   my-other-good-dst'],
   }],
 }
 ```
@@ -441,11 +460,10 @@ squid::extra_config_section { 'refresh patterns':
 Results in a squid configuration of
 
 ```
-# refresh_patterns
-refresh_pattern ^ftp:           1440    20%     10080
-refresh_pattern ^gopher:        1440    0%      1440
-refresh_pattern -i (/cgi-bin/|\?) 0     0%      0
-refresh_pattern .               0       20%     4320
+# always_directs
+always_direct deny    www.reallyreallybadplace.com
+always_direct allow   my-good-dst
+always_direct allow   my-other-good-dst
 ```
 
 #### Parameters for Type squid::extra\_config\_section
