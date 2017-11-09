@@ -32,43 +32,20 @@ class squid::params {
           $package_name          = 'squid3'
           $service_name          = 'squid3'
           $config                = '/etc/squid3/squid.conf'
-          $config_user           = 'root'
-          $config_group          = 'root'
           $access_log            = 'daemon:/var/log/squid3/access.log squid'
-          $daemon_user           = 'proxy'
-          $daemon_group          = 'proxy'
-        }
-        /^(9.*)$/: {
-          $package_name          = 'squid3'
-          $service_name          = 'squid'
-          $config                = '/etc/squid/squid.conf'
-          $config_user           = 'root'
-          $config_group          = 'root'
-          $access_log            = 'daemon:/var/log/squid/access.log squid'
-          $daemon_user           = 'proxy'
-          $daemon_group          = 'proxy'
-        }
-        /^16\.04$/: {
-          $package_name          = 'squid'
-          $service_name          = 'squid'
-          $config                = '/etc/squid/squid.conf'
-          $config_user           = 'root'
-          $config_group          = 'root'
-          $access_log            = 'daemon:/var/log/squid/access.log squid'
-          $daemon_user           = 'proxy'
-          $daemon_group          = 'proxy'
         }
         default: {
           $package_name          = 'squid'
           $service_name          = 'squid'
           $config                = '/etc/squid/squid.conf'
-          $config_user           = 'root'
-          $config_group          = 'squid'
           $access_log            = 'daemon:/var/log/squid/access.log squid'
-          $daemon_user           = 'squid'
-          $daemon_group          = 'squid'
         }
       }
+
+      $config_user           = 'root'
+      $config_group          = 'root'
+      $daemon_user           = 'proxy'
+      $daemon_group          = 'proxy'
     }
     'FreeBSD': {
       $package_name              = 'squid'

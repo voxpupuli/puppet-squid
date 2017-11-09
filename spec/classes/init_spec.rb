@@ -6,61 +6,30 @@ describe 'squid' do
         facts
       end
 
+      let(:squid_name) do
+        %w[jessie trusty].include?(facts[:lsbdistcodename]) ? 'squid3' : 'squid'
+      end
+
+      let(:etc_dir) do
+        facts[:operatingsystem] == 'FreeBSD' ? '/usr/local/etc' : '/etc'
+      end
+
+      let(:config_group) do
+        facts[:osfamily] == 'Debian' ? 'root' : 'squid'
+      end
+
       context 'with defaults for all parameters' do
         it { is_expected.to contain_class('squid') }
         it { is_expected.to contain_class('squid::install') }
         it { is_expected.to contain_class('squid::config') }
         it { is_expected.to contain_class('squid::service') }
-        case facts[:operatingsystem]
-        when 'Debian'
-          context 'when on Debian' do
-            it { is_expected.to contain_package('squid3').with_ensure('present') }
-            it { is_expected.to contain_service('squid3').with_ensure('running') }
-            it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_group('root') }
-            it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_owner('root') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
-          end
-        when 'Ubuntu'
-          case facts[:operatingsystemrelease]
-          when '14.04'
-            context 'when on Ubuntu 14.04' do
-              it { is_expected.to contain_package('squid3').with_ensure('present') }
-              it { is_expected.to contain_service('squid3').with_ensure('running') }
-              it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_group('root') }
-              it { is_expected.to contain_concat('/etc/squid3/squid.conf').with_owner('root') }
-              it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid3/squid.conf') }
-              it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid3/access.log\s+squid$}) }
-            end
-          when '16.04'
-            context 'when on Ubuntu 16.04' do
-              it { is_expected.to contain_package('squid').with_ensure('present') }
-              it { is_expected.to contain_service('squid').with_ensure('running') }
-              it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('root') }
-              it { is_expected.to contain_concat('/etc/squid/squid.conf').with_owner('root') }
-              it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
-              it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
-            end
-          end
-        when 'FreeBSD'
-          context 'when on FreeBSD' do
-            it { is_expected.to contain_package('squid').with_ensure('present') }
-            it { is_expected.to contain_service('squid').with_ensure('running') }
-            it { is_expected.to contain_concat('/usr/local/etc/squid/squid.conf').with_group('squid') }
-            it { is_expected.to contain_concat('/usr/local/etc/squid/squid.conf').with_owner('root') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_target('/usr/local/etc/squid/squid.conf') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
-          end
-        else
-          context 'when on any other supported OS' do
-            it { is_expected.to contain_package('squid').with_ensure('present') }
-            it { is_expected.to contain_service('squid').with_ensure('running') }
-            it { is_expected.to contain_concat('/etc/squid/squid.conf').with_group('squid') }
-            it { is_expected.to contain_concat('/etc/squid/squid.conf').with_owner('root') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_target('/etc/squid/squid.conf') }
-            it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
-          end
-        end
+
+        it { is_expected.to contain_package(squid_name).with_ensure('present') }
+        it { is_expected.to contain_service(squid_name).with_ensure('running') }
+        it { is_expected.to contain_concat("#{etc_dir}/#{squid_name}/squid.conf").with_group(config_group) }
+        it { is_expected.to contain_concat("#{etc_dir}/#{squid_name}/squid.conf").with_owner('root') }
+        it { is_expected.to contain_concat_fragment('squid_header').with_target("#{etc_dir}/#{squid_name}/squid.conf") }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/#{squid_name}/access.log\s+squid$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
