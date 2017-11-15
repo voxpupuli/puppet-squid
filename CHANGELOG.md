@@ -4,7 +4,16 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v0.6.0](https://github.com/voxpupuli/puppet-squid/tree/v0.6.0) (2017-11-12)
+## [v0.6.1](https://github.com/voxpupuli/puppet-squid/tree/v0.6.1) (2017-11-15)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v0.6.0...v0.6.1)
+
+**Merged pull requests:**
+
+- add missing secret to travis config [\#71](https://github.com/voxpupuli/puppet-squid/pull/71) ([bastelfreak](https://github.com/bastelfreak))
+- release 0.6.0 [\#70](https://github.com/voxpupuli/puppet-squid/pull/70) ([bastelfreak](https://github.com/bastelfreak))
+
+## [v0.6.0](https://github.com/voxpupuli/puppet-squid/tree/v0.6.0) (2017-11-15)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v0.5.0...v0.6.0)
 
