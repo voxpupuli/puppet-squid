@@ -1,5 +1,5 @@
 define squid::auth_param (
-  Enum['basic', 'digest']
+  Enum['basic', 'digest', 'negotiate', 'ntlm']
           $scheme,
   Array   $entries,
   String  $auth_param_name = $title,
