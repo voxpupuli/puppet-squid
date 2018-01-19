@@ -25,6 +25,8 @@ class squid::params {
   $sslproxy_cert_error           = undef
   $cache_dirs                    = undef
   $logformat                     = undef
+  $error_directory               = undef
+  $err_page_stylesheet           = undef
 
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {

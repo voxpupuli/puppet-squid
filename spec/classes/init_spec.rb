@@ -36,6 +36,8 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^workers}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^error_directory}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^err_page_stylesheet}) }
       end
 
       context 'with all parameters set' do
@@ -71,6 +73,28 @@ describe 'squid' do
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
+      end
+
+      context 'with error_directory parameter set to /some/path/file' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            error_directory: '/some/path/file'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^error_directory\s+/some/path/file$}) }
+      end
+
+      context 'with err_page_stylesheet parameter set to /some/path/file' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            err_page_stylesheet: '/some/path/file'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^err_page_stylesheet\s+/some/path/file$}) }
       end
 
       context 'with memory_cache_shared parameter set to on' do

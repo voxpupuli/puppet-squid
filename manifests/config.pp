@@ -8,6 +8,8 @@ class squid::config (
   $access_log                    = $::squid::access_log,
   $coredump_dir                  = $::squid::coredump_dir,
   $max_filedescriptors           = $::squid::max_filedescriptors,
+  $error_directory               = $::squid::error_directory,
+  $err_page_stylesheet           = $::squid::err_page_stylesheet,
   $workers                       = $::squid::workers,
   $acls                          = $::squid::acls,
   $http_access                   = $::squid::http_access,

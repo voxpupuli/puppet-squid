@@ -19,6 +19,14 @@ access_log                    <%= @access_log %>
 coredump_dir                  <%= @coredump_dir %>
 
 <% end -%>
+
+<% if @error_directory -%>
+error_directory               <%= @error_directory %>
+<% end -%>
+<% if @err_page_stylesheet -%>
+err_page_stylesheet           <%= @err_page_stylesheet %>
+<% end -%>
+
 <% if @max_filedescriptors -%>
 max_filedescriptors           <%= @max_filedescriptors %>
 
