@@ -55,6 +55,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `max_filedescriptors` defaults to undef. [max_filedescriptors docs](http://www.squid-cache.org/Doc/config/max_filedescriptors/).
 * `workers` defaults to undef. [workers docs](http://www.squid-cache.org/Doc/config/workers/).
 * `snmp_incoming_address` defaults to undef. Can be set to an IP address to only listen for snmp requests on an individual interface. [snmp_incoming_address](http://www.squid-cache.org/Doc/config/snmp_incoming_address/).
+* `buffered_logs` defaults to undef. [buffered_logs docs](http://www.squid-cache.org/Doc/config/buffered_logs/).
 * `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
