@@ -13,6 +13,7 @@ class squid::params {
   $max_filedescriptors           = undef
   $workers                       = undef
   $acls                          = undef
+  $cache                         = undef
   $http_access                   = undef
   $icp_access                    = undef
   $auth_params                   = undef

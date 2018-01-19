@@ -23,6 +23,7 @@ class squid::config (
   $ssl_bump                      = $::squid::ssl_bump,
   $sslproxy_cert_error           = $::squid::sslproxy_cert_error,
   $cache_dirs                    = $::squid::cache_dirs,
+  $cache                         = $::squid::cache,
   $extra_config_sections         = $::squid::extra_config_sections,
 ) inherits squid {
 
@@ -65,6 +66,9 @@ class squid::config (
   }
   if $cache_dirs {
     create_resources('squid::cache_dir', $cache_dirs)
+  }
+  if $cache {
+    create_resources('squid::cache', $cache)
   }
   if $refresh_patterns {
     create_resources('squid::refresh_pattern', $refresh_patterns)
