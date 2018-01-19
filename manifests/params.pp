@@ -20,6 +20,7 @@ class squid::params {
   $https_ports                   = undef
   $refresh_patterns              = undef
   $snmp_ports                    = undef
+  $snmp_access                   = undef
   $ssl_bump                      = undef
   $sslproxy_cert_error           = undef
   $cache_dirs                    = undef
