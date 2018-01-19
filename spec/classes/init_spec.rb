@@ -33,6 +33,8 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^cache_replacement_policy}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_replacement_policy}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^workers}) }
@@ -128,6 +130,28 @@ describe 'squid' do
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
+      end
+
+      context 'with cache_replacement_policy parameter set to LRU' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            cache_replacement_policy: 'LRU'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_replacement_policy\s+LRU$}) }
+      end
+
+      context 'with memory_replacement_policy parameter set to LRU' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            memory_replacement_policy: 'LRU'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_replacement_policy\s+LRU$}) }
       end
 
       context 'with one acl parameter set' do

@@ -44,6 +44,8 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `daemon_user` user which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
 * `daemon_group` group which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
 * `cache_mem` defaults to `256 MB`. [cache_mem docs](http://www.squid-cache.org/Doc/config/cache_mem/).
+* `cache_replacement_policy` defaults to undef. [cache_replacement_policy docs](http://www.squid-cache.org/Doc/config/cache_replacement_policy/).
+* `memory_replacement_policy` defaults to undef. [memory_replacement_policy docs](http://www.squid-cache.org/Doc/config/memory_replacement_policy/).
 * `memory_cache_shared` defaults to undef. [memory_cache_shared docs](http://www.squid-cache.org/Doc/config/memory_cache_shared/).
 * `maximum_object_size_in_memory` defaults to `512 KB`. [maximum_object_size_in_memory docs](http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/)
 * `access_log` defaults to `daemon:/var/logs/squid/access.log squid`. [access_log docs](http://www.squid-cache.org/Doc/config/access_log/)

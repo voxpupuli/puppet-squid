@@ -8,6 +8,8 @@ class squid::params {
   $enable_service                = true
   $cache_mem                     = '256 MB'
   $memory_cache_shared           = undef
+  $cache_replacement_policy      = undef
+  $memory_replacement_policy     = undef
   $maximum_object_size_in_memory = '512 KB'
   $coredump_dir                  = undef
   $max_filedescriptors           = undef
