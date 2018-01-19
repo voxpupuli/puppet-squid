@@ -1,0 +1,5 @@
+# fragment for url_rewrite_program <%= @program %>
+url_rewrite_program <%= @program %>
+<% if @children -%>
+url_rewrite_children <%= @children %> <%= @child_options%>
+<% end -%>

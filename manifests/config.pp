@@ -18,6 +18,7 @@ class squid::config (
   $auth_params                   = $::squid::auth_params,
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
+  $url_rewrite_program           = $::squid::url_rewrite_program,
   $refresh_patterns              = $::squid::refresh_patterns,
   $snmp_incoming_address         = $::squid::snmp_incoming_address,
   $snmp_ports                    = $::squid::snmp_ports,
@@ -70,6 +71,9 @@ class squid::config (
   }
   if $cache {
     create_resources('squid::cache', $cache)
+  }
+  if $url_rewrite_program {
+    create_resources('squid::url_rewrite_program', $url_rewrite_program)
   }
   if $refresh_patterns {
     create_resources('squid::refresh_pattern', $refresh_patterns)

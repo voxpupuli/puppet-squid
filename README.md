@@ -165,6 +165,37 @@ Adds a squid.conf line
 cache deny our_network_hosts_acl
 ```
 
+### Defined Type squid::url\_rewrite\_program
+Defines [url_rewrite_program entries](http://www.squid-cache.org/Doc/config/url_rewrite_program/) for a squid server.
+
+```puppet
+squid::url_rewrite_program { '/usr/bin/squidguard -c /etc/squidguard/squidguard.conf':
+}
+```
+
+Adds a squid.conf line
+
+```
+
+# fragment for url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
+url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
+```
+
+```puppet
+squid::url_rewrite_program { '/usr/bin/squidguard -c /etc/squidguard/squidguard.conf':
+  children => 10
+}
+
+```
+
+Adds a squid.conf line
+
+```
+# fragment for url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
+url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
+url_rewrite_children 10
+```
+
 ### Defined Type squid::http\_access
 Defines [http_access entries](http://www.squid-cache.org/Doc/config/http_access/) for a squid server.
 
@@ -174,7 +205,7 @@ squid::http_access { 'our_networks hosts':
 }
 ```
 
-Adds a squid.conf line 
+Adds a squid.conf line
 
 ```
 # http_access fragment for out_networks hosts
@@ -283,6 +314,23 @@ As an alternative to using the Squid::Http\_port defined type with `ssl` set to 
 #### Parameters for Type squid::https\_port
 * `port` defaults to the namevar and is the port number.
 * `options` A string to specify any options to add to the https_port line.  Defaults to an empty string.
+
+### Defined Type squid::url_rewrite_program
+Defines [url_rewrite_program](http://www.squid-cache.org/Doc/config/url_rewrite_program/) for a squid server.
+
+```puppet
+squid::url_rewrite_program { '/usr/bin/squidGuard -c /etc/squidguard/squidGuard.conf':
+  children      => 8,
+  child_options => 'startup=0 idle=1 concurrency=0',
+}
+```
+
+would result in the following squid url rewrite program
+
+```
+url_rewrite_program /usr/bin/squidGuard -c /etc/squidguard/squidGuard.conf
+url_rewrite_children 8 startup=0 idle=1 concurrency=0
+```
 
 ### Defined Type squid::refresh_pattern
 Defines [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/) for a squid server.
