@@ -206,6 +206,38 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_content(%r{^# Deny this and too$}) }
       end
 
+      context 'with two snmp_access parameters set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            snmp_access: {
+              'myrule' => {
+                'action' => 'deny',
+                'value'  => 'this and that',
+                'order'  => '08'
+              },
+              'secondrule' => {
+                'action'  => 'deny',
+                'value'   => 'this too',
+                'order'   => '09',
+                'comment' => 'Deny this and too'
+              }
+            }
+
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this and that').with_order('20-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this and that').with_content(%r{^snmp_access\s+deny\s+this and that$}) }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this and that').with_content(%r{^# snmp_access fragment for this and that$}) }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this too').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this too').with_order('20-09-deny') }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this too').with_content(%r{^snmp_access\s+deny\s+this too$}) }
+        it { is_expected.to contain_concat_fragment('squid_snmp_access_this too').with_content(%r{^# Deny this and too$}) }
+      end
+
       context 'with one ssl_bump parameter set' do
         let :params do
           {
