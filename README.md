@@ -48,6 +48,8 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `maximum_object_size_in_memory` defaults to `512 KB`. [maximum_object_size_in_memory docs](http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/)
 * `access_log` defaults to `daemon:/var/logs/squid/access.log squid`. [access_log docs](http://www.squid-cache.org/Doc/config/access_log/)
 * `coredump_dir` defaults to undef. [coredump_dir docs](http://www.squid-cache.org/Doc/config/coredump_dir/).
+* `error_directory` defaults to undef. [error_directory](http://www.squid-cache.org/Doc/config/error_directory/).
+* `err_page_stylesheet` defaults to undef. [err_page_stylesheet](http://www.squid-cache.org/Doc/config/err_page_stylesheet/).
 * `package_name` name of the squid package to manage, default depends on `$operatingsystem`
 * `service_name` name of the squid service to manage, default depends on `$operatingsystem`
 * `max_filedescriptors` defaults to undef. [max_filedescriptors docs](http://www.squid-cache.org/Doc/config/max_filedescriptors/).
