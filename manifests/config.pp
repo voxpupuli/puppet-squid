@@ -19,6 +19,7 @@ class squid::config (
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
   $refresh_patterns              = $::squid::refresh_patterns,
+  $snmp_listen_ip                = $::squid::snmp_listen_ip,
   $snmp_ports                    = $::squid::snmp_ports,
   $ssl_bump                      = $::squid::ssl_bump,
   $sslproxy_cert_error           = $::squid::sslproxy_cert_error,
@@ -59,6 +60,11 @@ class squid::config (
   }
   if $https_ports {
     create_resources('squid::https_port', $https_ports)
+  }
+  if $snmp_listen_ip {
+    class{'squid::snmp_listen_ip':
+      listen_ip => $snmp_listen_ip,
+    }
   }
   if $snmp_ports {
     create_resources('squid::snmp_port', $snmp_ports)
