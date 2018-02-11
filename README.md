@@ -61,6 +61,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `icp_access` defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/).
 * `refresh_patterns` defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
+* `snmp_listen_ip` defaults to undef. If you pass in a ip address, it will be defined automatically. [snmp_listen_ip entries](http://www.squid-cache.org/Doc/config/snmp_incoming_address/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 * `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
 * `sslproxy_cert_error` defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/).
