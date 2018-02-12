@@ -373,6 +373,17 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
       end
 
+      context 'with snmp_incoming_address parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            snmp_incoming_address: '4.2.2.2'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^snmp_incoming_address\s+4\.2\.2\.2$}) }
+      end
+
       context 'with snmp_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',

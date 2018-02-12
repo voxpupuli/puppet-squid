@@ -28,6 +28,8 @@ class squid (
   Optional[Variant[Enum['on', 'off'], Boolean]]
                     $memory_cache_shared              = $squid::params::memory_cache_shared,
   Optional[Hash]    $refresh_patterns                 = $squid::params::refresh_patterns,
+  Optional[Stdlib::Compat::Ip_address]
+                    $snmp_incoming_address            = $squid::params::snmp_incoming_address,
   Optional[Hash]    $snmp_ports                       = $squid::params::snmp_ports,
   Optional[Hash]    $ssl_bump                         = $squid::params::ssl_bump,
   Optional[Hash]    $sslproxy_cert_error              = $squid::params::sslproxy_cert_error,
