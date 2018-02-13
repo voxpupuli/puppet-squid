@@ -19,6 +19,7 @@ class squid::config (
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
   $refresh_patterns              = $::squid::refresh_patterns,
+  $snmp_incoming_address         = $::squid::snmp_incoming_address,
   $snmp_ports                    = $::squid::snmp_ports,
   $ssl_bump                      = $::squid::ssl_bump,
   $sslproxy_cert_error           = $::squid::sslproxy_cert_error,

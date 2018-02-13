@@ -35,3 +35,7 @@ max_filedescriptors           <%= @max_filedescriptors %>
 workers           <%= @workers %>
 
 <% end -%>
+
+<% if @snmp_incoming_address -%>
+snmp_incoming_address <%= @snmp_incoming_address -%>
+<% end -%>
