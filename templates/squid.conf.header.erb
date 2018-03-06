@@ -10,6 +10,13 @@ memory_cache_shared           <%= (@memory_cache_shared == 'on' || @memory_cache
 <% end -%>
 maximum_object_size_in_memory <%= @maximum_object_size_in_memory %>
 
+<% if @cache_replacement_policy -%>
+cache_replacement_policy      <%= @cache_replacement_policy %>
+<% end -%>
+<% if @memory_replacement_policy -%>
+memory_replacement_policy     <%= @memory_replacement_policy %>
+<% end -%>
+
 <% if @logformat -%>
 logformat                     <%= @logformat %>
 <% end -%>

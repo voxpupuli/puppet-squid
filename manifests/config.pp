@@ -3,6 +3,8 @@ class squid::config (
   $config_user                   = $::squid::config_user,
   $config_group                  = $::squid::config_group,
   $cache_mem                     = $::squid::cache_mem,
+  $cache_replacement_policy      = $::squid::cache_replacement_policy,
+  $memory_replacement_policy     = $::squid::memory_replacement_policy,
   $memory_cache_shared           = $::squid::memory_cache_shared,
   $maximum_object_size_in_memory = $::squid::maximum_object_size_in_memory,
   $access_log                    = $::squid::access_log,
