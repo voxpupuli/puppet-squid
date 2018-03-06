@@ -8,6 +8,7 @@ class squid::config (
   $memory_cache_shared           = $::squid::memory_cache_shared,
   $maximum_object_size_in_memory = $::squid::maximum_object_size_in_memory,
   $access_log                    = $::squid::access_log,
+  $buffered_logs                 = $::squid::buffered_logs,
   $coredump_dir                  = $::squid::coredump_dir,
   $max_filedescriptors           = $::squid::max_filedescriptors,
   $error_directory               = $::squid::error_directory,

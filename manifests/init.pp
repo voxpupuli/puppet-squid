@@ -27,6 +27,7 @@ class squid (
   Optional[Hash]    $https_ports                   = $squid::params::https_ports,
   Optional[Hash]    $icp_access                    = $squid::params::icp_access,
   Optional[String]  $logformat                     = $squid::params::logformat,
+  Optional[Boolean] $buffered_logs                 = $squid::params::buffered_logs,
   Optional[Integer] $max_filedescriptors           = $squid::params::max_filedescriptors,
   Optional[Variant[Enum['on', 'off'], Boolean]]
                     $memory_cache_shared              = $squid::params::memory_cache_shared,

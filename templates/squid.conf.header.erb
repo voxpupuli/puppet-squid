@@ -20,6 +20,9 @@ memory_replacement_policy     <%= @memory_replacement_policy %>
 <% if @logformat -%>
 logformat                     <%= @logformat %>
 <% end -%>
+<% unless @buffered_logs.nil? -%>
+buffered_logs                 <%= @buffered_logs?'on':'off' %>
+<% end -%>
 access_log                    <%= @access_log %>
 
 <% if @coredump_dir -%>

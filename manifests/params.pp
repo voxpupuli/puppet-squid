@@ -28,6 +28,7 @@ class squid::params {
   $ssl_bump                      = undef
   $sslproxy_cert_error           = undef
   $cache_dirs                    = undef
+  $buffered_logs                 = undef
   $logformat                     = undef
   $error_directory               = undef
   $err_page_stylesheet           = undef

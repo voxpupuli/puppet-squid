@@ -66,6 +66,28 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
       end
 
+      context 'with buffered_logs parameter set to true' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            buffered_logs: true
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^buffered_logs\s+on$}) }
+      end
+
+      context 'with buffered_logs parameter set to false' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            buffered_logs: false
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^buffered_logs\s+off$}) }
+      end
+
       context 'with memory_cache_shared parameter set to true' do
         let :params do
           {
