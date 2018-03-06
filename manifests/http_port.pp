@@ -6,7 +6,7 @@ define squid::http_port (
 ) {
 
   validate_bool($ssl)
-  validate_integer($port)
+  validate_re("${port}", '^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:)?\d+$')
   validate_string($options)
 
   $protocol = $ssl ? {

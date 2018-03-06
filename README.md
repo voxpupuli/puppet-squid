@@ -207,7 +207,7 @@ https_port 10001 cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/se
 ```
 
 #### Parameters for Type squid::http\_port
-* `port` defaults to the namevar and is the port number.
+* `port` defaults to the namevar and is the port number (alternatively it may be a string, like, "<ipv4>:<port>".
 * `options` A string to specify any options for the default. By default and empty string.
 * `ssl` A boolean.  When set to `true` creates [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).  Defaults to `false`.
 
