@@ -58,6 +58,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 * `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
 * `sslproxy_cert_error` defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/).
+* `auth_params` defaults to undef. If you pass in a hash of auth_param entries, they will be defined automatically. [auth_param entries](http://www.squid-cache.org/Doc/config/auth_param/).
 * `extra_config_sections` defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
 
 ```puppet
@@ -207,7 +208,7 @@ https_port 10001 cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/se
 ```
 
 #### Parameters for Type squid::http\_port
-* `port` defaults to the namevar and is the port number.
+* `port` defaults to the namevar and is the port number (alternatively it may be a string, like, "<ipv4>:<port>".
 * `options` A string to specify any options for the default. By default and empty string.
 * `ssl` A boolean.  When set to `true` creates [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).  Defaults to `false`.
 
