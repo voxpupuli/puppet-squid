@@ -27,7 +27,17 @@ class squid::params {
   case $::operatingsystem {
     /^(Debian|Ubuntu)$/: {
       case $::operatingsystemrelease {
-        /^(8.*|14\.04)$/: {
+        /^9\..*$/: {
+          $package_name          = 'squid'
+          $service_name          = 'squid'
+          $config                = '/etc/squid/squid.conf'
+          $config_user           = 'root'
+          $config_group          = 'root'
+          $access_log            = 'daemon:/var/log/squid/access.log squid'
+          $daemon_user           = 'proxy'
+          $daemon_group          = 'proxy'
+        }
+        /^(8\..*|14\.04)$/: {
           $package_name          = 'squid3'
           $service_name          = 'squid3'
           $config                = '/etc/squid3/squid.conf'
