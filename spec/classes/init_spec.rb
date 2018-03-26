@@ -244,6 +244,26 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
       end
 
+      context 'with one send_hit parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            send_hit: {
+              'myacl' => {
+                'action' => 'deny',
+                'value' => 'this and that',
+                'order' => '08'
+              }
+            }
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_order('21-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_content(%r{^send_hit\s+deny\s+this and that$}) }
+      end
+
       context 'with two http_access parameters set' do
         let :params do
           {
