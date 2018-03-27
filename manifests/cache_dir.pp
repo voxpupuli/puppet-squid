@@ -25,6 +25,11 @@ define squid::cache_dir (
       seltype  => 'squid_cache_t',
       pathspec => "${path}(/.*)?",
       require  => File[$path],
+      notify   => Selinux::Exec_restorecon["selinux restorecon ${path}"],
+    }
+    selinux::exec_restorecon{"selinux restorecon ${path}":
+      path        => $path,
+      refreshonly => true,
     }
   }
 

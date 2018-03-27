@@ -506,6 +506,8 @@ describe 'squid' do
           it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
           it { is_expected.to contain_file('/data').with_ensure('directory') }
           it { is_expected.to contain_selinux__fcontext('selinux fcontext squid_cache_t /data').with('seltype' => 'squid_cache_t', 'pathspec' => '/data(/.*)?') }
+          it { is_expected.to contain_selinux__fcontext('selinux fcontext squid_cache_t /data').that_notifies('Selinux::Exec_restorecon["restorecon /data"]') }
+          it { is_expected.to contain_selinux__exec_restorecon('selinux restorecon /data').with('path' => '/data') }
         end
       end
 
