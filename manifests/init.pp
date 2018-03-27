@@ -22,6 +22,7 @@ class squid (
   Optional[String]  $coredump_dir                  = $squid::params::coredump_dir,
   Optional[Hash]    $extra_config_sections         = {},
   Optional[Hash]    $http_access                   = $squid::params::http_access,
+  Optional[Hash]    $send_hit                      = $squid::params::send_hit,
   Optional[Hash]    $snmp_access                   = $squid::params::snmp_access,
   Optional[Hash]    $http_ports                    = $squid::params::http_ports,
   Optional[Hash]    $https_ports                   = $squid::params::https_ports,

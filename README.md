@@ -66,6 +66,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `icp_access` defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/).
 * `refresh_patterns` defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
+* `send_hit` defaults to undef. If you pass in a hash of send_hit entries, they will be defined automatically. [send_hit entries](http://www.squid-cache.org/Doc/config/send_hit/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 * `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
 * `sslproxy_cert_error` defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/).
@@ -198,6 +199,27 @@ Adds a squid.conf line
 # Our networks hosts are allowed
 http_access allow our_networks hosts
 ```
+
+### Define Type squid::send\_hit
+Defines [send_hit](http://www.squid-cache.org/Doc/config/send_hit/) for a squid server.
+
+```puppet
+squid:::send_hit{'PragmaNoCache':
+  action => 'deny',
+}
+```
+
+Adds a squid.conf line
+
+```
+send_hit deny PragmaNoCache
+```
+
+#### Parameters for Type squid::send\hit
+`value` defaults to the `namevar`. The rule to allow or deny.
+`action` must one of `deny` or `allow`
+`order` by default is 05.
+`comment` A comment to add to the configuration file.
 
 ### Defined Type squid::snmp\_access
 Defines [snmp_access entries](http://www.squid-cache.org/Doc/config/snmp_access/) for a squid server.
