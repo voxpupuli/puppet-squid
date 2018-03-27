@@ -1,2 +1,2 @@
 # <%= @comment %>
-refresh_pattern <%= @pattern %>: <%= @case_sensitive?'':'-i ' %><%= @min %> <%= @percent %>% <%= @max %><%= @options ? @options:'' %>
+refresh_pattern <%= @case_sensitive?'':'-i ' %><%= @pattern %> <%= @min %> <%= @percent %>% <%= @max %><% if @options != '' %> <%= @options %><% end %>

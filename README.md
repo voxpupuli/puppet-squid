@@ -314,7 +314,7 @@ As an alternative to using the Squid::Http\_port defined type with `ssl` set to 
 Defines [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/) for a squid server.
 
 ```puppet
-squid::refresh_pattern { '^ftp':
+squid::refresh_pattern { '^ftp:':
   min     => 1440,
   max     => 10080,
   percent => 20,
@@ -336,7 +336,7 @@ would result in the following squid refresh patterns
 # refresh_pattern fragment for ^ftp
 refresh_pattern ^ftp: 1440 20% 10080
 # refresh_pattern fragment for (/cgi-bin/|\?)
-refresh_pattern (/cgi-bin/|\?): -i 0 0% 0
+refresh_pattern (/cgi-bin/|\?) -i 0 0% 0
 ```
 
 These may be defined as a hash passed to ::squid
