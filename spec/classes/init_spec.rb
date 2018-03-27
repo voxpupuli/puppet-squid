@@ -419,6 +419,42 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
       end
 
+      if facts['osfamily'] == 'RedHat'
+        context 'with http_port parameters set + SELINUX' do
+          let :params do
+            { config: '/tmp/squid.conf',
+              http_ports: { 2000 => { 'options' => 'special for 2000' } } }
+          end
+          let(:facts) do
+            facts.merge(
+              selinux => true
+            )
+          end
+
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
+          it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
+          it { is_expected.to contain_selinux__port('selinux port squid_port_t 2000').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '2000') }
+        end
+
+        context 'with https_port parameters set' do
+          let :params do
+            { config: '/tmp/squid.conf',
+              https_ports: { 2001 => { 'options' => 'special for 2001' } } }
+          end
+          let(:facts) do
+            facts.merge(
+              selinux => true
+            )
+          end
+
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_order('30-05') }
+          it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
+          it { is_expected.to contain_selinux__port('selinux port squid_port_t 2001').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '2001') }
+        end
+      end
+
       context 'with snmp_incoming_address parameter set' do
         let :params do
           {
@@ -452,6 +488,25 @@ describe 'squid' do
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_file('/data').with_ensure('directory') }
+      end
+
+      if facts['osfamily'] == 'RedHat'
+        context 'with cache_dir parameters set + SELINUX' do
+          let :params do
+            { config: '/tmp/squid.conf',
+              cache_dirs: { '/data' => { 'type'    => 'special',
+                                         'options' => 'my options for special type' } } }
+          end
+          let(:facts) do
+            facts.merge(
+              selinux => true
+            )
+          end
+
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+          it { is_expected.to contain_file('/data').with_ensure('directory') }
+          it { is_expected.to contain_selinux__fcontext('selinux fcontext squid_cache_t /data').with('seltype' => 'squid_cache_t', 'pathspec' => '/data(/.*)?') }
+        end
       end
 
       context 'with extra_config_sections parameter set' do

@@ -32,6 +32,7 @@ squid::http_access{ '!Safe_ports':
   action => deny,
 }
 ```
+This module will set the SELINUX-context for the cache_dir and/or port, requires [puppet-selinux](https://github.com/voxpupuli/puppet-selinux)  
 
 ### Parameters for squid Class
 Parameters to the squid class almost map 1 to 1 to squid.conf parameters themselves.

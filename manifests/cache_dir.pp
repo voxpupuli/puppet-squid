@@ -20,4 +20,12 @@ define squid::cache_dir (
     require => Package[$::squid::package_name],
   }
 
+  if $facts['selinux'] == true {
+    selinux::fcontext{"selinux fcontext squid_cache_t ${path}":
+      seltype  => 'squid_cache_t',
+      pathspec => "${path}(/.*)?",
+      require  => File[$path],
+    }
+  }
+
 }
