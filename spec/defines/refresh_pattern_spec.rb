@@ -47,7 +47,7 @@ describe 'squid::refresh_pattern' do
         fname = 'squid_refresh_pattern_case_insensitive'
         it { is_expected.to contain_concat_fragment(fname).with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment(fname).with_order('45-07') }
-        it { is_expected.to contain_concat_fragment(fname).with_content(%r{^refresh_pattern\s+case_insensitive:\s+-i\s+0\s+0%\s+0$}) }
+        it { is_expected.to contain_concat_fragment(fname).with_content(%r{^case_insensitive\s+-i\s+refresh_pattern:\s+0\s+0%\s+0$}) }
       end # context 'when parameters are set and case insensitive'
     end
   end
