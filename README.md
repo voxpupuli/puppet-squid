@@ -32,6 +32,7 @@ squid::http_access{ '!Safe_ports':
   action => deny,
 }
 ```
+This module will set the SELINUX-context for the cache_dir and/or port, requires [puppet-selinux](https://github.com/voxpupuli/puppet-selinux)  
 
 ### Parameters for squid Class
 Parameters to the squid class almost map 1 to 1 to squid.conf parameters themselves.
@@ -44,6 +45,8 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `daemon_user` user which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
 * `daemon_group` group which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
 * `cache_mem` defaults to `256 MB`. [cache_mem docs](http://www.squid-cache.org/Doc/config/cache_mem/).
+* `cache_replacement_policy` defaults to undef. [cache_replacement_policy docs](http://www.squid-cache.org/Doc/config/cache_replacement_policy/).
+* `memory_replacement_policy` defaults to undef. [memory_replacement_policy docs](http://www.squid-cache.org/Doc/config/memory_replacement_policy/).
 * `memory_cache_shared` defaults to undef. [memory_cache_shared docs](http://www.squid-cache.org/Doc/config/memory_cache_shared/).
 * `maximum_object_size_in_memory` defaults to `512 KB`. [maximum_object_size_in_memory docs](http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/)
 * `access_log` defaults to `daemon:/var/logs/squid/access.log squid`. [access_log docs](http://www.squid-cache.org/Doc/config/access_log/)
@@ -55,6 +58,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `max_filedescriptors` defaults to undef. [max_filedescriptors docs](http://www.squid-cache.org/Doc/config/max_filedescriptors/).
 * `workers` defaults to undef. [workers docs](http://www.squid-cache.org/Doc/config/workers/).
 * `snmp_incoming_address` defaults to undef. Can be set to an IP address to only listen for snmp requests on an individual interface. [snmp_incoming_address](http://www.squid-cache.org/Doc/config/snmp_incoming_address/).
+* `buffered_logs` defaults to undef. [buffered_logs docs](http://www.squid-cache.org/Doc/config/buffered_logs/).
 * `acls` defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. [acl entries](http://www.squid-cache.org/Doc/config/acl/).
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
@@ -62,6 +66,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `icp_access` defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/).
 * `refresh_patterns` defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
+* `send_hit` defaults to undef. If you pass in a hash of send_hit entries, they will be defined automatically. [send_hit entries](http://www.squid-cache.org/Doc/config/send_hit/).
 * `cache_dirs` defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. [cache_dir entries](http://www.squid-cache.org/Doc/config/cache_dir/).
 * `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
 * `sslproxy_cert_error` defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/).
@@ -226,6 +231,27 @@ Adds a squid.conf line
 http_access allow our_networks hosts
 ```
 
+### Define Type squid::send\_hit
+Defines [send_hit](http://www.squid-cache.org/Doc/config/send_hit/) for a squid server.
+
+```puppet
+squid:::send_hit{'PragmaNoCache':
+  action => 'deny',
+}
+```
+
+Adds a squid.conf line
+
+```
+send_hit deny PragmaNoCache
+```
+
+#### Parameters for Type squid::send\hit
+`value` defaults to the `namevar`. The rule to allow or deny.
+`action` must one of `deny` or `allow`
+`order` by default is 05.
+`comment` A comment to add to the configuration file.
+
 ### Defined Type squid::snmp\_access
 Defines [snmp_access entries](http://www.squid-cache.org/Doc/config/snmp_access/) for a squid server.
 
@@ -336,7 +362,7 @@ url_rewrite_children 8 startup=0 idle=1 concurrency=0
 Defines [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/) for a squid server.
 
 ```puppet
-squid::refresh_pattern { '^ftp':
+squid::refresh_pattern { '^ftp:':
   min     => 1440,
   max     => 10080,
   percent => 20,
@@ -358,7 +384,7 @@ would result in the following squid refresh patterns
 # refresh_pattern fragment for ^ftp
 refresh_pattern ^ftp: 1440 20% 10080
 # refresh_pattern fragment for (/cgi-bin/|\?)
-refresh_pattern (/cgi-bin/|\?): -i 0 0% 0
+refresh_pattern (/cgi-bin/|\?) -i 0 0% 0
 ```
 
 These may be defined as a hash passed to ::squid

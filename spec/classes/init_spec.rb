@@ -33,6 +33,8 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^cache_replacement_policy}) }
+        it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_replacement_policy}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^coredump_dir}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^max_filedescriptors}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^workers}) }
@@ -62,6 +64,28 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
+      end
+
+      context 'with buffered_logs parameter set to true' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            buffered_logs: true
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^buffered_logs\s+on$}) }
+      end
+
+      context 'with buffered_logs parameter set to false' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            buffered_logs: false
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^buffered_logs\s+off$}) }
       end
 
       context 'with memory_cache_shared parameter set to true' do
@@ -130,6 +154,28 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
       end
 
+      context 'with cache_replacement_policy parameter set to LRU' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            cache_replacement_policy: 'LRU'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_replacement_policy\s+LRU$}) }
+      end
+
+      context 'with memory_replacement_policy parameter set to LRU' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            memory_replacement_policy: 'LRU'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_replacement_policy\s+LRU$}) }
+      end
+
       context 'with one acl parameter set' do
         let :params do
           {
@@ -196,6 +242,26 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_order('20-08-deny') }
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
+      end
+
+      context 'with one send_hit parameter set' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            send_hit: {
+              'myacl' => {
+                'action' => 'deny',
+                'value' => 'this and that',
+                'order' => '08'
+              }
+            }
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_target('/tmp/squid.conf') }
+        it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_order('21-08-deny') }
+        it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_content(%r{^send_hit\s+deny\s+this and that$}) }
       end
 
       context 'with two http_access parameters set' do
@@ -373,6 +439,42 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
       end
 
+      if facts['osfamily'] == 'RedHat'
+        context 'with http_port parameters set + SELINUX' do
+          let :params do
+            { config: '/tmp/squid.conf',
+              http_ports: { 2000 => { 'options' => 'special for 2000' } } }
+          end
+          let(:facts) do
+            facts.merge(
+              selinux => true
+            )
+          end
+
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_order('30-05') }
+          it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
+          it { is_expected.to contain_selinux__port('selinux port squid_port_t 2000').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '2000') }
+        end
+
+        context 'with https_port parameters set' do
+          let :params do
+            { config: '/tmp/squid.conf',
+              https_ports: { 2001 => { 'options' => 'special for 2001' } } }
+          end
+          let(:facts) do
+            facts.merge(
+              selinux => true
+            )
+          end
+
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+          it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_order('30-05') }
+          it { is_expected.to contain_concat_fragment('squid_https_port_2001').with_content(%r{^https_port\s+2001\s+special for 2001$}) }
+          it { is_expected.to contain_selinux__port('selinux port squid_port_t 2001').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '2001') }
+        end
+      end
+
       context 'with snmp_incoming_address parameter set' do
         let :params do
           {
@@ -406,6 +508,27 @@ describe 'squid' do
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_file('/data').with_ensure('directory') }
+      end
+
+      if facts['osfamily'] == 'RedHat'
+        context 'with cache_dir parameters set + SELINUX' do
+          let :params do
+            { config: '/tmp/squid.conf',
+              cache_dirs: { '/data' => { 'type'    => 'special',
+                                         'options' => 'my options for special type' } } }
+          end
+          let(:facts) do
+            facts.merge(
+              selinux => true
+            )
+          end
+
+          it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
+          it { is_expected.to contain_file('/data').with_ensure('directory') }
+          it { is_expected.to contain_selinux__fcontext('selinux fcontext squid_cache_t /data').with('seltype' => 'squid_cache_t', 'pathspec' => '/data(/.*)?') }
+          it { is_expected.to contain_selinux__fcontext('selinux fcontext squid_cache_t /data').that_notifies('Selinux::Exec_restorecon["restorecon /data"]') }
+          it { is_expected.to contain_selinux__exec_restorecon('selinux restorecon /data').with('path' => '/data') }
+        end
       end
 
       context 'with extra_config_sections parameter set' do

@@ -17,4 +17,15 @@ define squid::http_port (
     order   => "30-${order}",
   }
 
+  if $facts['selinux'] == true {
+    $_port = Integer($port)
+    selinux::port{"selinux port squid_port_t ${_port}":
+      ensure   => 'present',
+      seltype  => 'squid_port_t',
+      protocol => 'tcp',
+      port     => $_port,
+    }
+  }
+
 }
+

@@ -3,9 +3,12 @@ class squid::config (
   $config_user                   = $::squid::config_user,
   $config_group                  = $::squid::config_group,
   $cache_mem                     = $::squid::cache_mem,
+  $cache_replacement_policy      = $::squid::cache_replacement_policy,
+  $memory_replacement_policy     = $::squid::memory_replacement_policy,
   $memory_cache_shared           = $::squid::memory_cache_shared,
   $maximum_object_size_in_memory = $::squid::maximum_object_size_in_memory,
   $access_log                    = $::squid::access_log,
+  $buffered_logs                 = $::squid::buffered_logs,
   $coredump_dir                  = $::squid::coredump_dir,
   $max_filedescriptors           = $::squid::max_filedescriptors,
   $error_directory               = $::squid::error_directory,
@@ -13,6 +16,7 @@ class squid::config (
   $workers                       = $::squid::workers,
   $acls                          = $::squid::acls,
   $http_access                   = $::squid::http_access,
+  $send_hit                      = $::squid::send_hit,
   $snmp_access                   = $::squid::snmp_access,
   $icp_access                    = $::squid::icp_access,
   $auth_params                   = $::squid::auth_params,
@@ -47,6 +51,9 @@ class squid::config (
   }
   if $http_access {
     create_resources('squid::http_access', $http_access)
+  }
+  if $send_hit {
+    create_resources('squid::send_hit', $send_hit)
   }
   if $snmp_access {
     create_resources('squid::snmp_access', $snmp_access)
