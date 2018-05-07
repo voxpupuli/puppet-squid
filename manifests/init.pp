@@ -20,6 +20,7 @@ class squid (
   Optional[Hash]    $cache_dirs                    = $squid::params::cache_dirs,
   Optional[Hash]    $cache                         = $squid::params::cache,
   Optional[String]  $coredump_dir                  = $squid::params::coredump_dir,
+  Optional[Hash]    $url_rewrite_program           = $squid::params::url_rewrite_program,
   Optional[Hash]    $extra_config_sections         = {},
   Optional[Hash]    $http_access                   = $squid::params::http_access,
   Optional[Hash]    $send_hit                      = $squid::params::send_hit,
