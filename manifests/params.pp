@@ -7,6 +7,10 @@ class squid::params {
   $ensure_service                = 'running'
   $enable_service                = true
   $cache_mem                     = '256 MB'
+  $visible_hostname              = undef
+  $via                           = undef
+  $httpd_suppress_version_string = undef
+  $forwarded_for                 = undef
   $memory_cache_shared           = undef
   $cache_replacement_policy      = undef
   $memory_replacement_policy     = undef

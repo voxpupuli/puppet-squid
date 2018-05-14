@@ -49,3 +49,15 @@ workers           <%= @workers %>
 <% if @snmp_incoming_address -%>
 snmp_incoming_address <%= @snmp_incoming_address -%>
 <% end -%>
+<% if @visible_hostname -%>
+visible_hostname              <%= @visible_hostname %>
+<% end -%>
+<% unless @via.nil? -%>
+via                           <%= @via?'on':'off' %>
+<% end -%>
+<% unless @httpd_suppress_version_string.nil? -%>
+httpd_suppress_version_string <%= @httpd_suppress_version_string?'on':'off' %>
+<% end -%>
+<% unless @forwarded_for.nil? -%>
+forwarded_for                 <%= @forwarded_for?'on':'off' %>
+<% end -%>
