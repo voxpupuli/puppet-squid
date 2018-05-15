@@ -4,7 +4,26 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
-## [v1.0.0](https://github.com/voxpupuli/puppet-squid/tree/v1.0.0) (2018-03-27)
+## [v1.1.0](https://github.com/voxpupuli/puppet-squid/tree/v1.1.0) (2018-05-15)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v1.0.0...v1.1.0)
+
+**Implemented enhancements:**
+
+- Add `visible\_hostname`, `via`, `httpd\_suppress\_version\_string` and `forwarded\_for` parameters [\#81](https://github.com/voxpupuli/puppet-squid/pull/81) ([SourceDoctor](https://github.com/SourceDoctor))
+- add url\_rewrite feature [\#78](https://github.com/voxpupuli/puppet-squid/pull/78) ([SourceDoctor](https://github.com/SourceDoctor))
+
+**Closed issues:**
+
+- puppet/selinux missing as requirement [\#95](https://github.com/voxpupuli/puppet-squid/issues/95)
+
+**Merged pull requests:**
+
+- Fixes \#95 adds declare puppet-selinux dep [\#97](https://github.com/voxpupuli/puppet-squid/pull/97) ([traylenator](https://github.com/traylenator))
+- Rely on beaker-hostgenerator for docker nodesets [\#96](https://github.com/voxpupuli/puppet-squid/pull/96) ([ekohl](https://github.com/ekohl))
+- increase max concat module version [\#94](https://github.com/voxpupuli/puppet-squid/pull/94) ([TomRitserveldt](https://github.com/TomRitserveldt))
+
+## [v1.0.0](https://github.com/voxpupuli/puppet-squid/tree/v1.0.0) (2018-03-28)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v0.6.1...v1.0.0)
 
@@ -45,7 +64,6 @@ These should not affect the functionality of the module.
 
 - release 0.6.1 [\#72](https://github.com/voxpupuli/puppet-squid/pull/72) ([bastelfreak](https://github.com/bastelfreak))
 - add missing secret to travis config [\#71](https://github.com/voxpupuli/puppet-squid/pull/71) ([bastelfreak](https://github.com/bastelfreak))
-- release 0.6.0 [\#70](https://github.com/voxpupuli/puppet-squid/pull/70) ([bastelfreak](https://github.com/bastelfreak))
 
 ## [v0.6.0](https://github.com/voxpupuli/puppet-squid/tree/v0.6.0) (2017-11-15)
 
@@ -62,6 +80,7 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
+- release 0.6.0 [\#70](https://github.com/voxpupuli/puppet-squid/pull/70) ([bastelfreak](https://github.com/bastelfreak))
 - Fix the tests [\#67](https://github.com/voxpupuli/puppet-squid/pull/67) ([ekohl](https://github.com/ekohl))
 - Clean up docs [\#62](https://github.com/voxpupuli/puppet-squid/pull/62) ([alexharv074](https://github.com/alexharv074))
 - Add refresh\_pattern defined type [\#57](https://github.com/voxpupuli/puppet-squid/pull/57) ([matonb](https://github.com/matonb))
