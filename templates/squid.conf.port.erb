@@ -1,3 +1,10 @@
-# fragment for <%= @protocol %>_port <%= @port %>
-<%= @protocol %>_port <%= @port %> <%= @options %>
+<%
+  if @_host == nil then
+    host_port = @_port
+  else
+    host_port = "#{@_host}:#{@_port}"
+  end
+-%>
+# fragment for <%= @protocol %>_port <%= host_port %>
+<%= @protocol %>_port <%= host_port %> <%= @options %>
 
