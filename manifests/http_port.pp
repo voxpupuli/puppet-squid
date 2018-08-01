@@ -36,7 +36,12 @@ define squid::http_port (
 
   concat::fragment{"squid_${protocol}_port_${_title}":
     target  => $squid::config,
-    content => template('squid/squid.conf.port.erb'),
+    content => epp('squid/squid.conf.port.epp', {
+      protocol => $protocol,
+      host     => $_host,
+      port     => $_port,
+      options  => $options,
+    }),
     order   => "30-${order}",
   }
 
