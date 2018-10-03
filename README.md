@@ -54,6 +54,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `error_directory` defaults to undef. [error_directory](http://www.squid-cache.org/Doc/config/error_directory/).
 * `err_page_stylesheet` defaults to undef. [err_page_stylesheet](http://www.squid-cache.org/Doc/config/err_page_stylesheet/).
 * `package_name` name of the squid package to manage, default depends on `$operatingsystem`
+* `package_ensure` package status and/or version, default to present
 * `service_name` name of the squid service to manage, default depends on `$operatingsystem`
 * `max_filedescriptors` defaults to undef. [max_filedescriptors docs](http://www.squid-cache.org/Doc/config/max_filedescriptors/).
 * `workers` defaults to undef. [workers docs](http://www.squid-cache.org/Doc/config/workers/).

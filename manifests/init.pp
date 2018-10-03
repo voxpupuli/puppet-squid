@@ -10,6 +10,7 @@ class squid (
   String            $ensure_service                   = $squid::params::ensure_service,
   Pattern[/\d+ KB/] $maximum_object_size_in_memory    = $squid::params::maximum_object_size_in_memory,
   String            $package_name                     = $squid::params::package_name,
+  String            $package_ensure                   = $squid::params::package_ensure,
   String            $service_name                     = $squid::params::service_name,
   Optional[Stdlib::Absolutepath] $error_directory     = $squid::params::error_directory,
   Optional[Stdlib::Absolutepath] $err_page_stylesheet = $squid::params::err_page_stylesheet,
