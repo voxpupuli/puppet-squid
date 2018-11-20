@@ -374,7 +374,7 @@ squid::refresh_pattern { '^ftp:':
 }
 
 squid::refresh_pattern { '(/cgi-bin/|\?)':
-  case_sensitive => falke,
+  case_sensitive => false,
   min            => 0,
   max            => 0,
   percent        => 0,
