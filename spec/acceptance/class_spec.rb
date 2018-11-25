@@ -2,7 +2,7 @@ require 'spec_helper_acceptance'
 
 describe 'squid class' do
   context 'configure http_access' do
-    squid_name = fact(:operatingsystem) == 'Debian' && fact(:operatingsystemmajrelease) == '8' ? 'squid3' : 'squid'
+    squid_name = fact('operatingsystem') == 'Debian' && fact('operatingsystemmajrelease') == '8' ? 'squid3' : 'squid'
 
     it 'works idempotently with no errors' do
       pp = <<-EOS
