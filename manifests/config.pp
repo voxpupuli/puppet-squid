@@ -27,6 +27,8 @@ class squid::config (
   $http_ports                    = $::squid::http_ports,
   $https_ports                   = $::squid::https_ports,
   $url_rewrite_program           = $::squid::url_rewrite_program,
+  $url_rewrite_children          = $::squid::url_rewrite_children,
+  $url_rewrite_child_options     = $::squid::url_rewrite_child_options,
   $refresh_patterns              = $::squid::refresh_patterns,
   $snmp_incoming_address         = $::squid::snmp_incoming_address,
   $snmp_ports                    = $::squid::snmp_ports,
@@ -82,9 +84,6 @@ class squid::config (
   }
   if $cache {
     create_resources('squid::cache', $cache)
-  }
-  if $url_rewrite_program {
-    create_resources('squid::url_rewrite_program', $url_rewrite_program)
   }
   if $refresh_patterns {
     create_resources('squid::refresh_pattern', $refresh_patterns)
