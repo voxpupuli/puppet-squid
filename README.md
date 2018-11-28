@@ -49,6 +49,10 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `memory_replacement_policy` defaults to undef. [memory_replacement_policy docs](http://www.squid-cache.org/Doc/config/memory_replacement_policy/).
 * `memory_cache_shared` defaults to undef. [memory_cache_shared docs](http://www.squid-cache.org/Doc/config/memory_cache_shared/).
 * `maximum_object_size_in_memory` defaults to `512 KB`. [maximum_object_size_in_memory docs](http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/)
+
+* `url_rewrite_program` defaults to undef [url_rewrite_program_docs](http://www.squid-cache.org/Doc/config/url_rewrite_program/)
+* `url_rewrite_children` defaults to undef [url_rewrite_children_docs](http://www.squid-cache.org/Doc/config/url_rewrite_children/)
+* `url_rewrite_child_options` defaults to undef [url_rewrite_child_options_docs](http://www.squid-cache.org/Doc/config/url_rewrite_children/)
 * `access_log` defaults to `daemon:/var/logs/squid/access.log squid`. [access_log docs](http://www.squid-cache.org/Doc/config/access_log/)
 * `coredump_dir` defaults to undef. [coredump_dir docs](http://www.squid-cache.org/Doc/config/coredump_dir/).
 * `error_directory` defaults to undef. [error_directory](http://www.squid-cache.org/Doc/config/error_directory/).
@@ -86,19 +90,22 @@ class { 'squid':
 
 ```puppet
 class { 'squid':
-  cache_mem    => '512 MB',
-  workers      => 3,
-  coredump_dir => '/var/spool/squid',
-  acls         => { 'remote_urls' => {
-                      type    => 'url_regex',
-                      entries => ['http://example.org/path',
-                                  'http://example.com/anotherpath'],
-                    },
-                  },
-  http_access  => { 'our_networks hosts' => { action => 'allow', }},
-  http_ports   => { '10000' => { options => 'accel vhost', }},
-  snmp_ports   => { '1000' => { process_number => 3, }},
-  cache_dirs   => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 }},
+  cache_mem                 => '512 MB',
+  workers                   => 3,
+  coredump_dir              => '/var/spool/squid',
+  acls                      => { 'remote_urls' => {
+                                   type    => 'url_regex',
+                                   entries => ['http://example.org/path',
+                                               'http://example.com/anotherpath'],
+                                 },
+                               },
+  http_access               => { 'our_networks hosts' => { action => 'allow', }},
+  http_ports                => { '10000' => { options => 'accel vhost', }},
+  snmp_ports                => { '1000' => { process_number => 3, }},
+  cache_dirs                => { '/data/' => { type => 'ufs', options => '15000 32 256 min-size=32769', process_number => 2 }},
+  url_rewrite_program       => '/usr/bin/squidguard -c /etc/squidguard/squidguard.conf',
+  url_rewrite_children      => 12,
+  url_rewrite_child_options => startup=1,
 }
 ```
 
@@ -172,37 +179,6 @@ Adds a squid.conf line
 ```
 # Our networks hosts denied for caching
 cache deny our_network_hosts_acl
-```
-
-### Defined Type squid::url\_rewrite\_program
-Defines [url_rewrite_program entries](http://www.squid-cache.org/Doc/config/url_rewrite_program/) for a squid server.
-
-```puppet
-squid::url_rewrite_program { '/usr/bin/squidguard -c /etc/squidguard/squidguard.conf':
-}
-```
-
-Adds a squid.conf line
-
-```
-
-# fragment for url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
-url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
-```
-
-```puppet
-squid::url_rewrite_program { '/usr/bin/squidguard -c /etc/squidguard/squidguard.conf':
-  children => 10
-}
-
-```
-
-Adds a squid.conf line
-
-```
-# fragment for url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
-url_rewrite_program /usr/bin/squidguard -c /etc/squidguard/squidguard.conf
-url_rewrite_children 10
 ```
 
 ### Defined Type squid::http\_access

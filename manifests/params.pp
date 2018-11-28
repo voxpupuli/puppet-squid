@@ -27,6 +27,8 @@ class squid::params {
   $http_ports                    = undef
   $https_ports                   = undef
   $url_rewrite_program           = undef
+  $url_rewrite_children          = undef
+  $url_rewrite_child_options     = undef
   $refresh_patterns              = undef
   $snmp_incoming_address         = undef
   $snmp_ports                    = undef

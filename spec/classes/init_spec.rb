@@ -56,7 +56,10 @@ describe 'squid' do
             access_log: '/var/log/out.log',
             coredump_dir: '/tmp/core',
             max_filedescriptors: 1000,
-            workers: 8
+            workers: 8,
+            url_rewrite_program: '/some/test/program',
+            url_rewrite_children: 16,
+            url_rewrite_child_options: 'testoption=a'
           }
         end
 
@@ -72,6 +75,8 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_program\s+/some/test/program$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_children\s+16\stestoption=a$}) }
       end
 
       context 'with buffered_logs parameter set to true' do

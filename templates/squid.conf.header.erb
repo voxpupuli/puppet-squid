@@ -42,12 +42,12 @@ max_filedescriptors           <%= @max_filedescriptors %>
 
 <% end -%>
 <% if @workers -%>
-workers           <%= @workers %>
+workers                       <%= @workers %>
 
 <% end -%>
 
 <% if @snmp_incoming_address -%>
-snmp_incoming_address <%= @snmp_incoming_address -%>
+snmp_incoming_address         <%= @snmp_incoming_address %>
 <% end -%>
 <% if @visible_hostname -%>
 visible_hostname              <%= @visible_hostname %>
@@ -60,4 +60,11 @@ httpd_suppress_version_string <%= @httpd_suppress_version_string?'on':'off' %>
 <% end -%>
 <% unless @forwarded_for.nil? -%>
 forwarded_for                 <%= @forwarded_for?'on':'off' %>
+<% end -%>
+
+<% if @url_rewrite_program -%>
+url_rewrite_program <%= @url_rewrite_program %>
+<% if @url_rewrite_children -%>
+url_rewrite_children <%= @url_rewrite_children %> <%= @url_rewrite_child_options%>
+<% end -%>
 <% end -%>
