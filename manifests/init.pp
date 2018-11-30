@@ -1,6 +1,6 @@
 class squid (
   String            $access_log                       = $squid::params::access_log,
-  Pattern[/\d+ MB/] $cache_mem                        = $squid::params::cache_mem,
+  Squid::Size       $cache_mem                        = $squid::params::cache_mem,
   String            $config                           = $squid::params::config,
   String            $config_group                     = $squid::params::config_group,
   String            $config_user                      = $squid::params::config_user,
@@ -8,7 +8,7 @@ class squid (
   String            $daemon_user                      = $squid::params::daemon_user,
   Boolean           $enable_service                   = $squid::params::enable_service,
   String            $ensure_service                   = $squid::params::ensure_service,
-  Pattern[/\d+ KB/] $maximum_object_size_in_memory    = $squid::params::maximum_object_size_in_memory,
+  Squid::Size       $maximum_object_size_in_memory    = $squid::params::maximum_object_size_in_memory,
   String            $package_name                     = $squid::params::package_name,
   String            $service_name                     = $squid::params::service_name,
   Optional[Stdlib::Absolutepath] $error_directory     = $squid::params::error_directory,
