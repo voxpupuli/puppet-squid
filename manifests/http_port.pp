@@ -7,26 +7,31 @@ define squid::http_port (
 ) {
   $_title = String($title)
 
-  if $port == undef {
-    if $_title =~ /^(?:.+:)?(\d+)$/ {
-      $_port = Integer($1)
-      if $_port !~ Stdlib::Port {
-        fail("invalid port determined from title: ${_port}")
-      }
-    } else {
-      fail("port couldn't be determined from title nor args")
+  # Try to extract host/port from title if neither were specified as
+  # parameters. Allowed formats: host:port and port.
+  if $host == undef and $port == undef and $_title =~ /^(?:(.+):)?(\d+)$/ {
+    $_host = $1
+    if $_host !~ Optional[Stdlib::Host] {
+      fail("invalid host \"${_host}\" determined from title")
+    }
+
+    $_port = Integer($2)
+    if $_port !~ Stdlib::Port {
+      fail("invalid port \"${_port}\" determined from title")
     }
   } else {
+    $_host = $host
     $_port = $port
   }
 
-  # Only grab the host from the title if no port arg given and the title is
-  # very likely to mean host:port. This should be backward-compatible with
-  # client code from before this feature was introduced.
-  if $port == undef and $host == undef and $_title =~ /^(.+):\d+$/ {
-    $_host = $1
+  if $_port == undef {
+    fail('port parameter was not specified and could not be determined from title')
+  }
+
+  if $_host != undef {
+    $_host_port = "${_host}:${_port}"
   } else {
-    $_host = $host # May be undef
+    $_host_port = String($_port)
   }
 
   $protocol = $ssl ? {
@@ -37,10 +42,10 @@ define squid::http_port (
   concat::fragment{"squid_${protocol}_port_${_title}":
     target  => $squid::config,
     content => epp('squid/squid.conf.port.epp', {
-      protocol => $protocol,
-      host     => $_host,
-      port     => $_port,
-      options  => $options,
+      title     => $_title,
+      protocol  => $protocol,
+      host_port => $_host_port,
+      options   => $options,
     }),
     order   => "30-${order}",
   }

@@ -20,6 +20,11 @@ describe 'squid::http_port' do
         it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_order('30-05') }
         it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_content(%r{^http_port\s+1000\s*$}) }
       end
+      context 'with garbage title and no parameters' do
+        let(:title) { 'garbage' }
+
+        it { is_expected.not_to compile }
+      end
       context 'when host:port title is set' do
         let(:title) { '127.0.0.1:1500' }
 
@@ -40,6 +45,11 @@ describe 'squid::http_port' do
 
         it { is_expected.not_to compile }
       end
+      context 'with ".host:port" invalid title' do
+        let(:title) { '.host:1600' }
+
+        it { is_expected.not_to compile }
+      end
       context 'with host:port title and port arg' do
         let(:title) { 'host:1650' }
         let(:params) do
@@ -50,6 +60,16 @@ describe 'squid::http_port' do
 
         # Ignore the host part of the title if a port is specified
         it { is_expected.to contain_concat_fragment('squid_http_port_host:1650').with_content(%r{^http_port\s+1650\s*$}) }
+      end
+      context 'without a port specified' do
+        let(:title) { 'garbage' }
+        let(:params) do
+          {
+            host: 'host'
+          }
+        end
+
+        it { is_expected.not_to compile }
       end
       context 'when host and port parameters are set' do
         let(:title) { 'test' }

@@ -1,15 +1,8 @@
-<%- | String $protocol,
-      Stdlib::Port        $port,
-      Optional[String[1]] $host,
+<%- | String $title,
+      String $protocol,
+      String $host_port,
       String $options,
     | -%>
-<%
-  if $host == undef {
-    $_host_port = $port
-  } else {
-    $_host_port = "${host}:${port}"
-  }
--%>
-# fragment for <%= $protocol %>_port <%= $_host_port %>
-<%= $protocol %>_port <%= $_host_port %> <%= $options %>
+# fragment for <%= $protocol %>_port <%= $title %>
+<%= $protocol %>_port <%= $host_port %> <%= $options %>
 
