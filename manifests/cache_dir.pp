@@ -12,13 +12,13 @@ define squid::cache_dir (
     order   => "50-${order}",
   }
 
-  file{$path:
+  ensure_resource('file', $path, {
     ensure  => directory,
     owner   => $::squid::daemon_user,
     group   => $::squid::daemon_group,
     mode    => '0750',
     require => Package[$::squid::package_name],
-  }
+  })
 
   if $facts['selinux'] == true {
     selinux::fcontext{"selinux fcontext squid_cache_t ${path}":

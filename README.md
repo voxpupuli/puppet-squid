@@ -164,6 +164,8 @@ endif
   in a `if $proceess_number` statement so the cache will be used by only
   one process. Default is undef.
 
+NOTE: When creating a custom 'cache_dir' using Puppet (like a seperate mount) this module WILL NOT create the dir (so no duplicate error occurs), be sure the created directory is owned by the user/group 'squid'.
+
 ### Defined Type squid::cache
 Defines [cache entries](http://www.squid-cache.org/Doc/config/cache/) for a squid server.
 
