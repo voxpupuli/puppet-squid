@@ -313,7 +313,7 @@ http_port 127.0.0.1:3128
 
 #### Parameters for Type squid::http\_port
 * The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
-  specify `port` explicitely, and `host` if desired.
+  specify `port` explicitly, and `host` if desired.
 * `port` defaults to the port of the namevar and is the port number to listen on.
 * `host` defaults to the host part of the namevar and is the interface to listen on. If not specified,
   Squid listens on all interfaces.
