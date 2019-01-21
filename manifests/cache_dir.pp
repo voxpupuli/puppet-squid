@@ -4,6 +4,7 @@ define squid::cache_dir (
   String            $options        = '',
   Optional[Integer] $process_number = undef,
   String            $order          = '05',
+  Boolean           $manage_dir     = true,
 ) {
 
   concat::fragment{"squid_cache_dir_${path}":
@@ -12,12 +13,14 @@ define squid::cache_dir (
     order   => "50-${order}",
   }
 
-  file{$path:
-    ensure  => directory,
-    owner   => $::squid::daemon_user,
-    group   => $::squid::daemon_group,
-    mode    => '0750',
-    require => Package[$::squid::package_name],
+  if $manage_dir {
+    file{$path:
+      ensure  => directory,
+      owner   => $::squid::daemon_user,
+      group   => $::squid::daemon_group,
+      mode    => '0750',
+      require => Package[$::squid::package_name],
+    }
   }
 
   if $facts['selinux'] == true {

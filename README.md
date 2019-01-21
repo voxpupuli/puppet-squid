@@ -163,6 +163,9 @@ endif
 * `process_number` if specfied as an integer the cache will be wrapped
   in a `if $proceess_number` statement so the cache will be used by only
   one process. Default is undef.
+* `manage_dir` Boolean value, if true puppet will attempt to create the 
+  directory, if false you will have to create it yourself. Make sure the
+  directory has the correct owner, group and mode. Defaults to true.
 
 ### Defined Type squid::cache
 Defines [cache entries](http://www.squid-cache.org/Doc/config/cache/) for a squid server.
