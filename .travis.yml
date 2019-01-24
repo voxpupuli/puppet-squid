@@ -81,6 +81,8 @@ matrix:
     env: PUPPET_INSTALL_TYPE=agent BEAKER_IS_PE=no BEAKER_PUPPET_COLLECTION=puppet6-nightly BEAKER_debug=true BEAKER_setfile=ubuntu1604-64 BEAKER_HYPERVISOR=docker CHECK=beaker
     services: docker
     sudo: required
+  allow_failures:
+    - env: BEAKER_PUPPET_COLLECTION=puppet6-nightly
 branches:
   only:
   - master
