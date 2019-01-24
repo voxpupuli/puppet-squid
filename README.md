@@ -302,6 +302,8 @@ squid::http_port { '10001':
   ssl     => true,
   options => 'cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key'
 }
+squid::http_port { '127.0.0.1:3128':
+}
 ```
 
 Results in a squid configuration of
@@ -309,10 +311,15 @@ Results in a squid configuration of
 ```
 http_port 10000 accel vhost
 https_port 10001 cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key
+http_port 127.0.0.1:3128
 ```
 
 #### Parameters for Type squid::http\_port
-* `port` defaults to the namevar and is the port number.
+* The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
+  specify `port` explicitly, and `host` if desired.
+* `port` defaults to the port of the namevar and is the port number to listen on.
+* `host` defaults to the host part of the namevar and is the interface to listen on. If not specified,
+  Squid listens on all interfaces.
 * `options` A string to specify any options for the default. By default and empty string.
 * `ssl` A boolean.  When set to `true` creates [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).  Defaults to `false`.
 

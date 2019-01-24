@@ -1,0 +1,8 @@
+<%- | String $title,
+      String $protocol,
+      String $host_port,
+      String $options,
+    | -%>
+# fragment for <%= $protocol %>_port <%= $title %>
+<%= $protocol %>_port <%= $host_port %> <%= $options %>
+
