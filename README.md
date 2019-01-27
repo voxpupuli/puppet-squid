@@ -32,7 +32,7 @@ squid::http_access{ '!Safe_ports':
   action => deny,
 }
 ```
-This module will set the SELINUX-context for the cache_dir and/or port, requires [puppet-selinux](https://github.com/voxpupuli/puppet-selinux)  
+This module will set the SELINUX-context for the cache_dir and/or port, requires [puppet-selinux](https://github.com/voxpupuli/puppet-selinux)
 
 ### Parameters for squid Class
 Parameters to the squid class almost map 1 to 1 to squid.conf parameters themselves.
@@ -163,7 +163,7 @@ endif
 * `process_number` if specfied as an integer the cache will be wrapped
   in a `if $proceess_number` statement so the cache will be used by only
   one process. Default is undef.
-* `manage_dir` Boolean value, if true puppet will attempt to create the 
+* `manage_dir` Boolean value, if true puppet will attempt to create the
   directory, if false you will have to create it yourself. Make sure the
   directory has the correct owner, group and mode. Defaults to true.
 
@@ -244,7 +244,7 @@ squid::snmp_access { 'monitoring hosts':
 }
 ```
 
-Adds a squid.conf line 
+Adds a squid.conf line
 
 ```
 # snmp_access fragment for monitoring hosts
@@ -276,7 +276,7 @@ squid::icp_access { 'our_networks hosts':
 }
 ```
 
-Adds a squid.conf line 
+Adds a squid.conf line
 
 ```
 icp_access allow our_networks hosts
@@ -477,7 +477,7 @@ squid::ssl_bump { 'all':
 }
 ```
 
-Adds a squid.conf line 
+Adds a squid.conf line
 
 ```
 ssl_bump bump all
@@ -499,7 +499,7 @@ squid::sslproxy_cert_error { 'all':
 }
 ```
 
-Adds a squid.conf line 
+Adds a squid.conf line
 
 ```
 sslproxy_cert_error allow all
