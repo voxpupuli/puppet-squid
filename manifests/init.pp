@@ -49,9 +49,9 @@ class squid (
 ) inherits ::squid::params {
 
   anchor{'squid::begin':}
-  -> class{'::squid::install':}
-  -> class{'::squid::config':}
-  ~> class{'::squid::service':}
+  -> class{'squid::install':}
+  -> class{'squid::config':}
+  ~> class{'squid::service':}
   -> anchor{'squid::end':}
 
 }
