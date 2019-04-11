@@ -39,11 +39,12 @@ class squid::config (
   $extra_config_sections         = $::squid::extra_config_sections,
 ) inherits squid {
 
-  concat{$config:
-    ensure => present,
-    owner  => $config_user,
-    group  => $config_group,
-    mode   => '0640',
+  concat { $config:
+    ensure       => present,
+    owner        => $config_user,
+    group        => $config_group,
+    mode         => '0640',
+    validate_cmd => '/usr/sbin/squid -k parse -f %',
   }
 
   concat::fragment{'squid_header':
