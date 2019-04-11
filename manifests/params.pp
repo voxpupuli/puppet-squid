@@ -49,12 +49,14 @@ class squid::params {
           $service_name          = 'squid3'
           $config                = '/etc/squid3/squid.conf'
           $access_log            = 'daemon:/var/log/squid3/access.log squid'
+          $squid_bin_path        = '/usr/sbin/squid3'
         }
         default: {
           $package_name          = 'squid'
           $service_name          = 'squid'
           $config                = '/etc/squid/squid.conf'
           $access_log            = 'daemon:/var/log/squid/access.log squid'
+          $squid_bin_path        = '/usr/sbin/squid'
         }
       }
 
@@ -72,6 +74,7 @@ class squid::params {
       $access_log                = 'daemon:/var/log/squid/access.log squid'
       $daemon_user               = 'squid'
       $daemon_group              = 'squid'
+      $squid_bin_path            = '/usr/sbin/squid'
     }
     default: {
       $package_name              = 'squid'
@@ -82,6 +85,7 @@ class squid::params {
       $access_log                = 'daemon:/var/log/squid/access.log squid'
       $daemon_user               = 'squid'
       $daemon_group              = 'squid'
+      $squid_bin_path            = '/usr/sbin/squid'
     }
   }
 }
