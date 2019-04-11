@@ -37,13 +37,15 @@ class squid::config (
   $cache_dirs                    = $::squid::cache_dirs,
   $cache                         = $::squid::cache,
   $extra_config_sections         = $::squid::extra_config_sections,
+  $squid_bin_path                = $::squid::squid_bin_path,
 ) inherits squid {
 
-  concat{$config:
-    ensure => present,
-    owner  => $config_user,
-    group  => $config_group,
-    mode   => '0640',
+  concat { $config:
+    ensure       => present,
+    owner        => $config_user,
+    group        => $config_group,
+    mode         => '0640',
+    validate_cmd => "${squid_bin_path} -k parse -f %",
   }
 
   concat::fragment{'squid_header':

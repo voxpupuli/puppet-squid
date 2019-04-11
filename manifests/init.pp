@@ -11,6 +11,7 @@ class squid (
   Squid::Size       $maximum_object_size_in_memory    = $squid::params::maximum_object_size_in_memory,
   String            $package_name                     = $squid::params::package_name,
   String            $service_name                     = $squid::params::service_name,
+  Stdlib::Absolutepath $squid_bin_path                = $squid::params::squid_bin_path,
   Optional[Stdlib::Absolutepath] $error_directory     = $squid::params::error_directory,
   Optional[Stdlib::Absolutepath] $err_page_stylesheet = $squid::params::err_page_stylesheet,
   Optional[String]  $cache_replacement_policy      = $squid::params::cache_replacement_policy,
