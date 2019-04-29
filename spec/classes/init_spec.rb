@@ -18,6 +18,10 @@ describe 'squid' do
         facts[:osfamily] == 'Debian' ? 'root' : 'squid'
       end
 
+      let(:squid_bin_path) do
+        %w[jessie trusty].include?(facts[:lsbdistcodename]) ? '/usr/sbin/squid3' : '/usr/sbin/squid'
+      end
+
       context 'with defaults for all parameters' do
         it { is_expected.to contain_class('squid') }
         it { is_expected.to contain_class('squid::install') }
@@ -28,6 +32,7 @@ describe 'squid' do
         it { is_expected.to contain_service(squid_name).with_ensure('running') }
         it { is_expected.to contain_concat("#{etc_dir}/#{squid_name}/squid.conf").with_group(config_group) }
         it { is_expected.to contain_concat("#{etc_dir}/#{squid_name}/squid.conf").with_owner('root') }
+        it { is_expected.to contain_concat("#{etc_dir}/#{squid_name}/squid.conf").with_validate_cmd("#{squid_bin_path} -k parse -f %") }
         it { is_expected.to contain_concat_fragment('squid_header').with_target("#{etc_dir}/#{squid_name}/squid.conf") }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/#{squid_name}/access.log\s+squid$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }

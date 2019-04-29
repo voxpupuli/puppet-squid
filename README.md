@@ -79,6 +79,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `ssl_bump` defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. [ssl_bump entries](http://www.squid-cache.org/Doc/config/ssl_bump/).
 * `sslproxy_cert_error` defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. [sslproxy_cert_error entries](http://www.squid-cache.org/Doc/config/sslproxy_cert_error/).
 * `extra_config_sections` defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
+* `squid_bin_path` path to the squid binary, default depends on `$operatingsystem`
 
 ```puppet
 class { 'squid':
