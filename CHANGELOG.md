@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.1.0](https://github.com/voxpupuli/puppet-squid/tree/v2.1.0) (2019-05-03)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.0.0...v2.1.0)
+
+**Implemented enhancements:**
+
+- Validate squid config before applying changes [\#123](https://github.com/voxpupuli/puppet-squid/pull/123) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v2.0.0](https://github.com/voxpupuli/puppet-squid/tree/v2.0.0) (2019-02-06)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v1.1.0...v2.0.0)
