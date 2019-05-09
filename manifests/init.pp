@@ -48,6 +48,7 @@ class squid (
   Optional[Hash]    $ssl_bump                         = $squid::params::ssl_bump,
   Optional[Hash]    $sslproxy_cert_error              = $squid::params::sslproxy_cert_error,
   Optional[Integer] $workers                          = $squid::params::workers,
+  Optional[String]  $service_restart                  = $squid::params::service_restart,
 ) inherits ::squid::params {
 
   anchor{'squid::begin':}

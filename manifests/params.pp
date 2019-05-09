@@ -40,6 +40,7 @@ class squid::params {
   $logformat                     = undef
   $error_directory               = undef
   $err_page_stylesheet           = undef
+  $service_restart               = undef
   $package_ensure                = 'present'
 
   case $::operatingsystem {
