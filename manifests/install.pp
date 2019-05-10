@@ -2,8 +2,8 @@
 
 class squid::install  {
 
-  package{$::squid::package_name:
-    ensure => $::squid::package_ensure,
+  package{$squid::package_name:
+    ensure => $squid::package_ensure,
   }
 
 }
