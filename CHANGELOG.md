@@ -4,6 +4,20 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.2.0](https://github.com/voxpupuli/puppet-squid/tree/v2.2.0) (2019-05-21)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.1.0...v2.2.0)
+
+**Implemented enhancements:**
+
+- Override service restart command [\#127](https://github.com/voxpupuli/puppet-squid/pull/127) ([Wiston999](https://github.com/Wiston999))
+-  Control package status and version [\#126](https://github.com/voxpupuli/puppet-squid/pull/126) ([Wiston999](https://github.com/Wiston999))
+
+**Merged pull requests:**
+
+- Allow puppet-selinux 2.x [\#128](https://github.com/voxpupuli/puppet-squid/pull/128) ([ekohl](https://github.com/ekohl))
+- Allow `puppetlabs/stdlib` 6.x [\#125](https://github.com/voxpupuli/puppet-squid/pull/125) ([alexjfisher](https://github.com/alexjfisher))
+
 ## [v2.1.0](https://github.com/voxpupuli/puppet-squid/tree/v2.1.0) (2019-05-03)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.0.0...v2.1.0)
