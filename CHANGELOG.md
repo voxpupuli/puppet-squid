@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.2.1](https://github.com/voxpupuli/puppet-squid/tree/v2.2.1) (2019-05-31)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.2.0...v2.2.1)
+
+**Merged pull requests:**
+
+- allow puppetlabs-concat 6.x [\#131](https://github.com/voxpupuli/puppet-squid/pull/131) ([mmoll](https://github.com/mmoll))
+
 ## [v2.2.0](https://github.com/voxpupuli/puppet-squid/tree/v2.2.0) (2019-05-21)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.1.0...v2.2.0)
