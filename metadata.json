@@ -1,6 +1,6 @@
 {
   "name": "puppet-squid",
-  "version": "2.2.1",
+  "version": "2.2.2-rc0",
   "author": "Vox Pupuli",
   "summary": "configure squid caching proxy",
   "license": "Apache-2.0",
