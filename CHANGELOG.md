@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v2.2.2](https://github.com/voxpupuli/puppet-squid/tree/v2.2.2) (2019-06-17)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.2.1...v2.2.2)
+
+**Merged pull requests:**
+
+- Allow puppet-selinux 3.x [\#133](https://github.com/voxpupuli/puppet-squid/pull/133) ([ekohl](https://github.com/ekohl))
+
 ## [v2.2.1](https://github.com/voxpupuli/puppet-squid/tree/v2.2.1) (2019-05-31)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.2.0...v2.2.1)
