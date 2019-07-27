@@ -10,7 +10,7 @@ define squid::refresh_pattern (
 ) {
 
   concat::fragment{"squid_refresh_pattern_${pattern}":
-    target  => $::squid::config,
+    target  => $squid::config,
     content => template('squid/squid.conf.refresh_pattern.erb'),
     order   => "45-${order}",
   }

@@ -5,7 +5,7 @@ define squid::extra_config_section (
 ) {
 
   concat::fragment{"squid_extra_config_section_${comment}":
-    target  => $::squid::config,
+    target  => $squid::config,
     content => template('squid/squid.conf.extra_config_section.erb'),
     order   => "${order}-${comment}",
   }
