@@ -18,7 +18,7 @@ class squid (
   Optional[String]  $cache_replacement_policy      = $squid::params::cache_replacement_policy,
   Optional[String]  $memory_replacement_policy     = $squid::params::memory_replacement_policy,
   Optional[Boolean] $httpd_suppress_version_string = $squid::params::httpd_suppress_version_string,
-  Optional[Enum['on', 'off', 'transparent', 'delete', 'truncate']]
+  Optional[Variant[Enum['on', 'off', 'transparent', 'delete', 'truncate'], Boolean]]
                     $forwarded_for                 = $squid::params::forwarded_for,
   Optional[String]  $visible_hostname              = $squid::params::visible_hostname,
   Optional[Boolean] $via                           = $squid::params::via,
