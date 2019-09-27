@@ -183,7 +183,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+off$}) }
       end
 
-	  context 'with forwarded_for parameter set to on' do
+      context 'with forwarded_for parameter set to on' do
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -194,7 +194,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+on$}) }
       end
 
-	  context 'with forwarded_for parameter set to delete' do
+      context 'with forwarded_for parameter set to delete' do
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -205,7 +205,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+delete$}) }
       end
 
-	  context 'with forwarded_for parameter set to transparent' do
+      context 'with forwarded_for parameter set to transparent' do
         let :params do
           {
             config: '/tmp/squid.conf',
