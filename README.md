@@ -68,7 +68,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `visible_hostname` defaults to undef. [visible_hostname docs](http://www.squid-cache.org/Doc/config/visible_hostname/)
 * `via` defaults to undef. [via docs](http://www.squid-cache.org/Doc/config/via/)
 * `httpd_suppress_version_string` defaults to undef. [httpd_suppress_version_string docs](http://www.squid-cache.org/Doc/config/httpd_suppress_version_string/)
-* `forwarded_for` defaults to undef. [forwarded_for docs](http://www.squid-cache.org/Doc/config/forwarded_for/)
+* `forwarded_for` defaults to undef. supported values are "on", "off", "transparent", "delete", "truncate". [forwarded_for docs](http://www.squid-cache.org/Doc/config/forwarded_for/)
 * `http_access` defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. [http_access entries](http://www.squid-cache.org/Doc/config/http_access/).
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
 * `https_ports` defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).
