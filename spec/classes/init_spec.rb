@@ -172,6 +172,50 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
       end
 
+      context 'with forwarded_for parameter set to off' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            forwarded_for: 'off'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+off$}) }
+      end
+
+      context 'with forwarded_for parameter set to on' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            forwarded_for: 'on'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+on$}) }
+      end
+
+      context 'with forwarded_for parameter set to delete' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            forwarded_for: 'delete'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+delete$}) }
+      end
+
+      context 'with forwarded_for parameter set to transparent' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            forwarded_for: 'transparent'
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+transparent$}) }
+      end
+
       context 'with cache_replacement_policy parameter set to LRU' do
         let :params do
           {

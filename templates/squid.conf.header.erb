@@ -58,8 +58,10 @@ via                           <%= @via?'on':'off' %>
 <% unless @httpd_suppress_version_string.nil? -%>
 httpd_suppress_version_string <%= @httpd_suppress_version_string?'on':'off' %>
 <% end -%>
-<% unless @forwarded_for.nil? -%>
+<% if [true, false].include? @forwarded_for -%>
 forwarded_for                 <%= @forwarded_for?'on':'off' %>
+<% elsif !@forwarded_for.nil? -%> 
+forwarded_for                 <%= @forwarded_for %>
 <% end -%>
 
 <% if @url_rewrite_program -%>
