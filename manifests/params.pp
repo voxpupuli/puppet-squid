@@ -43,9 +43,9 @@ class squid::params {
   $service_restart               = undef
   $package_ensure                = 'present'
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
-      case $::operatingsystemrelease {
+      case $facts['os']['release']['full'] {
         /^(8.*|14\.04)$/: {
           $package_name          = 'squid3'
           $service_name          = 'squid3'
