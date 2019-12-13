@@ -52,10 +52,11 @@ class squid (
   Optional[String]  $service_restart                  = $squid::params::service_restart,
 ) inherits ::squid::params {
 
-  anchor{'squid::begin':}
-  -> class{'squid::install':}
-  -> class{'squid::config':}
-  ~> class{'squid::service':}
-  -> anchor{'squid::end':}
+  contain squid::install
+  contain squid::config
+  contain squid::service
 
+  Class['squid::install']
+  -> Class['squid::config']
+  ~> Class['squid::service']
 }
