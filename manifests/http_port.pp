@@ -50,7 +50,7 @@ define squid::http_port (
     order   => "30-${order}",
   }
 
-  if $facts['selinux'] == true {
+  if $facts['os']['selinux'] == true {
     selinux::port{"selinux port squid_port_t ${_port}":
       ensure   => 'present',
       seltype  => 'squid_port_t',
