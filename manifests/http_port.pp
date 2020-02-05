@@ -86,11 +86,11 @@ define squid::http_port (
   }
 
   if has_key($facts['os'],'selinux') and $facts['os']['selinux']['enabled'] == true {
-    selinux::port { "selinux port squid_port_t ${_port}":
-      ensure   => 'present',
-      seltype  => 'squid_port_t',
-      protocol => 'tcp',
-      port     => $_port,
-    }
+    ensure_resource('selinux::port', "selinux port squid_port_t ${_port}", {
+        ensure   => 'present',
+        seltype  => 'squid_port_t',
+        protocol => 'tcp',
+        port     => $_port,
+    })
   }
 }
