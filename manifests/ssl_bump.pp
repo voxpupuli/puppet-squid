@@ -10,11 +10,11 @@
 #   Adds a squid.conf line
 #   ssl_bump bump all
 # 
-# @param [String] title 
+# @param title 
 #   The name of acl the ssl_bump rule is applied to
 # @param action 
 #   The type of the ssl_bump, must be defined, e.g bump, peek, ..
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::ssl_bump (
   Enum[

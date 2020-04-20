@@ -12,13 +12,13 @@
 #   snmp_port 1000
 #   endif
 #
-# @param [Variant[Pattern[/\d+/], Integer]] port 
+# @param port 
 #   Defaults to the namevar and is the port number.
-# @param [String] options 
+# @param options 
 #   A string to specify any options for the default. By default and empty string.
-# @option [Integer] process_number 
+# @option process_number 
 #   If set to and integer the snmp\_port is enabled only for a particular squid thread. Defaults to undef.
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::snmp_port (
   Variant[Pattern[/\d+/], Integer]

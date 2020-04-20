@@ -18,18 +18,18 @@
 #   http_port 10000 accel vhost
 #   https_port 10001 cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key
 #   http_port 127.0.0.1:3128
-# @param [String] title
+# @param title
 #   The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
 #   specify `port` explicitly, and `host` if desired.
-# @option [Stdlib::Port] port 
+# @option port 
 #   Defaults to the port of the namevar and is the port number to listen on.
-# @option [Stdlib::Host] host 
+# @option host 
 #   Defaults to the host part of the namevar and is the interface to listen on. If not specified, Squid listens on all interfaces.
-# @param [String] options 
+# @param options 
 #   A string to specify any options for the default. By default and empty string.
-# @param [Boolean] ssl 
+# @param ssl 
 #   When set to `true` creates https_port entries. Defaults to `false`.
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::http_port (
   Optional[Stdlib::Port] $port    = undef,

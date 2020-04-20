@@ -10,13 +10,13 @@
 #   Adds the following squid.conf line:
 #   send_hit deny PragmaNoCache
 #
-# @param [String] value 
+# @param value 
 #   Defaults to the `namevar`. The rule to allow or deny.
-# @param [Enum['allow', 'deny']] action 
+# @param action 
 #   Must one of `deny` or `allow`
-# @param [String] order 
+# @param order 
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
-# @param [String] comment 
+# @param comment 
 #   A preceeding comment to add to the configuration file.
 define squid::send_hit (
   Enum['allow', 'deny']

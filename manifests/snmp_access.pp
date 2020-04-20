@@ -20,11 +20,11 @@
 #   # Our monitoring hosts are allowed
 #   snmp_access allow monitoring hosts
 #
-# @param [Enum['allow', 'deny']] action
+# @param action
 #   Allow or deny access for $title
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
-# @param [String] comment
+# @param comment
 #   snmp_access entry's preceding comment
 define squid::snmp_access (
   Enum['allow', 'deny']

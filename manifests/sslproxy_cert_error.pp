@@ -10,12 +10,12 @@
 #   Adds a squid.conf line
 #   sslproxy_cert_error allow all
 # 
-# @param [String] value 
+# @param value 
 #   Defaults to the `namevar` the rule to allow or deny.
-# @param [Enum['allow', 'deny']] action 
+# @param action 
 #   Must be `deny` or `allow`. By default it is allow. The squid.conf file is ordered so by default
 #   all allows appear before all denys. This can be overidden with the `order` parameter.
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::sslproxy_cert_error (
   Enum['allow', 'deny']

@@ -9,13 +9,13 @@
 #                  'http://example.com/anotherpath'],
 #   }
 #
-# @param [String] type 
+# @param type 
 #   The acltype of the acl, must be defined, e.g url_regex, urlpath_regex, port, ..
-# @param [String] aclname 
+# @param aclname 
 #   The name of acl, defaults to the `title`.
-# @param [Array] entries 
+# @param entries 
 #   An array of acl entries, multiple members results in multiple lines in squid.conf.
-# @param [String] order 
+# @param order 
 #   Each ACL has an order `05` by default this can be specified if order of ACL definition matters.
 define squid::acl (
   String $type,

@@ -11,11 +11,11 @@
 #   Adds a squid.conf line:
 #   #Our networks hosts denied for caching
 #   cache deny our_network_hosts_acl
-# @param [Enum['allow', 'deny']] action
+# @param action
 #   Allow/deny caching for $title
-# @param [String] comment
+# @param comment
 #   Cache entry's preceding comment
-# @param [String]  order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::cache (
   Enum['allow', 'deny']

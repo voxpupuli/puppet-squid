@@ -9,10 +9,10 @@
 #   Adds a squid.conf line
 #   icp_access allow our_networks hosts
 #
-# @param [Enum['allow', 'deny']] action 
+# @param action 
 #   Must be `deny` or `allow`. By default it is allow. The squid.conf file is ordered so by default
 #   all allows appear before all denys. This can be overidden with the `order` parameter.
-# @param [String] order 
+# @param order 
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 >>>>>>> ff51a3b000f7304712a571f86cce0fa33ac5ce31
 define squid::icp_access (

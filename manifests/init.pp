@@ -15,94 +15,94 @@
 #     action => deny,
 #   }
 # 
-# @param [String] ensure_service 
+# @param ensure_service 
 #   The ensure value of the squid service, defaults to `running`.
-# @param [Boolean] enable_service 
+# @param enable_service 
 #   The enable value of the squid service, defaults to `true`.
-# @param [String] config 
+# @param config 
 #   Location of squid.conf file, defaults to `/etc/squid/squid.conf`.
-# @param [String] config_user 
+# @param config_user 
 #   User which owns the config file, default depends on `$operatingsystem`
-# @param [String] config_group 
+# @param config_group 
 #   Group which owns the config file, default depends on `$operatingsystem`
-# @param [String] daemon_user 
+# @param daemon_user 
 #   User which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
-# @param [String] daemon_group 
+# @param daemon_group 
 #   Group which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
-# @param [Squid::Size] cache_mem 
+# @param cache_mem 
 #   Defaults to `256 MB`. http://www.squid-cache.org/Doc/config/cache_mem/
-# @option [String] cache_replacement_policy 
+# @option cache_replacement_policy 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/cache_replacement_policy/
-# @option [String] memory_replacement_policy 
+# @option memory_replacement_policy 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/memory_replacement_policy/
-# @option [Variant[Enum['on', 'off'], Boolean]] memory_cache_shared 
+# @option memory_cache_shared 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/memory_cache_shared/.
-# @param [Squid::Size] maximum_object_size_in_memory 
+# @param maximum_object_size_in_memory 
 #   Defaults to `512 KB`. http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/
-# @option [String] url_rewrite_program 
+# @option url_rewrite_program 
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_program/
-# @option [Integer] url_rewrite_children 
+# @option url_rewrite_children 
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
-# @option [String] url_rewrite_child_options 
+# @option url_rewrite_child_options 
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
-# @param [String] access_log 
+# @param access_log 
 #   Defaults to `daemon:/var/logs/squid/access.log squid`. http://www.squid-cache.org/Doc/config/access_log/
-# @option [String] coredump_dir 
+# @option coredump_dir 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/coredump_dir/
-# @option [Stdlib::Absolutepath] error_directory 
+# @option error_directory 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/error_directory/
-# @option [Stdlib::Absolutepath] err_page_stylesheet 
+# @option err_page_stylesheet 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/err_page_stylesheet/
-# @param [String] package_name 
+# @param package_name 
 #   Name of the squid package to manage, default depends on `$operatingsystem`
-# @param [Squid::PkgEnsure] package_ensure 
+# @param package_ensure 
 #   Package status and/or version, default to present
-# @param [String] service_name 
+# @param service_name 
 #   Name of the squid service to manage, default depends on `$operatingsystem`
-# @option [Integer] max_filedescriptors 
+# @option max_filedescriptors 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/max_filedescriptors/
-# @option [Integer] workers 
+# @option workers 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/workers/
-# @option [Stdlib::Compat::Ip_address] snmp_incoming_address 
+# @option snmp_incoming_address 
 #   Defaults to undef. Can be set to an IP address to only listen for snmp requests on an individual interface. http://www.squid-cache.org/Doc/config/snmp_incoming_address/
-# @option [Boolean] buffered_logs 
+# @option buffered_logs 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/buffered_logs/
-# @option [Hash] acls 
+# @option acls 
 #   Defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/acl/
-# @option [String] visible_hostname 
+# @option visible_hostname 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/visible_hostname/
-# @option [Boolean] via 
+# @option via 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/via/
-# @option [Boolean] httpd_suppress_version_string 
+# @option httpd_suppress_version_string 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/httpd_suppress_version_string/
-# @option [Variant[Enum['on', 'off', 'transparent', 'delete', 'truncate'], Boolean]] forwarded_for 
+# @option forwarded_for 
 #   Defaults to undef. supported values are "on", "off", "transparent", "delete", "truncate". http://www.squid-cache.org/Doc/config/forwarded_for/
-# @option [Hash] http_access 
+# @option http_access 
 #   Defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/http_access/
-# @option [Hash] http_ports 
+# @option http_ports 
 #   Defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/http_port/
-# @option [Hash] https_ports 
+# @option https_ports 
 #   Defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/https_port/
-# @option [Hash] icp_access 
+# @option icp_access 
 #   Defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/icp_access/
-# @option [Hash] refresh_patterns 
+# @option refresh_patterns 
 #   Defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. http://www.squid-cache.org/Doc/config/refresh_pattern/
-# @option [Hash] snmp_ports 
+# @option snmp_ports 
 #   Defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/snmp_port/
-# @option [Hash] send_hit 
+# @option send_hit 
 #   Defaults to undef. If you pass in a hash of send_hit entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/send_hit/
-# @option [Hash] cache_dirs 
+# @option cache_dirs 
 #   Defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/cache_dir/
-# @option [Hash] ssl_bump 
+# @option ssl_bump 
 #   Defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/ssl_bump/
-# @option [Hash] sslproxy_cert_error 
+# @option sslproxy_cert_error 
 #   Defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/sslproxy_cert_error/
-# @option [Hash] extra_config_sections 
+# @option extra_config_sections 
 #   Defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
-# @option [String] service_restart 
+# @option service_restart 
 #   Defaults to undef. Overrides service resource restart command to be executed. 
 #   It can be used to perform a soft reload of the squid service.
-# @param [Stdlib::Absolutepath] squid_bin_path 
+# @param squid_bin_path 
 #   Path to the squid binary, default depends on `$operatingsystem`
 # @example
 #   class { 'squid':

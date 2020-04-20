@@ -18,11 +18,11 @@
 #   auth_param basic realm Squid Basic Authentication
 #   auth_param basic credentialsttl 5 hours
 # 
-# @param [Enum['basic', 'digest', 'negotiate', 'ntlm']] scheme 
+# @param scheme 
 #   The scheme used for authentication must be defined. Valid values are 'basic', 'digest', 'negotiate' and 'ntlm'.
-# @param [Array] entries 
+# @param entries 
 #   An array of entries, multiple members results in multiple lines in squid.conf
-# @param [String] order 
+# @param order 
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::auth_param (
   Enum['basic', 'digest', 'negotiate', 'ntlm']

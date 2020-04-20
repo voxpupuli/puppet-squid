@@ -47,12 +47,12 @@
 #   always_direct allow   my-good-dst
 #   always_direct allow   my-other-good-dst
 # 
-# @param [String] comment 
+# @param comment 
 #   Defaults to the namevar and is used as a section comment in `squid.conf`.
-# @param [Variant[Array,Hash]] config_entries 
+# @param config_entries 
 #   A hash of configuration entries to create in this section.  The hash key is the name of the configuration directive.  
 #   The value is either a string, or an array of strings to use as the configuration directive options.
-# @param [String] order 
+# @param order 
 #   Order can be used to configure where in `squid.conf` this configuration section should occur.
 define squid::extra_config_section (
   String              $comment = $title,

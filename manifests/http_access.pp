@@ -20,13 +20,13 @@
 #   Adds a squid.conf line
 #   # Our networks hosts are allowed
 #   http_access allow our_networks hosts
-# @param [String] title
+# @param title
 #   The name of the ACL the rule is applied to
-# @param [Enum['allow', 'deny']] action
+# @param action
 #   allow or deny access for $title
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
-# @param [String] comment
+# @param comment
 #   http_access entry's preceding comment
 define squid::http_access (
   Enum['allow', 'deny']

@@ -48,19 +48,19 @@
 #       percent: 20
 #       order:   '63'
 #
-# @param [Boolean] case_sensitive 
+# @param case_sensitive 
 #   If true (default) the regex is case sensitive, when false the case insensitive flag '-i' is added to the pattern
-# @param [String] comment 
+# @param comment 
 #   Comment added before refresh rule, defaults to refresh_pattern fragment for `title`
-# @param [Integer] min 
+# @param min 
 #   Must be defined, the time (in minutes) an object without an explicit expiry time should be considered fresh.
-# @param [Integer] max 
+# @param max 
 #   Must be defined, the upper limit (in minutes) on how long objects without an explicit expiry time will be considered fresh.
-# @param [Integer] percent 
+# @param percent 
 #   Must be defined, is a percentage of the objects age (time since last modification age)
-# @param [String] options 
+# @param options 
 #   See squid documentation for available options.
-# @param [String] order 
+# @param order 
 #   Each refresh_pattern has an order `05` by default this can be specified if order of refresh_pattern definition matters.
 define squid::refresh_pattern (
   Integer $max,
