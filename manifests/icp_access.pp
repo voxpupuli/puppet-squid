@@ -14,6 +14,7 @@
 #   all allows appear before all denys. This can be overidden with the `order` parameter.
 # @param [String] order 
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
+>>>>>>> ff51a3b000f7304712a571f86cce0fa33ac5ce31
 define squid::icp_access (
   Enum['allow', 'deny']
           $action = 'allow',
