@@ -1,3 +1,13 @@
+# @summary 
+#   Defines https_port entries for a squid server. Results are the same with http_port and ssl set to `true`.
+# @see 
+#   http://www.squid-cache.org/Doc/config/https_port/
+# @param [Variant[Pattern[/\d+/], Integer]] port 
+#   defaults to the namevar and is the port number.
+# @param [String] options 
+#   A string to specify any options to add to the https_port line.  Defaults to an empty string.
+# @param [String] order
+#   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::https_port (
   Variant[Pattern[/\d+/], Integer]
           $port    = $title,

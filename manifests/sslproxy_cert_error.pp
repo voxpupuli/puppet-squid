@@ -1,3 +1,22 @@
+# @summary 
+#   Defines sslproxy_cert_error entries for a squid server.
+# @see
+#   http://www.squid-cache.org/Doc/config/sslproxy_cert_error/ 
+# @example
+#   squid::sslproxy_cert_error { 'all':
+#     action => 'allow',
+#   }
+# 
+#   Adds a squid.conf line
+#   sslproxy_cert_error allow all
+# 
+# @param [String] value 
+#   Defaults to the `namevar` the rule to allow or deny.
+# @param [Enum['allow', 'deny']] action 
+#   Must be `deny` or `allow`. By default it is allow. The squid.conf file is ordered so by default
+#   all allows appear before all denys. This can be overidden with the `order` parameter.
+# @param [String] order
+#   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::sslproxy_cert_error (
   Enum['allow', 'deny']
           $action = 'allow',

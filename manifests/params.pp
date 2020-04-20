@@ -1,7 +1,5 @@
-# Class: squid::params
-#
-# This class manages Squid parameters
-
+# @summary 
+#   This class manages Squid parameters
 class squid::params {
 
   $ensure_service                = 'running'
