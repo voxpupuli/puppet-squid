@@ -1,5 +1,7 @@
 # @summary 
 #   Manages the Squid daemon
+# @api
+#   private
 class squid::service inherits squid {
 
   service{$squid::service_name:

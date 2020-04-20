@@ -1,5 +1,7 @@
 # @summary
 #   Installs the squid package
+# @api
+#   private
 class squid::install  {
 
   package{$squid::package_name:
