@@ -2,8 +2,7 @@
 #   Configure the system to use squid
 #   config is included in the main class `squid`
 #   for parameters see `squid` class
-# @api
-#   private
+# @api private
 class squid::config (
   $config                        = $squid::config,
   $config_user                   = $squid::config_user,

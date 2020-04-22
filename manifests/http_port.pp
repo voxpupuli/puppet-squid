@@ -21,9 +21,9 @@
 # @param title
 #   The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
 #   specify `port` explicitly, and `host` if desired.
-# @option port 
+# @param port 
 #   Defaults to the port of the namevar and is the port number to listen on.
-# @option host 
+# @param host 
 #   Defaults to the host part of the namevar and is the interface to listen on. If not specified, Squid listens on all interfaces.
 # @param options 
 #   A string to specify any options for the default. By default and empty string.

@@ -14,21 +14,21 @@
 #   cache_dir ufs 15000 32 256 min-size=32769
 #   endif
 #
-# @param [String] type 
+# @param type 
 #   The type of cache, e.g ufs. defaults to `ufs`.
-# @param [String] path 
+# @param path 
 #   Defaults to the namevar, file path to  cache.
-# @param [String] options 
+# @param options 
 #   String of options for the cache. Defaults to empty string.
-# @option [Integer] process_number 
+# @param process_number 
 #   If specfied as an integer the cache will be wrapped
 #   in a `if $proceess_number` statement so the cache will be used by only
 #   one process. Default is undef.
-# @param [Boolean] manage_dir [Boolean] 
+# @param manage_dir 
 #   If true puppet will attempt to create the
 #   directory, if false you will have to create it yourself. Make sure the
 #   directory has the correct owner, group and mode. Defaults to true.
-# @param [String] order
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::cache_dir (
   String            $type           = ufs,

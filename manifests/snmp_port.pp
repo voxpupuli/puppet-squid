@@ -16,7 +16,7 @@
 #   Defaults to the namevar and is the port number.
 # @param options 
 #   A string to specify any options for the default. By default and empty string.
-# @option process_number 
+# @param process_number 
 #   If set to and integer the snmp\_port is enabled only for a particular squid thread. Defaults to undef.
 # @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.

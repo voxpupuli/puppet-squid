@@ -31,27 +31,27 @@
 #   Group which runs the squid daemon, this is used for ownership of the cache directory, default depends on `$operatingsystem`
 # @param cache_mem 
 #   Defaults to `256 MB`. http://www.squid-cache.org/Doc/config/cache_mem/
-# @option cache_replacement_policy 
+# @param cache_replacement_policy 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/cache_replacement_policy/
-# @option memory_replacement_policy 
+# @param memory_replacement_policy 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/memory_replacement_policy/
-# @option memory_cache_shared 
+# @param memory_cache_shared 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/memory_cache_shared/.
 # @param maximum_object_size_in_memory 
 #   Defaults to `512 KB`. http://www.squid-cache.org/Doc/config/maximum_object_size_in_memory/
-# @option url_rewrite_program 
+# @param url_rewrite_program 
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_program/
-# @option url_rewrite_children 
+# @param url_rewrite_children 
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
-# @option url_rewrite_child_options 
+# @param url_rewrite_child_options 
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
 # @param access_log 
 #   Defaults to `daemon:/var/logs/squid/access.log squid`. http://www.squid-cache.org/Doc/config/access_log/
-# @option coredump_dir 
+# @param coredump_dir 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/coredump_dir/
-# @option error_directory 
+# @param error_directory 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/error_directory/
-# @option err_page_stylesheet 
+# @param err_page_stylesheet 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/err_page_stylesheet/
 # @param package_name 
 #   Name of the squid package to manage, default depends on `$operatingsystem`
@@ -59,47 +59,47 @@
 #   Package status and/or version, default to present
 # @param service_name 
 #   Name of the squid service to manage, default depends on `$operatingsystem`
-# @option max_filedescriptors 
+# @param max_filedescriptors 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/max_filedescriptors/
-# @option workers 
+# @param workers 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/workers/
-# @option snmp_incoming_address 
+# @param snmp_incoming_address 
 #   Defaults to undef. Can be set to an IP address to only listen for snmp requests on an individual interface. http://www.squid-cache.org/Doc/config/snmp_incoming_address/
-# @option buffered_logs 
+# @param buffered_logs 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/buffered_logs/
-# @option acls 
+# @param acls 
 #   Defaults to undef. If you pass in a hash of acl entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/acl/
-# @option visible_hostname 
+# @param visible_hostname 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/visible_hostname/
-# @option via 
+# @param via 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/via/
-# @option httpd_suppress_version_string 
+# @param httpd_suppress_version_string 
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/httpd_suppress_version_string/
-# @option forwarded_for 
+# @param forwarded_for 
 #   Defaults to undef. supported values are "on", "off", "transparent", "delete", "truncate". http://www.squid-cache.org/Doc/config/forwarded_for/
-# @option http_access 
+# @param http_access 
 #   Defaults to undef. If you pass in a hash of http_access entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/http_access/
-# @option http_ports 
+# @param http_ports 
 #   Defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/http_port/
-# @option https_ports 
+# @param https_ports 
 #   Defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/https_port/
-# @option icp_access 
+# @param icp_access 
 #   Defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/icp_access/
-# @option refresh_patterns 
+# @param refresh_patterns 
 #   Defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. http://www.squid-cache.org/Doc/config/refresh_pattern/
-# @option snmp_ports 
+# @param snmp_ports 
 #   Defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/snmp_port/
-# @option send_hit 
+# @param send_hit 
 #   Defaults to undef. If you pass in a hash of send_hit entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/send_hit/
-# @option cache_dirs 
+# @param cache_dirs 
 #   Defaults to undef. If you pass in a hash of cache_dir entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/cache_dir/
-# @option ssl_bump 
+# @param ssl_bump 
 #   Defaults to undef. If you pass in a hash of ssl_bump entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/ssl_bump/
-# @option sslproxy_cert_error 
+# @param sslproxy_cert_error 
 #   Defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/sslproxy_cert_error/
-# @option extra_config_sections 
+# @param extra_config_sections 
 #   Defaults to empty hash. If you pass in a hash of `extra_config_section` resources, they will be defined automatically.
-# @option service_restart 
+# @param service_restart 
 #   Defaults to undef. Overrides service resource restart command to be executed. 
 #   It can be used to perform a soft reload of the squid service.
 # @param squid_bin_path 
