@@ -1,3 +1,36 @@
+# @summary
+#   Defines http_port entries for a squid server.
+#   By setting optional `ssl` parameter to `true` will create https_port entries instead.
+# @see
+#   http://www.squid-cache.org/Doc/config/http_port/
+# @example
+#   squid::http_port { '10000':
+#     options => 'accel vhost'
+#   }
+#   squid::http_port { '10001':
+#     ssl     => true,
+#     options => 'cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key'
+#   }
+#   squid::http_port { '127.0.0.1:3128':
+#   }
+#
+#   Results in a squid configuration of:
+#   http_port 10000 accel vhost
+#   https_port 10001 cert=/etc/squid/ssl_cert/server.cert key=/etc/squid/ssl_cert/server.key
+#   http_port 127.0.0.1:3128
+# @param title
+#   The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
+#   specify `port` explicitly, and `host` if desired.
+# @param port 
+#   Defaults to the port of the namevar and is the port number to listen on.
+# @param host 
+#   Defaults to the host part of the namevar and is the interface to listen on. If not specified, Squid listens on all interfaces.
+# @param options 
+#   A string to specify any options for the default. By default and empty string.
+# @param ssl 
+#   When set to `true` creates https_port entries. Defaults to `false`.
+# @param order
+#   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::http_port (
   Optional[Stdlib::Port] $port    = undef,
   Optional[Stdlib::Host] $host    = undef,
