@@ -16,15 +16,13 @@
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::icp_access (
   Enum['allow', 'deny']
-          $action = 'allow',
+  $action = 'allow',
   String  $value  = $title,
   String  $order  = '05',
 ) {
-
-  concat::fragment{"squid_icp_access_${value}":
+  concat::fragment { "squid_icp_access_${value}":
     target  => $squid::config,
     content => template('squid/squid.conf.icp_access.erb'),
     order   => "30-${order}-${action}",
   }
-
 }

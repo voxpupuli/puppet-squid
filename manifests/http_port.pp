@@ -72,24 +72,23 @@ define squid::http_port (
     default => 'http',
   }
 
-  concat::fragment{"squid_${protocol}_port_${_title}":
+  concat::fragment { "squid_${protocol}_port_${_title}":
     target  => $squid::config,
     content => epp('squid/squid.conf.port.epp', {
-      title     => $_title,
-      protocol  => $protocol,
-      host_port => $_host_port,
-      options   => $options,
+        title     => $_title,
+        protocol  => $protocol,
+        host_port => $_host_port,
+        options   => $options,
     }),
     order   => "30-${order}",
   }
 
   if $facts['os']['selinux'] == true {
-    selinux::port{"selinux port squid_port_t ${_port}":
+    selinux::port { "selinux port squid_port_t ${_port}":
       ensure   => 'present',
       seltype  => 'squid_port_t',
       protocol => 'tcp',
       port     => $_port,
     }
   }
-
 }

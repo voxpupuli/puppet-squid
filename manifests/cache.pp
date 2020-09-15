@@ -19,16 +19,14 @@
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::cache (
   Enum['allow', 'deny']
-          $action  = 'allow',
+  $action  = 'allow',
   String  $value   = $title,
   String  $order   = '05',
   String  $comment = "cache fragment for ${value}"
 ) {
-
-  concat::fragment{"squid_cache_${value}":
+  concat::fragment { "squid_cache_${value}":
     target  => $squid::config,
     content => template('squid/squid.conf.cache.erb'),
     order   => "21-${order}-${action}",
   }
-
 }

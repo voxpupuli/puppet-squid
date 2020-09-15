@@ -19,15 +19,13 @@
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::sslproxy_cert_error (
   Enum['allow', 'deny']
-          $action = 'allow',
+  $action = 'allow',
   String  $value  = $title,
   String  $order  = '05',
 ) {
-
-  concat::fragment{"squid_sslproxy_cert_error_${action}_${value}":
+  concat::fragment { "squid_sslproxy_cert_error_${action}_${value}":
     target  => $squid::config,
     content => template('squid/squid.conf.sslproxy_cert_error.erb'),
     order   => "35-${order}-${action}",
   }
-
 }

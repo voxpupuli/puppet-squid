@@ -151,7 +151,7 @@ class squid (
   Optional[String]  $memory_replacement_policy     = $squid::params::memory_replacement_policy,
   Optional[Boolean] $httpd_suppress_version_string = $squid::params::httpd_suppress_version_string,
   Optional[Variant[Enum['on', 'off', 'transparent', 'delete', 'truncate'], Boolean]]
-                    $forwarded_for                 = $squid::params::forwarded_for,
+  $forwarded_for                 = $squid::params::forwarded_for,
   Optional[String]  $visible_hostname              = $squid::params::visible_hostname,
   Optional[Boolean] $via                           = $squid::params::via,
   Optional[Hash]    $acls                          = $squid::params::acls,
@@ -173,17 +173,16 @@ class squid (
   Optional[Boolean] $buffered_logs                 = $squid::params::buffered_logs,
   Optional[Integer] $max_filedescriptors           = $squid::params::max_filedescriptors,
   Optional[Variant[Enum['on', 'off'], Boolean]]
-                    $memory_cache_shared              = $squid::params::memory_cache_shared,
+  $memory_cache_shared              = $squid::params::memory_cache_shared,
   Optional[Hash]    $refresh_patterns                 = $squid::params::refresh_patterns,
   Optional[Stdlib::Compat::Ip_address]
-                    $snmp_incoming_address            = $squid::params::snmp_incoming_address,
+  $snmp_incoming_address            = $squid::params::snmp_incoming_address,
   Optional[Hash]    $snmp_ports                       = $squid::params::snmp_ports,
   Optional[Hash]    $ssl_bump                         = $squid::params::ssl_bump,
   Optional[Hash]    $sslproxy_cert_error              = $squid::params::sslproxy_cert_error,
   Optional[Integer] $workers                          = $squid::params::workers,
   Optional[String]  $service_restart                  = $squid::params::service_restart,
 ) inherits ::squid::params {
-
   contain squid::install
   contain squid::config
   contain squid::service

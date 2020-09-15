@@ -26,16 +26,14 @@ define squid::ssl_bump (
     'server-first',
     'splice',
     'stare',
-    'terminate']
-          $action = 'bump',
+  'terminate']
+  $action = 'bump',
   String  $value  = $title,
   String  $order  = '05',
 ) {
-
-  concat::fragment{"squid_ssl_bump_${action}_${value}":
+  concat::fragment { "squid_ssl_bump_${action}_${value}":
     target  => $squid::config,
     content => template('squid/squid.conf.ssl_bump.erb'),
     order   => "25-${order}-${action}",
   }
-
 }
