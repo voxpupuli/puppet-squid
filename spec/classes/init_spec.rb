@@ -84,6 +84,18 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_children\s+16\stestoption=a$}) }
       end
 
+      context 'with access_log parameter set to an array' do
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            access_log: ['daemon:/somepath/access.log squid', 'syslog:daemon.info squid']
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/somepath/access.log\s+squid$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+syslog:daemon.info\s+squid$}) }
+      end
+
       context 'with buffered_logs parameter set to true' do
         let :params do
           {
