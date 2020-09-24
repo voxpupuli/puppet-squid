@@ -40,5 +40,4 @@ define squid::http_access (
     content => template('squid/squid.conf.http_access.erb'),
     order   => "20-${order}-${action}",
   }
-
 }

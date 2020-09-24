@@ -36,5 +36,4 @@ define squid::ssl_bump (
     content => template('squid/squid.conf.ssl_bump.erb'),
     order   => "25-${order}-${action}",
   }
-
 }

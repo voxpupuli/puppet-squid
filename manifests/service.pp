@@ -7,5 +7,4 @@ class squid::service inherits squid {
     enable  => $squid::enable_service,
     restart => $squid::service_restart,
   }
-
 }

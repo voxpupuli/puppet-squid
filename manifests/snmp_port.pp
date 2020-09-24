@@ -32,5 +32,4 @@ define squid::snmp_port (
     content => template('squid/squid.conf.snmp_port.erb'),
     order   => "40-${order}",
   }
-
 }

@@ -38,5 +38,4 @@ define squid::snmp_access (
     content => template('squid/squid.conf.snmp_access.erb'),
     order   => "20-${order}-${action}",
   }
-
 }

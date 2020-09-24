@@ -30,5 +30,4 @@ define squid::send_hit (
     content => template('squid/squid.conf.send_hit.erb'),
     order   => "21-${order}-${action}",
   }
-
 }

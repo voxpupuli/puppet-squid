@@ -91,5 +91,4 @@ define squid::http_port (
       port     => $_port,
     }
   }
-
 }

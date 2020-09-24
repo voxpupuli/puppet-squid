@@ -29,5 +29,4 @@ define squid::cache (
     content => template('squid/squid.conf.cache.erb'),
     order   => "21-${order}-${action}",
   }
-
 }

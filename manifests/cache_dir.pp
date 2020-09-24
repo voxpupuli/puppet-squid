@@ -66,5 +66,4 @@ define squid::cache_dir (
       refreshonly => true,
     }
   }
-
 }

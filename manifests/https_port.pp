@@ -19,5 +19,4 @@ define squid::https_port (
     options => $options,
     order   => $order,
   }
-
 }

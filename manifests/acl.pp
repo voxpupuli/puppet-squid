@@ -31,5 +31,4 @@ define squid::acl (
     content => template('squid/squid.conf.acl.erb'),
     order   => "10-${order}-${type_cleaned}",
   }
-
 }

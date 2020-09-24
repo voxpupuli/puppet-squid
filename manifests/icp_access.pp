@@ -25,5 +25,4 @@ define squid::icp_access (
     content => template('squid/squid.conf.icp_access.erb'),
     order   => "30-${order}-${action}",
   }
-
 }

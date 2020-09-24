@@ -28,5 +28,4 @@ define squid::sslproxy_cert_error (
     content => template('squid/squid.conf.sslproxy_cert_error.erb'),
     order   => "35-${order}-${action}",
   }
-
 }

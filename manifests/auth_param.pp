@@ -36,5 +36,4 @@ define squid::auth_param (
     content => template('squid/squid.conf.auth_param.erb'),
     order   => "05-${order}-${scheme}",
   }
-
 }
