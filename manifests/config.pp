@@ -44,7 +44,6 @@ class squid::config (
   $extra_config_sections         = $squid::extra_config_sections,
   $squid_bin_path                = $squid::squid_bin_path,
 ) inherits squid {
-
   concat { $config:
     ensure       => present,
     owner        => $config_user,
@@ -53,7 +52,7 @@ class squid::config (
     validate_cmd => "${squid_bin_path} -k parse -f %",
   }
 
-  concat::fragment{'squid_header':
+  concat::fragment{ 'squid_header':
     target  => $config,
     content => template('squid/squid.conf.header.erb'),
     order   => '01',

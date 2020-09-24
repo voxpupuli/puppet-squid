@@ -2,7 +2,6 @@
 #   This class manages Squid parameters
 # @api private
 class squid::params {
-
   $ensure_service                = 'running'
   $enable_service                = true
   $cache_mem                     = '256 MB'
