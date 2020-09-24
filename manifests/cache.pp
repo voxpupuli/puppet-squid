@@ -1,6 +1,6 @@
-# @summary 
-#   Defines cache entries  for a squid server.
-# @see 
+# @summary
+#   Defines cache entries for a squid server.
+# @see
 #   http://www.squid-cache.org/Doc/config/cache/
 # @example
 #   squid::cache { 'our_network_hosts_acl':
@@ -18,17 +18,14 @@
 # @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::cache (
-  Enum['allow', 'deny']
-          $action  = 'allow',
-  String  $value   = $title,
-  String  $order   = '05',
-  String  $comment = "cache fragment for ${value}"
+  Enum['allow', 'deny'] $action = 'allow',
+  String $value   = $title,
+  String $order   = '05',
+  String $comment = "cache fragment for ${value}"
 ) {
-
-  concat::fragment{"squid_cache_${value}":
+  concat::fragment { "squid_cache_${value}":
     target  => $squid::config,
     content => template('squid/squid.conf.cache.erb'),
     order   => "21-${order}-${action}",
   }
-
 }
