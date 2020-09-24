@@ -6,4 +6,3 @@ class squid::install {
     ensure => $squid::package_ensure,
   }
 }
-
