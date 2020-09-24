@@ -21,13 +21,13 @@
 # @param title
 #   The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
 #   specify `port` explicitly, and `host` if desired.
-# @param port 
+# @param port
 #   Defaults to the port of the namevar and is the port number to listen on.
-# @param host 
+# @param host
 #   Defaults to the host part of the namevar and is the interface to listen on. If not specified, Squid listens on all interfaces.
-# @param options 
+# @param options
 #   A string to specify any options for the default. By default and empty string.
-# @param ssl 
+# @param ssl
 #   When set to `true` creates https_port entries. Defaults to `false`.
 # @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
@@ -74,12 +74,14 @@ define squid::http_port (
 
   concat::fragment { "squid_${protocol}_port_${_title}":
     target  => $squid::config,
-    content => epp('squid/squid.conf.port.epp', {
-      title     => $_title,
-      protocol  => $protocol,
-      host_port => $_host_port,
-      options   => $options,
-    }),
+    content => epp('squid/squid.conf.port.epp',
+      {
+        title     => $_title,
+        protocol  => $protocol,
+        host_port => $_host_port,
+        options   => $options,
+      }
+    ),
     order   => "30-${order}",
   }
 

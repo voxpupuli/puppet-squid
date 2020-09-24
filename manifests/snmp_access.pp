@@ -1,7 +1,7 @@
-# @summary 
+# @summary
 #   Defines snmp_access entries for a squid server.
 # @see
-#   http://www.squid-cache.org/Doc/config/snmp_access/ 
+#   http://www.squid-cache.org/Doc/config/snmp_access/
 # @example
 #   squid::snmp_access { 'monitoring hosts':
 #     action => 'allow',
@@ -27,11 +27,10 @@
 # @param comment
 #   snmp_access entry's preceding comment
 define squid::snmp_access (
-  Enum['allow', 'deny']
-          $action  = 'allow',
-  String  $value   = $title,
-  String  $order   = '05',
-  String  $comment = "snmp_access fragment for ${value}"
+  Enum['allow', 'deny'] $action = 'allow',
+  String $value   = $title,
+  String $order   = '05',
+  String $comment = "snmp_access fragment for ${value}"
 ) {
   concat::fragment { "squid_snmp_access_${value}":
     target  => $squid::config,

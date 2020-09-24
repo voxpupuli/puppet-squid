@@ -1,7 +1,7 @@
-# @summary 
-#   Defines auth_param entries  for a squid server.
-# @see 
-#   http://www.squid-cache.org/Doc/config/auth_param/ 
+# @summary
+#   Defines auth_param entries for a squid server.
+# @see
+#   http://www.squid-cache.org/Doc/config/auth_param/
 # @example
 #   squid::auth_param { 'basic auth_param':
 #     scheme  => 'basic',
@@ -17,19 +17,18 @@
 #   auth_param basic children 5
 #   auth_param basic realm Squid Basic Authentication
 #   auth_param basic credentialsttl 5 hours
-# 
-# @param scheme 
+#
+# @param scheme
 #   The scheme used for authentication must be defined. Valid values are 'basic', 'digest', 'negotiate' and 'ntlm'.
-# @param entries 
+# @param entries
 #   An array of entries, multiple members results in multiple lines in squid.conf
-# @param order 
+# @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::auth_param (
-  Enum['basic', 'digest', 'negotiate', 'ntlm']
-          $scheme,
-  Array   $entries,
-  String  $auth_param_name = $title,
-  String  $order           = '40',
+  Enum['basic', 'digest', 'negotiate', 'ntlm'] $scheme,
+  Array  $entries,
+  String $auth_param_name = $title,
+  String $order           = '40',
 ) {
   concat::fragment { "squid_auth_param_${auth_param_name}":
     target  => $squid::config,
