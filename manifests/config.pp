@@ -52,7 +52,7 @@ class squid::config (
     validate_cmd => "${squid_bin_path} -k parse -f %",
   }
 
-  concat::fragment{ 'squid_header':
+  concat::fragment { 'squid_header':
     target  => $config,
     content => template('squid/squid.conf.header.erb'),
     order   => '01',
