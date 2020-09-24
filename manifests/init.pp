@@ -46,7 +46,7 @@
 # @param url_rewrite_child_options
 #   Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
 # @param access_log
-#   Defaults to `daemon:/var/logs/squid/access.log squid`. http://www.squid-cache.org/Doc/config/access_log/
+#   Defaults to `daemon:/var/logs/squid/access.log squid`.  May be passed an Array.  http://www.squid-cache.org/Doc/config/access_log/
 # @param coredump_dir
 #   Defaults to undef. http://www.squid-cache.org/Doc/config/coredump_dir/
 # @param error_directory
@@ -131,7 +131,7 @@
 #     url_rewrite_child_options => startup=1,
 #   }
 class squid (
-  String            $access_log                       = $squid::params::access_log,
+  Variant[String, Array[String]] $access_log          = $squid::params::access_log,
   Squid::Size       $cache_mem                        = $squid::params::cache_mem,
   String            $config                           = $squid::params::config,
   String            $config_group                     = $squid::params::config_group,
