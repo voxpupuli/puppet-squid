@@ -54,7 +54,7 @@ define squid::cache_dir (
     }
   }
 
-  if $facts['os']['selinux'] == true {
+  if has_key($facts['os'],'selinux') and $facts['os']['selinux']['enabled'] == true {
     selinux::fcontext { "selinux fcontext squid_cache_t ${path}":
       seltype  => 'squid_cache_t',
       pathspec => "${path}(/.*)?",
