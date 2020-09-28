@@ -2,8 +2,6 @@ require 'spec_helper_acceptance'
 
 describe 'squid class' do
   context 'configure http_access' do
-    squid_name = fact('operatingsystem') == 'Debian' && fact('operatingsystemmajrelease') == '8' ? 'squid3' : 'squid'
-
     it 'works idempotently with no errors' do
       pp = <<-EOS
       class { 'squid':}
@@ -22,16 +20,16 @@ describe 'squid class' do
       apply_manifest(pp, catch_changes: true)
     end
 
-    describe package(squid_name) do
+    describe package('squid') do
       it { is_expected.to be_installed }
     end
 
-    describe service(squid_name) do
+    describe service('squid') do
       it { is_expected.to be_running }
       it { is_expected.to be_enabled }
     end
 
-    describe file("/etc/#{squid_name}/squid.conf") do
+    describe file('/etc/squid/squid.conf') do
       it { is_expected.to be_file }
       it { is_expected.to contain(%r{^http_access allow our_networks\s*$}) }
       it { is_expected.to contain(%r{^http_port 3128\s*$}) }
