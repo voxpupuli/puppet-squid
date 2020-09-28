@@ -85,12 +85,14 @@ define squid::http_port (
     order   => "30-${order}",
   }
 
-  if $facts['os']['selinux'] == true {
-    selinux::port { "selinux port squid_port_t ${_port}":
-      ensure   => 'present',
-      seltype  => 'squid_port_t',
-      protocol => 'tcp',
-      port     => $_port,
-    }
+  if fact('os.selinux.enabled') {
+    ensure_resource('selinux::port', "selinux port squid_port_t ${_port}",
+      {
+        ensure   => 'present',
+        seltype  => 'squid_port_t',
+        protocol => 'tcp',
+        port     => $_port,
+      }
+    )
   }
 }
