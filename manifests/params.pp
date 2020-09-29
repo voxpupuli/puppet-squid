@@ -48,8 +48,8 @@ class squid::params {
 
   case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
-      $config       =  '/etc/squid/squid.conf'
-      $config_group =  'root'
+      $config       = '/etc/squid/squid.conf'
+      $config_group = 'root'
       $daemon_user  = 'proxy'
       $daemon_group = 'proxy'
     }
