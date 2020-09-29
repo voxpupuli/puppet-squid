@@ -4,6 +4,39 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v3.0.0](https://github.com/voxpupuli/puppet-squid/tree/v3.0.0) (2020-09-29)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.2.2...v3.0.0)
+
+**Breaking changes:**
+
+- Drop EOL Debian 8 [\#155](https://github.com/voxpupuli/puppet-squid/pull/155) ([bastelfreak](https://github.com/bastelfreak))
+- drop Ubuntu 14.04 support [\#139](https://github.com/voxpupuli/puppet-squid/pull/139) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add support Debian 10, Ubuntu 18.04 and EL8 [\#145](https://github.com/voxpupuli/puppet-squid/pull/145) ([ekohl](https://github.com/ekohl))
+- support forwarded for [\#137](https://github.com/voxpupuli/puppet-squid/pull/137) ([ssanden](https://github.com/ssanden))
+- Change the way SELinux is applied for portnumbers  [\#135](https://github.com/voxpupuli/puppet-squid/pull/135) ([ralfbosz](https://github.com/ralfbosz))
+
+**Fixed bugs:**
+
+- Add missing package state values [\#142](https://github.com/voxpupuli/puppet-squid/pull/142) ([ph1ll](https://github.com/ph1ll))
+
+**Closed issues:**
+
+- Duplicate HTTP Port Declarations For Different Bind IPs Produces SELinux Duplicate Resource Declaration Error [\#120](https://github.com/voxpupuli/puppet-squid/issues/120)
+
+**Merged pull requests:**
+
+- Puppet-lint fixes [\#153](https://github.com/voxpupuli/puppet-squid/pull/153) ([alexjfisher](https://github.com/alexjfisher))
+- Allow multiple access\_log directives in squid.conf [\#151](https://github.com/voxpupuli/puppet-squid/pull/151) ([gcoxmoz](https://github.com/gcoxmoz))
+- add typedef and class documentation [\#148](https://github.com/voxpupuli/puppet-squid/pull/148) ([TillHein](https://github.com/TillHein))
+- Use voxpupuli-acceptance [\#147](https://github.com/voxpupuli/puppet-squid/pull/147) ([ekohl](https://github.com/ekohl))
+- delete legacy travis directory [\#143](https://github.com/voxpupuli/puppet-squid/pull/143) ([bastelfreak](https://github.com/bastelfreak))
+- Remove duplicate CONTRIBUTING.md file [\#140](https://github.com/voxpupuli/puppet-squid/pull/140) ([dhoppe](https://github.com/dhoppe))
+- Clean up acceptance spec helper [\#138](https://github.com/voxpupuli/puppet-squid/pull/138) ([ekohl](https://github.com/ekohl))
+
 ## [v2.2.2](https://github.com/voxpupuli/puppet-squid/tree/v2.2.2) (2019-06-17)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.2.1...v2.2.2)
@@ -50,7 +83,7 @@ These should not affect the functionality of the module.
 
 - modulesync 2.5.1 and drop Puppet4 [\#118](https://github.com/voxpupuli/puppet-squid/pull/118) ([bastelfreak](https://github.com/bastelfreak))
 - support listening on specific interfaces; changed params in squid::http\_port{} [\#103](https://github.com/voxpupuli/puppet-squid/pull/103) ([tequeter](https://github.com/tequeter))
-- Fix `url\_rewrite\_program` [\#101](https://github.com/voxpupuli/puppet-squid/pull/101) ([SourceDoctor](https://github.com/SourceDoctor))
+- Fix `url_rewrite_program` [\#101](https://github.com/voxpupuli/puppet-squid/pull/101) ([SourceDoctor](https://github.com/SourceDoctor))
 
 **Implemented enhancements:**
 
@@ -66,7 +99,7 @@ These should not affect the functionality of the module.
 
 **Merged pull requests:**
 
-- Use strings not symbols with beaker-puppet `fact\(\)` [\#111](https://github.com/voxpupuli/puppet-squid/pull/111) ([alexjfisher](https://github.com/alexjfisher))
+- Use strings not symbols with beaker-puppet `fact()` [\#111](https://github.com/voxpupuli/puppet-squid/pull/111) ([alexjfisher](https://github.com/alexjfisher))
 - Update README.md [\#110](https://github.com/voxpupuli/puppet-squid/pull/110) ([AndreasPfaffeneder](https://github.com/AndreasPfaffeneder))
 - drop EOL OSs; fix puppet version range [\#100](https://github.com/voxpupuli/puppet-squid/pull/100) ([bastelfreak](https://github.com/bastelfreak))
 - use gitrepos in .fixtures.yml [\#99](https://github.com/voxpupuli/puppet-squid/pull/99) ([bastelfreak](https://github.com/bastelfreak))
@@ -77,7 +110,7 @@ These should not affect the functionality of the module.
 
 **Implemented enhancements:**
 
-- Add `visible\_hostname`, `via`, `httpd\_suppress\_version\_string` and `forwarded\_for` parameters [\#81](https://github.com/voxpupuli/puppet-squid/pull/81) ([SourceDoctor](https://github.com/SourceDoctor))
+- Add `visible_hostname`, `via`, `httpd_suppress_version_string` and `forwarded_for` parameters [\#81](https://github.com/voxpupuli/puppet-squid/pull/81) ([SourceDoctor](https://github.com/SourceDoctor))
 - add url\_rewrite feature [\#78](https://github.com/voxpupuli/puppet-squid/pull/78) ([SourceDoctor](https://github.com/SourceDoctor))
 
 **Closed issues:**
