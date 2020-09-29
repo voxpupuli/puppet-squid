@@ -40,52 +40,30 @@ class squid::params {
   $err_page_stylesheet           = undef
   $service_restart               = undef
   $package_ensure                = 'present'
+  $package_name                  = 'squid'
+  $service_name                  = 'squid'
+  $config_user                   = 'root'
+  $squid_bin_path                = '/usr/sbin/squid'
+  $access_log                    = 'daemon:/var/log/squid/access.log squid'
 
   case $facts['os']['name'] {
     /^(Debian|Ubuntu)$/: {
-      case $facts['os']['release']['full'] {
-        /^(8.*|14\.04)$/: {
-          $package_name          = 'squid3'
-          $service_name          = 'squid3'
-          $config                = '/etc/squid3/squid.conf'
-          $access_log            = 'daemon:/var/log/squid3/access.log squid'
-          $squid_bin_path        = '/usr/sbin/squid3'
-        }
-        default: {
-          $package_name          = 'squid'
-          $service_name          = 'squid'
-          $config                = '/etc/squid/squid.conf'
-          $access_log            = 'daemon:/var/log/squid/access.log squid'
-          $squid_bin_path        = '/usr/sbin/squid'
-        }
-      }
-
-      $config_user           = 'root'
-      $config_group          = 'root'
-      $daemon_user           = 'proxy'
-      $daemon_group          = 'proxy'
+      $config       = '/etc/squid/squid.conf'
+      $config_group = 'root'
+      $daemon_user  = 'proxy'
+      $daemon_group = 'proxy'
     }
     'FreeBSD': {
-      $package_name              = 'squid'
-      $service_name              = 'squid'
-      $config                    = '/usr/local/etc/squid/squid.conf'
-      $config_user               = 'root'
-      $config_group              = 'squid'
-      $access_log                = 'daemon:/var/log/squid/access.log squid'
-      $daemon_user               = 'squid'
-      $daemon_group              = 'squid'
-      $squid_bin_path            = '/usr/sbin/squid'
+      $config       = '/usr/local/etc/squid/squid.conf'
+      $config_group = 'squid'
+      $daemon_user  = 'squid'
+      $daemon_group = 'squid'
     }
     default: {
-      $package_name              = 'squid'
-      $service_name              = 'squid'
-      $config                    = '/etc/squid/squid.conf'
-      $config_user               = 'root'
-      $config_group              = 'squid'
-      $access_log                = 'daemon:/var/log/squid/access.log squid'
-      $daemon_user               = 'squid'
-      $daemon_group              = 'squid'
-      $squid_bin_path            = '/usr/sbin/squid'
+      $config       =  '/etc/squid/squid.conf'
+      $config_group = 'squid'
+      $daemon_user  = 'squid'
+      $daemon_group = 'squid'
     }
   }
 }
