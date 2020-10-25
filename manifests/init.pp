@@ -179,7 +179,7 @@ class squid (
   Optional[Hash]    $sslproxy_cert_error           = $squid::params::sslproxy_cert_error,
   Optional[Integer] $workers                       = $squid::params::workers,
   Optional[String]  $service_restart               = $squid::params::service_restart,
-) inherits ::squid::params {
+) inherits squid::params {
   contain squid::install
   contain squid::config
   contain squid::service
