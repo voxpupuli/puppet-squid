@@ -161,7 +161,7 @@ class squid (
   Optional[String]  $url_rewrite_program           = $squid::params::url_rewrite_program,
   Optional[Integer] $url_rewrite_children          = $squid::params::url_rewrite_children,
   Optional[String]  $url_rewrite_child_options     = $squid::params::url_rewrite_child_options,
-  Optional[Hash]    $extra_config_sections         = {},
+  Hash              $extra_config_sections         = {},
   Optional[Hash]    $http_access                   = $squid::params::http_access,
   Optional[Hash]    $send_hit                      = $squid::params::send_hit,
   Optional[Hash]    $snmp_access                   = $squid::params::snmp_access,
