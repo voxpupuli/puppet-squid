@@ -4,6 +4,15 @@ describe 'squid class' do
   context 'configure http_access' do
     it 'works idempotently with no errors' do
       pp = <<-EOS
+      # The default Type=notify is problematic in github CI.
+      if $facts['os']['family'] == 'RedHat' and $facts['os']['release']['major'] != '7' {
+        systemd::dropin_file{'simple.conf':
+          ensure  => present,
+          unit    => 'squid.service',
+          content => "[Service]\nType=simple\n",
+          before  => Service['squid'],
+        }
+      }
       class { 'squid':}
       squid::http_port{'3128':}
       squid::acl{'our_networks':
