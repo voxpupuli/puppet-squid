@@ -1,8 +1,8 @@
 <%- | String $title,
       String $protocol,
       String $host_port,
-      String $options,
+      Optional[String[1]] $options,
     | -%>
 # fragment for <%= $protocol %>_port <%= $title %>
-<%= $protocol %>_port <%= $host_port %> <%= $options %>
+<%= $protocol %>_port <%= $host_port %><% if $options { %> <%= $options %><% } %>
 

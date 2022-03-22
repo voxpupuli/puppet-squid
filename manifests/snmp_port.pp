@@ -15,20 +15,24 @@
 # @param port
 #   Defaults to the namevar and is the port number.
 # @param options
-#   A string to specify any options for the default. By default and empty string.
+#   A string to specify any options for the default.
 # @param process_number
 #   If set to and integer the snmp\_port is enabled only for a particular squid thread. Defaults to undef.
 # @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::snmp_port (
-  Variant[Pattern[/\d+/], Integer] $port = $title,
-  String            $options        = '',
-  String            $order          = '05',
-  Optional[Integer] $process_number = undef,
+  Variant[Pattern[/\d+/], Stdlib::Port] $port = $title,
+  Optional[String[1]] $options                = undef,
+  String $order                               = '05',
+  Optional[Integer] $process_number           = undef,
 ) {
   concat::fragment { "squid_snmp_port_${port}":
     target  => $squid::config,
-    content => template('squid/squid.conf.snmp_port.erb'),
+    content => epp('squid/squid.conf.snmp_port.epp',{
+        'port'           => $port,
+        'options'        => $options,
+        'process_number' => $process_number,
+    }),
     order   => "40-${order}",
   }
 }

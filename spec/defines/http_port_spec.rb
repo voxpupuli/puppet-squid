@@ -18,7 +18,7 @@ describe 'squid::http_port' do
 
         it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_order('30-05') }
-        it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_content(%r{^http_port\s+1000\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_port_1000').with_content(%r{^http_port\s+1000$}) }
       end
       context 'with garbage title and no parameters' do
         let(:title) { 'garbage' }
@@ -28,7 +28,7 @@ describe 'squid::http_port' do
       context 'when host:port title is set' do
         let(:title) { '127.0.0.1:1500' }
 
-        it { is_expected.to contain_concat_fragment('squid_http_port_127.0.0.1:1500').with_content(%r{^http_port\s+127\.0\.0\.1:1500\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_port_127.0.0.1:1500').with_content(%r{^http_port\s+127\.0\.0\.1:1500$}) }
       end
       context 'with invalid port (non-numeric) in host:port title' do
         let(:title) { 'my:test' }
@@ -59,7 +59,7 @@ describe 'squid::http_port' do
         end
 
         # Ignore the host part of the title if a port is specified
-        it { is_expected.to contain_concat_fragment('squid_http_port_host:1650').with_content(%r{^http_port\s+1650\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_port_host:1650').with_content(%r{^http_port\s+1650$}) }
       end
       context 'without a port specified' do
         let(:title) { 'garbage' }
@@ -80,7 +80,7 @@ describe 'squid::http_port' do
           }
         end
 
-        it { is_expected.to contain_concat_fragment('squid_http_port_test').with_content(%r{^http_port\s+127\.0\.0\.1:1700\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_port_test').with_content(%r{^http_port\s+127\.0\.0\.1:1700$}) }
       end
       context 'when parameters are set' do
         let(:title) { 'my:test' } # Arguments shoud override title
@@ -105,7 +105,7 @@ describe 'squid::http_port' do
           }
         end
 
-        it { is_expected.to contain_concat_fragment('squid_http_port_my:test').with_content(%r{^http_port\s+host:2100\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_http_port_my:test').with_content(%r{^http_port\s+host:2100$}) }
       end
       context 'when ssl => true' do
         let(:title) { '3000' }
@@ -115,7 +115,7 @@ describe 'squid::http_port' do
           }
         end
 
-        it { is_expected.to contain_concat_fragment('squid_https_port_3000').with_content(%r{^https_port\s+3000\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_https_port_3000').with_content(%r{^https_port\s+3000$}) }
       end
     end
   end

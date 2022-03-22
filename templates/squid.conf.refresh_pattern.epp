@@ -1,0 +1,11 @@
+<%- |
+  String $comment,
+  Boolean $case_sensitive,
+  String[1] $pattern,
+  Integer $max,
+  Integer $min,
+  Integer $percent,
+  Optional[String[1]] $options,
+| -%>
+# <%= $comment %>
+refresh_pattern <% unless $case_sensitive { %> -i <% } %><%= $pattern %> <%= $min %> <%= $percent %>% <%= $max %><% if $options { %> <%= $options %><% } %>

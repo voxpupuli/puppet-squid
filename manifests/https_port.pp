@@ -5,12 +5,12 @@
 # @param port
 #   defaults to the namevar and is the port number.
 # @param options
-#   A string to specify any options to add to the https_port line.  Defaults to an empty string.
+#   A string to specify any options to add to the https_port line.
 # @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::https_port (
   Variant[Pattern[/\d+/], Integer] $port = $title,
-  String $options = '',
+  Optional[String[1]] $options = undef,
   String $order   = '05',
 ) {
   squid::http_port { "${port}": # lint:ignore:only_variable_string

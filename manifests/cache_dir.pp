@@ -1,7 +1,7 @@
-# @summary 
+# @summary
 #   Defines cache_dir entries for a squid server.
 # @see
-#   http://www.squid-cache.org/Doc/config/cache_dir/ 
+#   http://www.squid-cache.org/Doc/config/cache_dir/
 # @example
 #   squid::cache_dir { '/data':
 #     type           => 'ufs',
@@ -14,33 +14,40 @@
 #   cache_dir ufs 15000 32 256 min-size=32769
 #   endif
 #
-# @param type 
+# @param type
 #   The type of cache, e.g ufs. defaults to `ufs`.
-# @param path 
+# @param path
 #   Defaults to the namevar, file path to  cache.
-# @param options 
-#   String of options for the cache. Defaults to empty string.
-# @param process_number 
+# @param options
+#   String of options for the cache.
+# @param process_number
 #   If specfied as an integer the cache will be wrapped
 #   in a `if $proceess_number` statement so the cache will be used by only
 #   one process. Default is undef.
-# @param manage_dir 
+# @param manage_dir
 #   If true puppet will attempt to create the
 #   directory, if false you will have to create it yourself. Make sure the
 #   directory has the correct owner, group and mode. Defaults to true.
 # @param order
 #   Order can be used to configure where in `squid.conf`this configuration section should occur.
 define squid::cache_dir (
-  String            $type           = ufs,
-  String            $path           = $title,
-  String            $options        = '',
-  Optional[Integer] $process_number = undef,
-  String            $order          = '05',
-  Boolean           $manage_dir     = true,
+  String            $type             = ufs,
+  String            $path             = $title,
+  Optional[String[1]] $options        = undef,
+  Optional[Integer] $process_number   = undef,
+  String            $order            = '05',
+  Boolean           $manage_dir       = true,
 ) {
   concat::fragment { "squid_cache_dir_${path}":
     target  => $squid::config,
-    content => template('squid/squid.conf.cache_dir.erb'),
+    content => epp('squid/squid.conf.cache_dir.epp',
+      {
+        'process_number' => $process_number,
+        'path'           => $path,
+        'type'           => $type,
+        'options'        => $options,
+      }
+    ),
     order   => "50-${order}",
   }
 

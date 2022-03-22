@@ -26,7 +26,7 @@
 # @param host
 #   Defaults to the host part of the namevar and is the interface to listen on. If not specified, Squid listens on all interfaces.
 # @param options
-#   A string to specify any options for the default. By default and empty string.
+#   A string to specify any options for the default.
 # @param ssl
 #   When set to `true` creates https_port entries. Defaults to `false`.
 # @param order
@@ -35,7 +35,7 @@ define squid::http_port (
   Optional[Stdlib::Port] $port    = undef,
   Optional[Stdlib::Host] $host    = undef,
   Boolean                $ssl     = false,
-  String                 $options = '',
+  Optional[String[1]]    $options = undef,
   String                 $order   = '05',
 ) {
   $_title = String($title)
