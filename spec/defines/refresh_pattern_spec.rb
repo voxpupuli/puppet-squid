@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::refresh_pattern' do
@@ -17,9 +19,9 @@ describe 'squid::refresh_pattern' do
         let(:title) { 'my_pattern' }
         let(:params) do
           {
-            order:   '06',
-            max:     10_080,
-            min:     1440,
+            order: '06',
+            max: 10_080,
+            min: 1440,
             percent: 20,
             comment: 'Refresh Patterns'
           }
@@ -29,15 +31,15 @@ describe 'squid::refresh_pattern' do
         it { is_expected.to contain_concat_fragment(fname).with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment(fname).with_order('45-06') }
         it { is_expected.to contain_concat_fragment(fname).with_content(%r{^refresh_pattern\s+my_pattern\s+1440\s+20%\s+10080$}) }
-      end # context 'when parameters are set'
+      end
 
       context 'when parameters are set and options' do
         let(:title) { 'my_pattern' }
         let(:params) do
           {
-            order:   '06',
-            max:     10_080,
-            min:     1440,
+            order: '06',
+            max: 10_080,
+            min: 1440,
             percent: 20,
             options: 'override-expire ignore-no-cache',
             comment: 'Refresh Patterns'
@@ -55,11 +57,11 @@ describe 'squid::refresh_pattern' do
         let(:params) do
           {
             case_sensitive: false,
-            comment:        'Refresh Patterns',
-            max:            0,
-            min:            0,
-            order:          '07',
-            percent:        0
+            comment: 'Refresh Patterns',
+            max: 0,
+            min: 0,
+            order: '07',
+            percent: 0
           }
         end
 
@@ -67,7 +69,7 @@ describe 'squid::refresh_pattern' do
         it { is_expected.to contain_concat_fragment(fname).with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment(fname).with_order('45-07') }
         it { is_expected.to contain_concat_fragment(fname).with_content(%r{^refresh_pattern\s+-i\s+case_insensitive\s+0\s+0%\s+0$}) }
-      end # context 'when parameters are set and case insensitive'
+      end
     end
   end
 end

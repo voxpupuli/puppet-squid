@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::cache' do
@@ -20,6 +22,7 @@ describe 'squid::cache' do
         it { is_expected.to contain_concat_fragment('squid_cache_myrule').with_content(%r{^cache\s+allow\s+myrule$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_myrule').with_content(%r{^# cache fragment for myrule$}) }
       end
+
       context 'when parameters are set' do
         let(:params) do
           {
@@ -35,6 +38,7 @@ describe 'squid::cache' do
         it { is_expected.to contain_concat_fragment('squid_cache_this and that').with_content(%r{^cache\s+deny\s+this and that$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_this and that').with_content(%r{^# Deny this and that$}) }
       end
+
       context 'with unknown action' do
         let(:params) do
           {

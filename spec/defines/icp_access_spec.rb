@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::icp_access' do
@@ -19,6 +21,7 @@ describe 'squid::icp_access' do
         it { is_expected.to contain_concat_fragment('squid_icp_access_myrule').with_order('30-05-allow') }
         it { is_expected.to contain_concat_fragment('squid_icp_access_myrule').with_content(%r{^icp_access\s+allow\s+myrule$}) }
       end
+
       context 'when parameters are set' do
         let(:params) do
           {

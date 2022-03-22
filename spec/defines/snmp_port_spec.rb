@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::snmp_port' do
@@ -21,6 +23,7 @@ describe 'squid::snmp_port' do
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').without_content(%r{^endif$}) }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').without_content(%r{^if \${process_number}$}) }
       end
+
       context 'when parameters are set' do
         let(:params) do
           {

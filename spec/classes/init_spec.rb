@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 describe 'squid' do
   on_supported_os.each do |os, facts|
@@ -345,13 +347,13 @@ describe 'squid' do
             http_access: {
               'myrule' => {
                 'action' => 'deny',
-                'value'  => 'this and that',
-                'order'  => '08'
+                'value' => 'this and that',
+                'order' => '08'
               },
               'secondrule' => {
-                'action'  => 'deny',
-                'value'   => 'this too',
-                'order'   => '09',
+                'action' => 'deny',
+                'value' => 'this too',
+                'order' => '09',
                 'comment' => 'Deny this and too'
               }
             }
@@ -377,13 +379,13 @@ describe 'squid' do
             snmp_access: {
               'myrule' => {
                 'action' => 'deny',
-                'value'  => 'this and that',
-                'order'  => '08'
+                'value' => 'this and that',
+                'order' => '08'
               },
               'secondrule' => {
-                'action'  => 'deny',
-                'value'   => 'this too',
-                'order'   => '09',
+                'action' => 'deny',
+                'value' => 'this too',
+                'order' => '09',
                 'comment' => 'Deny this and too'
               }
             }
@@ -469,13 +471,13 @@ describe 'squid' do
             icp_access: {
               'myrule' => {
                 'action' => 'deny',
-                'value'  => 'this and that',
-                'order'  => '08'
+                'value' => 'this and that',
+                'order' => '08'
               },
               'secondrule' => {
                 'action' => 'deny',
-                'value'  => 'this too',
-                'order'  => '09'
+                'value' => 'this too',
+                'order' => '09'
               }
             }
 
@@ -559,7 +561,7 @@ describe 'squid' do
         context 'with cache_dir parameters set + SELINUX' do
           let :params do
             { config: '/tmp/squid.conf',
-              cache_dirs: { '/data' => { 'type'    => 'special',
+              cache_dirs: { '/data' => { 'type' => 'special',
                                          'options' => 'my options for special type' } } }
           end
           let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
@@ -585,7 +587,7 @@ describe 'squid' do
       context 'with snmp_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',
-            snmp_ports: { 2000 => { 'options'        => 'special for 2000',
+            snmp_ports: { 2000 => { 'options' => 'special for 2000',
                                     'process_number' => 3 } } }
         end
 
@@ -598,7 +600,7 @@ describe 'squid' do
       context 'with cache_dir parameters set' do
         let :params do
           { config: '/tmp/squid.conf',
-            cache_dirs: { '/data' => { 'type'    => 'special',
+            cache_dirs: { '/data' => { 'type' => 'special',
                                        'options' => 'my options for special type' } } }
         end
 
@@ -614,7 +616,7 @@ describe 'squid' do
               'mail settings' => {
                 'order' => '22',
                 'config_entries' => {
-                  'mail_from'    => 'squid@example.com',
+                  'mail_from' => 'squid@example.com',
                   'mail_program' => 'mail'
                 }
               },

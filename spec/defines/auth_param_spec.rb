@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::auth_param' do
@@ -30,6 +32,7 @@ describe 'squid::auth_param' do
 
         it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_order('05-07-basic') }
+
         entries.each do |entry|
           it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_content(%r{auth_param basic #{entry}}) }
         end
@@ -51,6 +54,7 @@ describe 'squid::auth_param' do
 
         it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_order('05-08-digest') }
+
         entries.each do |entry|
           it { is_expected.to contain_concat__fragment('squid_auth_param_auth').with_content(%r{auth_param digest #{entry}}) }
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::cache_dir' do
@@ -30,6 +32,7 @@ describe 'squid::cache_dir' do
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^endif$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^if \${process_number} = 2$}) }
         it { is_expected.to contain_file('/data').with_ensure('directory') }
+
         case facts[:operatingsystem]
         when 'Debian'
           context 'when on Debian' do
@@ -68,10 +71,11 @@ describe 'squid::cache_dir' do
 
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
-        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special \/data my options for special type$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special /data my options for special type$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^endif$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^if \${process_number}$}) }
       end
+
       context 'when parameters are set excluding options' do
         let(:params) do
           {
@@ -82,11 +86,10 @@ describe 'squid::cache_dir' do
 
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_order('50-07') }
-        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special \/data$}) }
+        it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^cache_dir special /data$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^endif$}) }
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').without_content(%r{^if \${process_number}$}) }
       end
-
     end
   end
 end
