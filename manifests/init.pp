@@ -85,6 +85,8 @@
 #   Defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/https_port/
 # @param icp_access
 #   Defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. http://www.squid-cache.org/Doc/config/icp_access/
+# @param logformat
+#   Defaults to undef. If you pass in a logformat String, it will be defined automatically. May be passed an Array. http://www.squid-cache.org/Doc/config/logformat/
 # @param refresh_patterns
 #   Defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. http://www.squid-cache.org/Doc/config/refresh_pattern/
 # @param snmp_ports
@@ -168,7 +170,7 @@ class squid (
   Optional[Hash]    $http_ports                    = $squid::params::http_ports,
   Optional[Hash]    $https_ports                   = $squid::params::https_ports,
   Optional[Hash]    $icp_access                    = $squid::params::icp_access,
-  Optional[String]  $logformat                     = $squid::params::logformat,
+  Optional[Variant[String, Array[String]]] $logformat = $squid::params::logformat,
   Optional[Boolean] $buffered_logs                 = $squid::params::buffered_logs,
   Optional[Integer] $max_filedescriptors           = $squid::params::max_filedescriptors,
   Optional[Variant[Enum['on', 'off'], Boolean]] $memory_cache_shared = $squid::params::memory_cache_shared,

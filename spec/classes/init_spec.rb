@@ -86,6 +86,18 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_children\s+16\stestoption=a$}) }
       end
 
+      context 'with logformat parameter set to an array' do # rubocop:todo RSpec/MultipleMemoizedHelpers
+        let :params do
+          {
+            config: '/tmp/squid.conf',
+            logformat: ['squid_test_1 %ts.%03tu %6tr', 'squid_test_2 %ts.%03tu duration=%tr']
+          }
+        end
+
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^logformat\s+squid_test_1 %ts.%03tu %6tr$}) }
+        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^logformat\s+squid_test_2 %ts.%03tu duration=%tr$}) }
+      end
+
       context 'with access_log parameter set to an array' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {

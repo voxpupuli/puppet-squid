@@ -18,7 +18,9 @@ memory_replacement_policy     <%= @memory_replacement_policy %>
 <% end -%>
 
 <% if @logformat -%>
-logformat                     <%= @logformat %>
+  <%- [@logformat].flatten.each do |logformat_line| -%>
+logformat                     <%= logformat_line %>
+  <%- end -%>
 <% end -%>
 <% unless @buffered_logs.nil? -%>
 buffered_logs                 <%= @buffered_logs?'on':'off' %>

@@ -73,6 +73,7 @@ Parameters to the squid class almost map 1 to 1 to squid.conf parameters themsel
 * `http_ports` defaults to undef. If you pass in a hash of http_port entries, they will be defined automatically. [http_port entries](http://www.squid-cache.org/Doc/config/http_port/).
 * `https_ports` defaults to undef. If you pass in a hash of https_port entries, they will be defined automatically. [https_port entries](http://www.squid-cache.org/Doc/config/https_port/).
 * `icp_access` defaults to undef. If you pass in a hash of icp_access entries, they will be defined automatically. [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/).
+* `logformat` defaults to undef. If you pass in a String (or Array of Strings), they will be defined automatically. [logformat entries](http://www.squid-cache.org/Doc/config/logformat/).
 * `refresh_patterns` defaults to undef.  If you pass a hash of refresh_pattern entires, they will be defined automatically. [refresh_pattern entries](http://www.squid-cache.org/Doc/config/refresh_pattern/).
 * `snmp_ports` defaults to undef. If you pass in a hash of snmp_port entries, they will be defined automatically. [snmp_port entries](http://www.squid-cache.org/Doc/config/snmp_port/).
 * `send_hit` defaults to undef. If you pass in a hash of send_hit entries, they will be defined automatically. [send_hit entries](http://www.squid-cache.org/Doc/config/send_hit/).
