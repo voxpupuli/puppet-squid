@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::sslproxy_cert_error' do
@@ -19,6 +21,7 @@ describe 'squid::sslproxy_cert_error' do
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_myrule').with_order('35-05-allow') }
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_myrule').with_content(%r{^sslproxy_cert_error\s+allow\s+myrule$}) }
       end
+
       context 'when parameters are set' do
         let(:params) do
           {
@@ -32,6 +35,7 @@ describe 'squid::sslproxy_cert_error' do
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_deny_this and that').with_order('35-08-deny') }
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_deny_this and that').with_content(%r{^sslproxy_cert_error\s+deny\s+this and that$}) }
       end
+
       context 'with unknown action' do
         let(:params) do
           {

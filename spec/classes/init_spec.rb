@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 describe 'squid' do
   on_supported_os.each do |os, facts|
@@ -47,7 +49,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^err_page_stylesheet}) }
       end
 
-      context 'with all parameters set' do
+      context 'with all parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -84,7 +86,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_children\s+16\stestoption=a$}) }
       end
 
-      context 'with access_log parameter set to an array' do
+      context 'with access_log parameter set to an array' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -96,7 +98,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+syslog:daemon.info\s+squid$}) }
       end
 
-      context 'with buffered_logs parameter set to true' do
+      context 'with buffered_logs parameter set to true' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -107,7 +109,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^buffered_logs\s+on$}) }
       end
 
-      context 'with buffered_logs parameter set to false' do
+      context 'with buffered_logs parameter set to false' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -118,7 +120,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^buffered_logs\s+off$}) }
       end
 
-      context 'with memory_cache_shared parameter set to true' do
+      context 'with memory_cache_shared parameter set to true' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -129,7 +131,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
       end
 
-      context 'with error_directory parameter set to /some/path/file' do
+      context 'with error_directory parameter set to /some/path/file' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -140,7 +142,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^error_directory\s+/some/path/file$}) }
       end
 
-      context 'with err_page_stylesheet parameter set to /some/path/file' do
+      context 'with err_page_stylesheet parameter set to /some/path/file' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -151,7 +153,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^err_page_stylesheet\s+/some/path/file$}) }
       end
 
-      context 'with memory_cache_shared parameter set to on' do
+      context 'with memory_cache_shared parameter set to on' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -162,7 +164,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+on$}) }
       end
 
-      context 'with memory_cache_shared parameter set to false' do
+      context 'with memory_cache_shared parameter set to false' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -173,7 +175,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
       end
 
-      context 'with memory_cache_shared parameter set to off' do
+      context 'with memory_cache_shared parameter set to off' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -184,7 +186,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_cache_shared\s+off$}) }
       end
 
-      context 'with forwarded_for parameter set to off' do
+      context 'with forwarded_for parameter set to off' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -195,7 +197,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+off$}) }
       end
 
-      context 'with forwarded_for parameter set to on' do
+      context 'with forwarded_for parameter set to on' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -206,7 +208,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+on$}) }
       end
 
-      context 'with forwarded_for parameter set to delete' do
+      context 'with forwarded_for parameter set to delete' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -217,7 +219,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+delete$}) }
       end
 
-      context 'with forwarded_for parameter set to transparent' do
+      context 'with forwarded_for parameter set to transparent' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -228,7 +230,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+transparent$}) }
       end
 
-      context 'with cache_replacement_policy parameter set to LRU' do
+      context 'with cache_replacement_policy parameter set to LRU' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -239,7 +241,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_replacement_policy\s+LRU$}) }
       end
 
-      context 'with memory_replacement_policy parameter set to LRU' do
+      context 'with memory_replacement_policy parameter set to LRU' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -250,7 +252,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^memory_replacement_policy\s+LRU$}) }
       end
 
-      context 'with one acl parameter set' do
+      context 'with one acl parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -270,7 +272,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^# acl fragment for myacl$}) }
       end
 
-      context 'with two acl parameters set' do
+      context 'with two acl parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -298,7 +300,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_acl_mysecondacl').with_content(%r{^acl\s+mysecondacl\s+urlregex\shttp://example2.com/$}) }
       end
 
-      context 'with one http_access parameter set' do
+      context 'with one http_access parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -318,7 +320,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this and that').with_content(%r{^http_access\s+deny\s+this and that$}) }
       end
 
-      context 'with one send_hit parameter set' do
+      context 'with one send_hit parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -338,20 +340,20 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_send_hit_this and that').with_content(%r{^send_hit\s+deny\s+this and that$}) }
       end
 
-      context 'with two http_access parameters set' do
+      context 'with two http_access parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
             http_access: {
               'myrule' => {
                 'action' => 'deny',
-                'value'  => 'this and that',
-                'order'  => '08'
+                'value' => 'this and that',
+                'order' => '08'
               },
               'secondrule' => {
-                'action'  => 'deny',
-                'value'   => 'this too',
-                'order'   => '09',
+                'action' => 'deny',
+                'value' => 'this too',
+                'order' => '09',
                 'comment' => 'Deny this and too'
               }
             }
@@ -370,20 +372,20 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_access_this too').with_content(%r{^# Deny this and too$}) }
       end
 
-      context 'with two snmp_access parameters set' do
+      context 'with two snmp_access parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
             snmp_access: {
               'myrule' => {
                 'action' => 'deny',
-                'value'  => 'this and that',
-                'order'  => '08'
+                'value' => 'this and that',
+                'order' => '08'
               },
               'secondrule' => {
-                'action'  => 'deny',
-                'value'   => 'this too',
-                'order'   => '09',
+                'action' => 'deny',
+                'value' => 'this too',
+                'order' => '09',
                 'comment' => 'Deny this and too'
               }
             }
@@ -402,7 +404,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_snmp_access_this too').with_content(%r{^# Deny this and too$}) }
       end
 
-      context 'with one ssl_bump parameter set' do
+      context 'with one ssl_bump parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -422,7 +424,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_bump_step1').with_content(%r{^ssl_bump\s+bump\s+step1$}) }
       end
 
-      context 'with one sslproxy_cert_error parameter set' do
+      context 'with one sslproxy_cert_error parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -442,7 +444,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_sslproxy_cert_error_allow_all').with_content(%r{^sslproxy_cert_error\s+allow\s+all$}) }
       end
 
-      context 'with one icp_access parameter set' do
+      context 'with one icp_access parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -462,20 +464,20 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_icp_access_this and that').with_content(%r{^icp_access\s+deny\s+this and that$}) }
       end
 
-      context 'with two icp_access parameters set' do
+      context 'with two icp_access parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
             icp_access: {
               'myrule' => {
                 'action' => 'deny',
-                'value'  => 'this and that',
-                'order'  => '08'
+                'value' => 'this and that',
+                'order' => '08'
               },
               'secondrule' => {
                 'action' => 'deny',
-                'value'  => 'this too',
-                'order'  => '09'
+                'value' => 'this too',
+                'order' => '09'
               }
             }
 
@@ -491,7 +493,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_icp_access_this too').with_content(%r{^icp_access\s+deny\s+this too$}) }
       end
 
-      context 'with http_port parameters set' do
+      context 'with http_port parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           { config: '/tmp/squid.conf',
             http_ports: { 2000 => { 'options' => 'special for 2000' } } }
@@ -502,7 +504,7 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_http_port_2000').with_content(%r{^http_port\s+2000\s+special for 2000$}) }
       end
 
-      context 'with https_port parameters set' do
+      context 'with https_port parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           { config: '/tmp/squid.conf',
             https_ports: { 2001 => { 'options' => 'special for 2001' } } }
@@ -514,7 +516,7 @@ describe 'squid' do
       end
 
       if facts[:osfamily] == 'RedHat'
-        context 'with http_port parameters set + SELINUX' do
+        context 'with http_port parameters set + SELINUX' do # rubocop:todo RSpec/MultipleMemoizedHelpers
           let :params do
             { config: '/tmp/squid.conf',
               http_ports: { 2000 => { 'options' => 'special for 2000' } } }
@@ -527,7 +529,7 @@ describe 'squid' do
           it { is_expected.to contain_selinux__port('selinux port squid_port_t 2000').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '2000') }
         end
 
-        context 'with https_port parameters set' do
+        context 'with https_port parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
           let :params do
             { config: '/tmp/squid.conf',
               https_ports: { 2001 => { 'options' => 'special for 2001' } } }
@@ -540,7 +542,7 @@ describe 'squid' do
           it { is_expected.to contain_selinux__port('selinux port squid_port_t 2001').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '2001') }
         end
 
-        context 'with duplicate ports on different ip' do
+        context 'with duplicate ports on different ip' do # rubocop:todo RSpec/MultipleMemoizedHelpers
           let :params do
             { config: '/tmp/squid.conf',
               http_ports: { 'ipA' => { 'port' => 3128, 'host' => '192.168.1.10' }, 'ipB' => { 'port' => 3128, 'host' => '192.168.1.11' } } }
@@ -556,10 +558,10 @@ describe 'squid' do
           it { is_expected.to contain_selinux__port('selinux port squid_port_t 3128').with('ensure' => 'present', 'seltype' => 'squid_port_t', 'protocol' => 'tcp', 'port' => '3128') }
         end
 
-        context 'with cache_dir parameters set + SELINUX' do
+        context 'with cache_dir parameters set + SELINUX' do # rubocop:todo RSpec/MultipleMemoizedHelpers
           let :params do
             { config: '/tmp/squid.conf',
-              cache_dirs: { '/data' => { 'type'    => 'special',
+              cache_dirs: { '/data' => { 'type' => 'special',
                                          'options' => 'my options for special type' } } }
           end
           let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
@@ -571,7 +573,7 @@ describe 'squid' do
         end
       end
 
-      context 'with snmp_incoming_address parameter set' do
+      context 'with snmp_incoming_address parameter set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -582,10 +584,10 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^snmp_incoming_address\s+4\.2\.2\.2$}) }
       end
 
-      context 'with snmp_port parameters set' do
+      context 'with snmp_port parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           { config: '/tmp/squid.conf',
-            snmp_ports: { 2000 => { 'options'        => 'special for 2000',
+            snmp_ports: { 2000 => { 'options' => 'special for 2000',
                                     'process_number' => 3 } } }
         end
 
@@ -595,10 +597,10 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_snmp_port_2000').with_content(%r{^endif$}) }
       end
 
-      context 'with cache_dir parameters set' do
+      context 'with cache_dir parameters set' do # rubocop:todo RSpec/MultipleMemoizedHelpers
         let :params do
           { config: '/tmp/squid.conf',
-            cache_dirs: { '/data' => { 'type'    => 'special',
+            cache_dirs: { '/data' => { 'type' => 'special',
                                        'options' => 'my options for special type' } } }
         end
 
@@ -606,7 +608,7 @@ describe 'squid' do
         it { is_expected.to contain_file('/data').with_ensure('directory') }
       end
 
-      context 'with extra_config_sections parameter set' do
+      context 'with extra_config_sections parameter set' do # rubocop:disable RSpec/MultipleMemoizedHelpers
         let :params do
           {
             config: '/tmp/squid.conf',
@@ -614,7 +616,7 @@ describe 'squid' do
               'mail settings' => {
                 'order' => '22',
                 'config_entries' => {
-                  'mail_from'    => 'squid@example.com',
+                  'mail_from' => 'squid@example.com',
                   'mail_program' => 'mail'
                 }
               },

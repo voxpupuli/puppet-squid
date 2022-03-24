@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::https_port' do
@@ -22,9 +24,11 @@ describe 'squid::https_port' do
       it 'uses `squid::http_port` with `ssl` set to true' do
         is_expected.to contain_squid__http_port('4000').with_ssl(true)
       end
+
       it 'passes options to `squid::http_port`' do
         is_expected.to contain_squid__http_port('4000').with_options('some options')
       end
+
       it 'results in the correct concat fragment being created' do
         is_expected.to contain_concat_fragment('squid_https_port_4000').with_content(%r{^https_port\s+4000\ssome options\s*$})
       end

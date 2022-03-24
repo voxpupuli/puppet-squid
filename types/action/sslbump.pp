@@ -1,3 +1,5 @@
+# @summary Possible SSLBump options
+#
 type Squid::Action::SslBump = Enum[
   'bump',
   'client-first',

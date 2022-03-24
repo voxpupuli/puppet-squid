@@ -1,0 +1,19 @@
+<%- |
+  Variant[Stdlib::Port,Pattern[/\A\d+\z/]] $port,
+  Optional[String[1]] $options      = undef,
+  Optional[Integer] $process_number = undef,
+| -%>
+# fragment for snmp_port <%= $port %>
+<% if $process_number { -%>
+if ${process_number} = <%= $process_number %>
+<% } -%>
+<% if $options { -%>
+snmp_port <%= $port %> <%= $options %>
+<% } else { -%>
+snmp_port <%= $port %>
+<% } -%>
+<% if $process_number { -%>
+endif
+<% } -%>
+
+

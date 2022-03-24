@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::ssl_bump' do
@@ -19,6 +21,7 @@ describe 'squid::ssl_bump' do
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_bump_myrule').with_order('25-05-bump') }
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_bump_myrule').with_content(%r{^ssl_bump\s+bump\s+myrule$}) }
       end
+
       context 'when parameters are set' do
         let(:params) do
           {
@@ -32,6 +35,7 @@ describe 'squid::ssl_bump' do
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_peek_step1').with_order('25-08-peek') }
         it { is_expected.to contain_concat_fragment('squid_ssl_bump_peek_step1').with_content(%r{^ssl_bump\s+peek\s+step1$}) }
       end
+
       context 'with unknown action' do
         let(:params) do
           {

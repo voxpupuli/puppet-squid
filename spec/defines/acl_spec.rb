@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::acl' do
@@ -30,6 +32,7 @@ describe 'squid::acl' do
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^acl\s+myacl\s+urlregex\shttp://example.com/$}) }
         it { is_expected.to contain_concat_fragment('squid_acl_myacl').with_content(%r{^# Example company website$}) }
       end
+
       context 'when type contains special characters, a :' do
         let(:params) do
           {

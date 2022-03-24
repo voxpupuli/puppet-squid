@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::snmp_port' do
@@ -17,10 +19,11 @@ describe 'squid::snmp_port' do
       context 'when parameters are unset' do
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').with_order('40-05') }
-        it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').with_content(%r{^snmp_port\s+1000\s*$}) }
+        it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').with_content(%r{^snmp_port\s+1000$}) }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').without_content(%r{^endif$}) }
         it { is_expected.to contain_concat_fragment('squid_snmp_port_1000').without_content(%r{^if \${process_number}$}) }
       end
+
       context 'when parameters are set' do
         let(:params) do
           {

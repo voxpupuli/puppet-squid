@@ -1,0 +1,20 @@
+<%- |
+  String[1] $path,
+  String[1] $type,
+  Optional[String[1]] $options = undef,
+  Optional[Integer] $process_number = undef,
+| -%>
+# fragment for cache_dir <%= $path %>
+<% if $process_number { -%>
+if ${process_number} = <%= $process_number %>
+<% } -%>
+<% if $options { -%>
+cache_dir <%= $type %> <%= $path %> <%= $options %>
+<% } else { -%>
+cache_dir <%= $type %> <%= $path %>
+<% } -%>
+<% if $process_number { -%>
+endif
+<% } -%>
+
+

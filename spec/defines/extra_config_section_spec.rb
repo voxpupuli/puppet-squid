@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe 'squid::extra_config_section' do
@@ -18,8 +20,8 @@ describe 'squid::extra_config_section' do
         let(:params) do
           {
             config_entries: {
-              'ssl_bump'         => 'server-first all',
-              'sslcrtd_program'  => '/usr/lib64/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB',
+              'ssl_bump' => 'server-first all',
+              'sslcrtd_program' => '/usr/lib64/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB',
               'sslcrtd_children' => '8 startup=1 idle=1'
             }
           }
@@ -33,17 +35,19 @@ describe 'squid::extra_config_section' do
 
         it { is_expected.to contain_concat_fragment('squid_extra_config_section_my config section').with_target('/tmp/squid.conf') }
         it { is_expected.to contain_concat_fragment('squid_extra_config_section_my config section').with_order('60-my config section') }
+
         it 'config section' do
           content = catalogue.resource('concat_fragment', 'squid_extra_config_section_my config section').send(:parameters)[:content]
           expect(content).to match(expected_config_section)
         end
       end
+
       context 'when config entry parameters are arrays' do
         let(:params) do
           {
             config_entries: {
-              'ssl_bump'         => ['server-first', 'all'],
-              'sslcrtd_program'  => ['/usr/lib64/squid/ssl_crtd', '-s', '/var/lib/ssl_db', '-M', '4MB'],
+              'ssl_bump' => %w[server-first all],
+              'sslcrtd_program' => ['/usr/lib64/squid/ssl_crtd', '-s', '/var/lib/ssl_db', '-M', '4MB'],
               'sslcrtd_children' => ['8', 'startup=1', 'idle=1']
             }
           }
@@ -60,6 +64,7 @@ describe 'squid::extra_config_section' do
           expect(content).to match(expected_config_section)
         end
       end
+
       context 'when config entry parameters are arrays of hashes' do
         let(:params) do
           {
