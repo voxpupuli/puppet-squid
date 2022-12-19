@@ -22,28 +22,28 @@ for parameters see `squid` class
 
 ### Defined types
 
-* [`squid::acl`](#squidacl): Defines acl entries for a squid server.
-* [`squid::auth_param`](#squidauth_param): Defines auth_param entries for a squid server.
-* [`squid::cache`](#squidcache): Defines cache entries for a squid server.
-* [`squid::cache_dir`](#squidcache_dir): Defines cache_dir entries for a squid server.
-* [`squid::extra_config_section`](#squidextra_config_section): The `extra_config_section` defiend type can be used for configuration directives that have not been exposed individually in this module.
-* [`squid::http_access`](#squidhttp_access): Defines http_access entries for a squid server.
-* [`squid::http_port`](#squidhttp_port): Defines http_port entries for a squid server.
+* [`squid::acl`](#squid--acl): Defines acl entries for a squid server.
+* [`squid::auth_param`](#squid--auth_param): Defines auth_param entries for a squid server.
+* [`squid::cache`](#squid--cache): Defines cache entries for a squid server.
+* [`squid::cache_dir`](#squid--cache_dir): Defines cache_dir entries for a squid server.
+* [`squid::extra_config_section`](#squid--extra_config_section): The `extra_config_section` defiend type can be used for configuration directives that have not been exposed individually in this module.
+* [`squid::http_access`](#squid--http_access): Defines http_access entries for a squid server.
+* [`squid::http_port`](#squid--http_port): Defines http_port entries for a squid server.
 By setting optional `ssl` parameter to `true` will create https_port entries instead.
-* [`squid::https_port`](#squidhttps_port): Defines https_port entries for a squid server. Results are the same with http_port and ssl set to `true`.
-* [`squid::icp_access`](#squidicp_access): Defines icp_access entries for a squid server.
-* [`squid::refresh_pattern`](#squidrefresh_pattern): Defines refresh_pattern entries for a squid server.
-* [`squid::send_hit`](#squidsend_hit): Defines send_hit for a squid server.
-* [`squid::snmp_access`](#squidsnmp_access): Defines snmp_access entries for a squid server.
-* [`squid::snmp_port`](#squidsnmp_port): Defines snmp_port entries for a squid server.
-* [`squid::ssl_bump`](#squidssl_bump): Defines ssl_bump entries for a squid server.
-* [`squid::sslproxy_cert_error`](#squidsslproxy_cert_error): Defines sslproxy_cert_error entries for a squid server.
+* [`squid::https_port`](#squid--https_port): Defines https_port entries for a squid server. Results are the same with http_port and ssl set to `true`.
+* [`squid::icp_access`](#squid--icp_access): Defines icp_access entries for a squid server.
+* [`squid::refresh_pattern`](#squid--refresh_pattern): Defines refresh_pattern entries for a squid server.
+* [`squid::send_hit`](#squid--send_hit): Defines send_hit for a squid server.
+* [`squid::snmp_access`](#squid--snmp_access): Defines snmp_access entries for a squid server.
+* [`squid::snmp_port`](#squid--snmp_port): Defines snmp_port entries for a squid server.
+* [`squid::ssl_bump`](#squid--ssl_bump): Defines ssl_bump entries for a squid server.
+* [`squid::sslproxy_cert_error`](#squid--sslproxy_cert_error): Defines sslproxy_cert_error entries for a squid server.
 
 ### Data types
 
-* [`Squid::Action::SslBump`](#squidactionsslbump): Possible SSLBump options
-* [`Squid::PkgEnsure`](#squidpkgensure): Custom type representing package status and/or version
-* [`Squid::Size`](#squidsize): Custom type containing the numeral value and the unit of messurement (Kilo- or Megabyte)
+* [`Squid::Action::SslBump`](#Squid--Action--SslBump): Possible SSLBump options
+* [`Squid::PkgEnsure`](#Squid--PkgEnsure): Custom type representing package status and/or version
+* [`Squid::Size`](#Squid--Size): Custom type containing the numeral value and the unit of messurement (Kilo- or Megabyte)
 
 ## Classes
 
@@ -107,56 +107,56 @@ class { 'squid':
 
 The following parameters are available in the `squid` class:
 
-* [`ensure_service`](#ensure_service)
-* [`enable_service`](#enable_service)
-* [`config`](#config)
-* [`config_user`](#config_user)
-* [`config_group`](#config_group)
-* [`daemon_user`](#daemon_user)
-* [`daemon_group`](#daemon_group)
-* [`cache_mem`](#cache_mem)
-* [`cache_replacement_policy`](#cache_replacement_policy)
-* [`memory_replacement_policy`](#memory_replacement_policy)
-* [`memory_cache_shared`](#memory_cache_shared)
-* [`maximum_object_size_in_memory`](#maximum_object_size_in_memory)
-* [`url_rewrite_program`](#url_rewrite_program)
-* [`url_rewrite_children`](#url_rewrite_children)
-* [`url_rewrite_child_options`](#url_rewrite_child_options)
-* [`access_log`](#access_log)
-* [`coredump_dir`](#coredump_dir)
-* [`error_directory`](#error_directory)
-* [`err_page_stylesheet`](#err_page_stylesheet)
-* [`package_name`](#package_name)
-* [`package_ensure`](#package_ensure)
-* [`service_name`](#service_name)
-* [`max_filedescriptors`](#max_filedescriptors)
-* [`workers`](#workers)
-* [`snmp_incoming_address`](#snmp_incoming_address)
-* [`buffered_logs`](#buffered_logs)
-* [`acls`](#acls)
-* [`visible_hostname`](#visible_hostname)
-* [`via`](#via)
-* [`httpd_suppress_version_string`](#httpd_suppress_version_string)
-* [`forwarded_for`](#forwarded_for)
-* [`http_access`](#http_access)
-* [`http_ports`](#http_ports)
-* [`https_ports`](#https_ports)
-* [`icp_access`](#icp_access)
-* [`refresh_patterns`](#refresh_patterns)
-* [`snmp_ports`](#snmp_ports)
-* [`send_hit`](#send_hit)
-* [`cache_dirs`](#cache_dirs)
-* [`ssl_bump`](#ssl_bump)
-* [`sslproxy_cert_error`](#sslproxy_cert_error)
-* [`extra_config_sections`](#extra_config_sections)
-* [`service_restart`](#service_restart)
-* [`squid_bin_path`](#squid_bin_path)
-* [`auth_params`](#auth_params)
-* [`cache`](#cache)
-* [`snmp_access`](#snmp_access)
-* [`logformat`](#logformat)
+* [`ensure_service`](#-squid--ensure_service)
+* [`enable_service`](#-squid--enable_service)
+* [`config`](#-squid--config)
+* [`config_user`](#-squid--config_user)
+* [`config_group`](#-squid--config_group)
+* [`daemon_user`](#-squid--daemon_user)
+* [`daemon_group`](#-squid--daemon_group)
+* [`cache_mem`](#-squid--cache_mem)
+* [`cache_replacement_policy`](#-squid--cache_replacement_policy)
+* [`memory_replacement_policy`](#-squid--memory_replacement_policy)
+* [`memory_cache_shared`](#-squid--memory_cache_shared)
+* [`maximum_object_size_in_memory`](#-squid--maximum_object_size_in_memory)
+* [`url_rewrite_program`](#-squid--url_rewrite_program)
+* [`url_rewrite_children`](#-squid--url_rewrite_children)
+* [`url_rewrite_child_options`](#-squid--url_rewrite_child_options)
+* [`access_log`](#-squid--access_log)
+* [`coredump_dir`](#-squid--coredump_dir)
+* [`error_directory`](#-squid--error_directory)
+* [`err_page_stylesheet`](#-squid--err_page_stylesheet)
+* [`package_name`](#-squid--package_name)
+* [`package_ensure`](#-squid--package_ensure)
+* [`service_name`](#-squid--service_name)
+* [`max_filedescriptors`](#-squid--max_filedescriptors)
+* [`workers`](#-squid--workers)
+* [`snmp_incoming_address`](#-squid--snmp_incoming_address)
+* [`buffered_logs`](#-squid--buffered_logs)
+* [`acls`](#-squid--acls)
+* [`visible_hostname`](#-squid--visible_hostname)
+* [`via`](#-squid--via)
+* [`httpd_suppress_version_string`](#-squid--httpd_suppress_version_string)
+* [`forwarded_for`](#-squid--forwarded_for)
+* [`http_access`](#-squid--http_access)
+* [`http_ports`](#-squid--http_ports)
+* [`https_ports`](#-squid--https_ports)
+* [`icp_access`](#-squid--icp_access)
+* [`logformat`](#-squid--logformat)
+* [`refresh_patterns`](#-squid--refresh_patterns)
+* [`snmp_ports`](#-squid--snmp_ports)
+* [`send_hit`](#-squid--send_hit)
+* [`cache_dirs`](#-squid--cache_dirs)
+* [`ssl_bump`](#-squid--ssl_bump)
+* [`sslproxy_cert_error`](#-squid--sslproxy_cert_error)
+* [`extra_config_sections`](#-squid--extra_config_sections)
+* [`service_restart`](#-squid--service_restart)
+* [`squid_bin_path`](#-squid--squid_bin_path)
+* [`auth_params`](#-squid--auth_params)
+* [`cache`](#-squid--cache)
+* [`snmp_access`](#-squid--snmp_access)
 
-##### <a name="ensure_service"></a>`ensure_service`
+##### <a name="-squid--ensure_service"></a>`ensure_service`
 
 Data type: `String`
 
@@ -164,7 +164,7 @@ The ensure value of the squid service, defaults to `running`.
 
 Default value: `$squid::params::ensure_service`
 
-##### <a name="enable_service"></a>`enable_service`
+##### <a name="-squid--enable_service"></a>`enable_service`
 
 Data type: `Boolean`
 
@@ -172,7 +172,7 @@ The enable value of the squid service, defaults to `true`.
 
 Default value: `$squid::params::enable_service`
 
-##### <a name="config"></a>`config`
+##### <a name="-squid--config"></a>`config`
 
 Data type: `String`
 
@@ -180,7 +180,7 @@ Location of squid.conf file, defaults to `/etc/squid/squid.conf`.
 
 Default value: `$squid::params::config`
 
-##### <a name="config_user"></a>`config_user`
+##### <a name="-squid--config_user"></a>`config_user`
 
 Data type: `String`
 
@@ -188,7 +188,7 @@ User which owns the config file, default depends on `$operatingsystem`
 
 Default value: `$squid::params::config_user`
 
-##### <a name="config_group"></a>`config_group`
+##### <a name="-squid--config_group"></a>`config_group`
 
 Data type: `String`
 
@@ -196,7 +196,7 @@ Group which owns the config file, default depends on `$operatingsystem`
 
 Default value: `$squid::params::config_group`
 
-##### <a name="daemon_user"></a>`daemon_user`
+##### <a name="-squid--daemon_user"></a>`daemon_user`
 
 Data type: `String`
 
@@ -204,7 +204,7 @@ User which runs the squid daemon, this is used for ownership of the cache direct
 
 Default value: `$squid::params::daemon_user`
 
-##### <a name="daemon_group"></a>`daemon_group`
+##### <a name="-squid--daemon_group"></a>`daemon_group`
 
 Data type: `String`
 
@@ -212,7 +212,7 @@ Group which runs the squid daemon, this is used for ownership of the cache direc
 
 Default value: `$squid::params::daemon_group`
 
-##### <a name="cache_mem"></a>`cache_mem`
+##### <a name="-squid--cache_mem"></a>`cache_mem`
 
 Data type: `Squid::Size`
 
@@ -220,7 +220,7 @@ Defaults to `256 MB`. http://www.squid-cache.org/Doc/config/cache_mem/
 
 Default value: `$squid::params::cache_mem`
 
-##### <a name="cache_replacement_policy"></a>`cache_replacement_policy`
+##### <a name="-squid--cache_replacement_policy"></a>`cache_replacement_policy`
 
 Data type: `Optional[String]`
 
@@ -228,7 +228,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/cache_replacement_polic
 
 Default value: `$squid::params::cache_replacement_policy`
 
-##### <a name="memory_replacement_policy"></a>`memory_replacement_policy`
+##### <a name="-squid--memory_replacement_policy"></a>`memory_replacement_policy`
 
 Data type: `Optional[String]`
 
@@ -236,7 +236,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/memory_replacement_poli
 
 Default value: `$squid::params::memory_replacement_policy`
 
-##### <a name="memory_cache_shared"></a>`memory_cache_shared`
+##### <a name="-squid--memory_cache_shared"></a>`memory_cache_shared`
 
 Data type: `Optional[Variant[Enum['on', 'off'], Boolean]]`
 
@@ -244,7 +244,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/memory_cache_shared/.
 
 Default value: `$squid::params::memory_cache_shared`
 
-##### <a name="maximum_object_size_in_memory"></a>`maximum_object_size_in_memory`
+##### <a name="-squid--maximum_object_size_in_memory"></a>`maximum_object_size_in_memory`
 
 Data type: `Squid::Size`
 
@@ -252,7 +252,7 @@ Defaults to `512 KB`. http://www.squid-cache.org/Doc/config/maximum_object_size_
 
 Default value: `$squid::params::maximum_object_size_in_memory`
 
-##### <a name="url_rewrite_program"></a>`url_rewrite_program`
+##### <a name="-squid--url_rewrite_program"></a>`url_rewrite_program`
 
 Data type: `Optional[String]`
 
@@ -260,7 +260,7 @@ Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_program/
 
 Default value: `$squid::params::url_rewrite_program`
 
-##### <a name="url_rewrite_children"></a>`url_rewrite_children`
+##### <a name="-squid--url_rewrite_children"></a>`url_rewrite_children`
 
 Data type: `Optional[Integer]`
 
@@ -268,7 +268,7 @@ Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
 
 Default value: `$squid::params::url_rewrite_children`
 
-##### <a name="url_rewrite_child_options"></a>`url_rewrite_child_options`
+##### <a name="-squid--url_rewrite_child_options"></a>`url_rewrite_child_options`
 
 Data type: `Optional[String]`
 
@@ -276,7 +276,7 @@ Defaults to undef http://www.squid-cache.org/Doc/config/url_rewrite_children/
 
 Default value: `$squid::params::url_rewrite_child_options`
 
-##### <a name="access_log"></a>`access_log`
+##### <a name="-squid--access_log"></a>`access_log`
 
 Data type: `Variant[String, Array[String]]`
 
@@ -284,7 +284,7 @@ Defaults to `daemon:/var/logs/squid/access.log squid`.  May be passed an Array. 
 
 Default value: `$squid::params::access_log`
 
-##### <a name="coredump_dir"></a>`coredump_dir`
+##### <a name="-squid--coredump_dir"></a>`coredump_dir`
 
 Data type: `Optional[String]`
 
@@ -292,7 +292,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/coredump_dir/
 
 Default value: `$squid::params::coredump_dir`
 
-##### <a name="error_directory"></a>`error_directory`
+##### <a name="-squid--error_directory"></a>`error_directory`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
@@ -300,7 +300,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/error_directory/
 
 Default value: `$squid::params::error_directory`
 
-##### <a name="err_page_stylesheet"></a>`err_page_stylesheet`
+##### <a name="-squid--err_page_stylesheet"></a>`err_page_stylesheet`
 
 Data type: `Optional[Stdlib::Absolutepath]`
 
@@ -308,7 +308,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/err_page_stylesheet/
 
 Default value: `$squid::params::err_page_stylesheet`
 
-##### <a name="package_name"></a>`package_name`
+##### <a name="-squid--package_name"></a>`package_name`
 
 Data type: `String`
 
@@ -316,7 +316,7 @@ Name of the squid package to manage, default depends on `$operatingsystem`
 
 Default value: `$squid::params::package_name`
 
-##### <a name="package_ensure"></a>`package_ensure`
+##### <a name="-squid--package_ensure"></a>`package_ensure`
 
 Data type: `Squid::PkgEnsure`
 
@@ -324,7 +324,7 @@ Package status and/or version, default to present
 
 Default value: `$squid::params::package_ensure`
 
-##### <a name="service_name"></a>`service_name`
+##### <a name="-squid--service_name"></a>`service_name`
 
 Data type: `String`
 
@@ -332,7 +332,7 @@ Name of the squid service to manage, default depends on `$operatingsystem`
 
 Default value: `$squid::params::service_name`
 
-##### <a name="max_filedescriptors"></a>`max_filedescriptors`
+##### <a name="-squid--max_filedescriptors"></a>`max_filedescriptors`
 
 Data type: `Optional[Integer]`
 
@@ -340,7 +340,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/max_filedescriptors/
 
 Default value: `$squid::params::max_filedescriptors`
 
-##### <a name="workers"></a>`workers`
+##### <a name="-squid--workers"></a>`workers`
 
 Data type: `Optional[Integer]`
 
@@ -348,7 +348,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/workers/
 
 Default value: `$squid::params::workers`
 
-##### <a name="snmp_incoming_address"></a>`snmp_incoming_address`
+##### <a name="-squid--snmp_incoming_address"></a>`snmp_incoming_address`
 
 Data type: `Optional[Stdlib::Compat::Ip_address]`
 
@@ -356,7 +356,7 @@ Defaults to undef. Can be set to an IP address to only listen for snmp requests 
 
 Default value: `$squid::params::snmp_incoming_address`
 
-##### <a name="buffered_logs"></a>`buffered_logs`
+##### <a name="-squid--buffered_logs"></a>`buffered_logs`
 
 Data type: `Optional[Boolean]`
 
@@ -364,7 +364,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/buffered_logs/
 
 Default value: `$squid::params::buffered_logs`
 
-##### <a name="acls"></a>`acls`
+##### <a name="-squid--acls"></a>`acls`
 
 Data type: `Optional[Hash]`
 
@@ -372,7 +372,7 @@ Defaults to undef. If you pass in a hash of acl entries, they will be defined au
 
 Default value: `$squid::params::acls`
 
-##### <a name="visible_hostname"></a>`visible_hostname`
+##### <a name="-squid--visible_hostname"></a>`visible_hostname`
 
 Data type: `Optional[String]`
 
@@ -380,7 +380,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/visible_hostname/
 
 Default value: `$squid::params::visible_hostname`
 
-##### <a name="via"></a>`via`
+##### <a name="-squid--via"></a>`via`
 
 Data type: `Optional[Boolean]`
 
@@ -388,7 +388,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/via/
 
 Default value: `$squid::params::via`
 
-##### <a name="httpd_suppress_version_string"></a>`httpd_suppress_version_string`
+##### <a name="-squid--httpd_suppress_version_string"></a>`httpd_suppress_version_string`
 
 Data type: `Optional[Boolean]`
 
@@ -396,7 +396,7 @@ Defaults to undef. http://www.squid-cache.org/Doc/config/httpd_suppress_version_
 
 Default value: `$squid::params::httpd_suppress_version_string`
 
-##### <a name="forwarded_for"></a>`forwarded_for`
+##### <a name="-squid--forwarded_for"></a>`forwarded_for`
 
 Data type: `Optional[Variant[Enum['on', 'off', 'transparent', 'delete', 'truncate'], Boolean]]`
 
@@ -404,7 +404,7 @@ Defaults to undef. supported values are "on", "off", "transparent", "delete", "t
 
 Default value: `$squid::params::forwarded_for`
 
-##### <a name="http_access"></a>`http_access`
+##### <a name="-squid--http_access"></a>`http_access`
 
 Data type: `Optional[Hash]`
 
@@ -412,7 +412,7 @@ Defaults to undef. If you pass in a hash of http_access entries, they will be de
 
 Default value: `$squid::params::http_access`
 
-##### <a name="http_ports"></a>`http_ports`
+##### <a name="-squid--http_ports"></a>`http_ports`
 
 Data type: `Optional[Hash]`
 
@@ -420,7 +420,7 @@ Defaults to undef. If you pass in a hash of http_port entries, they will be defi
 
 Default value: `$squid::params::http_ports`
 
-##### <a name="https_ports"></a>`https_ports`
+##### <a name="-squid--https_ports"></a>`https_ports`
 
 Data type: `Optional[Hash]`
 
@@ -428,7 +428,7 @@ Defaults to undef. If you pass in a hash of https_port entries, they will be def
 
 Default value: `$squid::params::https_ports`
 
-##### <a name="icp_access"></a>`icp_access`
+##### <a name="-squid--icp_access"></a>`icp_access`
 
 Data type: `Optional[Hash]`
 
@@ -436,7 +436,15 @@ Defaults to undef. If you pass in a hash of icp_access entries, they will be def
 
 Default value: `$squid::params::icp_access`
 
-##### <a name="refresh_patterns"></a>`refresh_patterns`
+##### <a name="-squid--logformat"></a>`logformat`
+
+Data type: `Optional[Variant[String, Array[String]]]`
+
+Defaults to undef. If you pass in a logformat String, it will be defined automatically. May be passed an Array. http://www.squid-cache.org/Doc/config/logformat/
+
+Default value: `$squid::params::logformat`
+
+##### <a name="-squid--refresh_patterns"></a>`refresh_patterns`
 
 Data type: `Optional[Hash]`
 
@@ -444,7 +452,7 @@ Defaults to undef.  If you pass a hash of refresh_pattern entires, they will be 
 
 Default value: `$squid::params::refresh_patterns`
 
-##### <a name="snmp_ports"></a>`snmp_ports`
+##### <a name="-squid--snmp_ports"></a>`snmp_ports`
 
 Data type: `Optional[Hash]`
 
@@ -452,7 +460,7 @@ Defaults to undef. If you pass in a hash of snmp_port entries, they will be defi
 
 Default value: `$squid::params::snmp_ports`
 
-##### <a name="send_hit"></a>`send_hit`
+##### <a name="-squid--send_hit"></a>`send_hit`
 
 Data type: `Optional[Hash]`
 
@@ -460,7 +468,7 @@ Defaults to undef. If you pass in a hash of send_hit entries, they will be defin
 
 Default value: `$squid::params::send_hit`
 
-##### <a name="cache_dirs"></a>`cache_dirs`
+##### <a name="-squid--cache_dirs"></a>`cache_dirs`
 
 Data type: `Optional[Hash]`
 
@@ -468,7 +476,7 @@ Defaults to undef. If you pass in a hash of cache_dir entries, they will be defi
 
 Default value: `$squid::params::cache_dirs`
 
-##### <a name="ssl_bump"></a>`ssl_bump`
+##### <a name="-squid--ssl_bump"></a>`ssl_bump`
 
 Data type: `Optional[Hash]`
 
@@ -476,7 +484,7 @@ Defaults to undef. If you pass in a hash of ssl_bump entries, they will be defin
 
 Default value: `$squid::params::ssl_bump`
 
-##### <a name="sslproxy_cert_error"></a>`sslproxy_cert_error`
+##### <a name="-squid--sslproxy_cert_error"></a>`sslproxy_cert_error`
 
 Data type: `Optional[Hash]`
 
@@ -484,7 +492,7 @@ Defaults to undef. If you pass in a hash of sslproxy_cert_error entries, they wi
 
 Default value: `$squid::params::sslproxy_cert_error`
 
-##### <a name="extra_config_sections"></a>`extra_config_sections`
+##### <a name="-squid--extra_config_sections"></a>`extra_config_sections`
 
 Data type: `Hash`
 
@@ -492,7 +500,7 @@ Defaults to empty hash. If you pass in a hash of `extra_config_section` resource
 
 Default value: `{}`
 
-##### <a name="service_restart"></a>`service_restart`
+##### <a name="-squid--service_restart"></a>`service_restart`
 
 Data type: `Optional[String]`
 
@@ -501,7 +509,7 @@ It can be used to perform a soft reload of the squid service.
 
 Default value: `$squid::params::service_restart`
 
-##### <a name="squid_bin_path"></a>`squid_bin_path`
+##### <a name="-squid--squid_bin_path"></a>`squid_bin_path`
 
 Data type: `Stdlib::Absolutepath`
 
@@ -509,7 +517,7 @@ Path to the squid binary, default depends on `$operatingsystem`
 
 Default value: `$squid::params::squid_bin_path`
 
-##### <a name="auth_params"></a>`auth_params`
+##### <a name="-squid--auth_params"></a>`auth_params`
 
 Data type: `Optional[Hash]`
 
@@ -517,7 +525,7 @@ Data type: `Optional[Hash]`
 
 Default value: `$squid::params::auth_params`
 
-##### <a name="cache"></a>`cache`
+##### <a name="-squid--cache"></a>`cache`
 
 Data type: `Optional[Hash]`
 
@@ -525,7 +533,7 @@ Data type: `Optional[Hash]`
 
 Default value: `$squid::params::cache`
 
-##### <a name="snmp_access"></a>`snmp_access`
+##### <a name="-squid--snmp_access"></a>`snmp_access`
 
 Data type: `Optional[Hash]`
 
@@ -533,17 +541,9 @@ Data type: `Optional[Hash]`
 
 Default value: `$squid::params::snmp_access`
 
-##### <a name="logformat"></a>`logformat`
-
-Data type: `Optional[String]`
-
-
-
-Default value: `$squid::params::logformat`
-
 ## Defined types
 
-### <a name="squidacl"></a>`squid::acl`
+### <a name="squid--acl"></a>`squid::acl`
 
 Defines acl entries for a squid server.
 
@@ -566,19 +566,19 @@ squid::acl { 'remote_urls':
 
 The following parameters are available in the `squid::acl` defined type:
 
-* [`type`](#type)
-* [`aclname`](#aclname)
-* [`entries`](#entries)
-* [`order`](#order)
-* [`comment`](#comment)
+* [`type`](#-squid--acl--type)
+* [`aclname`](#-squid--acl--aclname)
+* [`entries`](#-squid--acl--entries)
+* [`order`](#-squid--acl--order)
+* [`comment`](#-squid--acl--comment)
 
-##### <a name="type"></a>`type`
+##### <a name="-squid--acl--type"></a>`type`
 
 Data type: `String`
 
 The acltype of the acl, must be defined, e.g url_regex, urlpath_regex, port, ..
 
-##### <a name="aclname"></a>`aclname`
+##### <a name="-squid--acl--aclname"></a>`aclname`
 
 Data type: `String`
 
@@ -586,7 +586,7 @@ The name of acl, defaults to the `title`.
 
 Default value: `$title`
 
-##### <a name="entries"></a>`entries`
+##### <a name="-squid--acl--entries"></a>`entries`
 
 Data type: `Array`
 
@@ -594,7 +594,7 @@ An array of acl entries, multiple members results in multiple lines in squid.con
 
 Default value: `[]`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--acl--order"></a>`order`
 
 Data type: `String`
 
@@ -602,7 +602,7 @@ Each ACL has an order `05` by default this can be specified if order of ACL defi
 
 Default value: `'05'`
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--acl--comment"></a>`comment`
 
 Data type: `String`
 
@@ -610,7 +610,7 @@ Data type: `String`
 
 Default value: `"acl fragment for ${aclname}"`
 
-### <a name="squidauth_param"></a>`squid::auth_param`
+### <a name="squid--auth_param"></a>`squid::auth_param`
 
 Defines auth_param entries for a squid server.
 
@@ -642,24 +642,24 @@ auth_param basic credentialsttl 5 hours
 
 The following parameters are available in the `squid::auth_param` defined type:
 
-* [`scheme`](#scheme)
-* [`entries`](#entries)
-* [`order`](#order)
-* [`auth_param_name`](#auth_param_name)
+* [`scheme`](#-squid--auth_param--scheme)
+* [`entries`](#-squid--auth_param--entries)
+* [`order`](#-squid--auth_param--order)
+* [`auth_param_name`](#-squid--auth_param--auth_param_name)
 
-##### <a name="scheme"></a>`scheme`
+##### <a name="-squid--auth_param--scheme"></a>`scheme`
 
 Data type: `Enum['basic', 'digest', 'negotiate', 'ntlm']`
 
 The scheme used for authentication must be defined. Valid values are 'basic', 'digest', 'negotiate' and 'ntlm'.
 
-##### <a name="entries"></a>`entries`
+##### <a name="-squid--auth_param--entries"></a>`entries`
 
 Data type: `Array`
 
 An array of entries, multiple members results in multiple lines in squid.conf
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--auth_param--order"></a>`order`
 
 Data type: `String`
 
@@ -667,7 +667,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'40'`
 
-##### <a name="auth_param_name"></a>`auth_param_name`
+##### <a name="-squid--auth_param--auth_param_name"></a>`auth_param_name`
 
 Data type: `String`
 
@@ -675,7 +675,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidcache"></a>`squid::cache`
+### <a name="squid--cache"></a>`squid::cache`
 
 Defines cache entries for a squid server.
 
@@ -701,12 +701,12 @@ cache deny our_network_hosts_acl
 
 The following parameters are available in the `squid::cache` defined type:
 
-* [`action`](#action)
-* [`comment`](#comment)
-* [`order`](#order)
-* [`value`](#value)
+* [`action`](#-squid--cache--action)
+* [`comment`](#-squid--cache--comment)
+* [`order`](#-squid--cache--order)
+* [`value`](#-squid--cache--value)
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--cache--action"></a>`action`
 
 Data type: `Enum['allow', 'deny']`
 
@@ -714,7 +714,7 @@ Allow/deny caching for $title
 
 Default value: `'allow'`
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--cache--comment"></a>`comment`
 
 Data type: `String`
 
@@ -722,7 +722,7 @@ Cache entry's preceding comment
 
 Default value: `"cache fragment for ${value}"`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--cache--order"></a>`order`
 
 Data type: `String`
 
@@ -730,7 +730,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--cache--value"></a>`value`
 
 Data type: `String`
 
@@ -738,7 +738,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidcache_dir"></a>`squid::cache_dir`
+### <a name="squid--cache_dir"></a>`squid::cache_dir`
 
 Defines cache_dir entries for a squid server.
 
@@ -766,14 +766,14 @@ endif
 
 The following parameters are available in the `squid::cache_dir` defined type:
 
-* [`type`](#type)
-* [`path`](#path)
-* [`options`](#options)
-* [`process_number`](#process_number)
-* [`manage_dir`](#manage_dir)
-* [`order`](#order)
+* [`type`](#-squid--cache_dir--type)
+* [`path`](#-squid--cache_dir--path)
+* [`options`](#-squid--cache_dir--options)
+* [`process_number`](#-squid--cache_dir--process_number)
+* [`manage_dir`](#-squid--cache_dir--manage_dir)
+* [`order`](#-squid--cache_dir--order)
 
-##### <a name="type"></a>`type`
+##### <a name="-squid--cache_dir--type"></a>`type`
 
 Data type: `String`
 
@@ -781,7 +781,7 @@ The type of cache, e.g ufs. defaults to `ufs`.
 
 Default value: `ufs`
 
-##### <a name="path"></a>`path`
+##### <a name="-squid--cache_dir--path"></a>`path`
 
 Data type: `String`
 
@@ -789,15 +789,15 @@ Defaults to the namevar, file path to  cache.
 
 Default value: `$title`
 
-##### <a name="options"></a>`options`
+##### <a name="-squid--cache_dir--options"></a>`options`
 
 Data type: `Optional[String[1]]`
 
 String of options for the cache.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="process_number"></a>`process_number`
+##### <a name="-squid--cache_dir--process_number"></a>`process_number`
 
 Data type: `Optional[Integer]`
 
@@ -805,9 +805,9 @@ If specfied as an integer the cache will be wrapped
 in a `if $proceess_number` statement so the cache will be used by only
 one process. Default is undef.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="manage_dir"></a>`manage_dir`
+##### <a name="-squid--cache_dir--manage_dir"></a>`manage_dir`
 
 Data type: `Boolean`
 
@@ -815,9 +815,9 @@ If true puppet will attempt to create the
 directory, if false you will have to create it yourself. Make sure the
 directory has the correct owner, group and mode. Defaults to true.
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--cache_dir--order"></a>`order`
 
 Data type: `String`
 
@@ -825,7 +825,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-### <a name="squidextra_config_section"></a>`squid::extra_config_section`
+### <a name="squid--extra_config_section"></a>`squid::extra_config_section`
 
 The `extra_config_section` defiend type can be used for configuration directives that have not been exposed individually in this module.
 
@@ -890,11 +890,11 @@ always_direct allow   my-other-good-dst
 
 The following parameters are available in the `squid::extra_config_section` defined type:
 
-* [`comment`](#comment)
-* [`config_entries`](#config_entries)
-* [`order`](#order)
+* [`comment`](#-squid--extra_config_section--comment)
+* [`config_entries`](#-squid--extra_config_section--config_entries)
+* [`order`](#-squid--extra_config_section--order)
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--extra_config_section--comment"></a>`comment`
 
 Data type: `String`
 
@@ -902,7 +902,7 @@ Defaults to the namevar and is used as a section comment in `squid.conf`.
 
 Default value: `$title`
 
-##### <a name="config_entries"></a>`config_entries`
+##### <a name="-squid--extra_config_section--config_entries"></a>`config_entries`
 
 Data type: `Variant[Array,Hash]`
 
@@ -911,7 +911,7 @@ The value is either a string, or an array of strings to use as the configuration
 
 Default value: `{}`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--extra_config_section--order"></a>`order`
 
 Data type: `String`
 
@@ -919,7 +919,7 @@ Order can be used to configure where in `squid.conf` this configuration section 
 
 Default value: `'60'`
 
-### <a name="squidhttp_access"></a>`squid::http_access`
+### <a name="squid--http_access"></a>`squid::http_access`
 
 Defines http_access entries for a squid server.
 
@@ -957,17 +957,17 @@ http_access allow our_networks hosts
 
 The following parameters are available in the `squid::http_access` defined type:
 
-* [`title`](#title)
-* [`action`](#action)
-* [`order`](#order)
-* [`comment`](#comment)
-* [`value`](#value)
+* [`title`](#-squid--http_access--title)
+* [`action`](#-squid--http_access--action)
+* [`order`](#-squid--http_access--order)
+* [`comment`](#-squid--http_access--comment)
+* [`value`](#-squid--http_access--value)
 
-##### <a name="title"></a>`title`
+##### <a name="-squid--http_access--title"></a>`title`
 
 The name of the ACL the rule is applied to
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--http_access--action"></a>`action`
 
 Data type: `Enum['allow', 'deny']`
 
@@ -975,7 +975,7 @@ allow or deny access for $title
 
 Default value: `'allow'`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--http_access--order"></a>`order`
 
 Data type: `String`
 
@@ -983,7 +983,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--http_access--comment"></a>`comment`
 
 Data type: `String`
 
@@ -991,7 +991,7 @@ http_access entry's preceding comment
 
 Default value: `"http_access fragment for ${value}"`
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--http_access--value"></a>`value`
 
 Data type: `String`
 
@@ -999,7 +999,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidhttp_port"></a>`squid::http_port`
+### <a name="squid--http_port"></a>`squid::http_port`
 
 Defines http_port entries for a squid server.
 By setting optional `ssl` parameter to `true` will create https_port entries instead.
@@ -1032,51 +1032,51 @@ http_port 127.0.0.1:3128
 
 The following parameters are available in the `squid::http_port` defined type:
 
-* [`title`](#title)
-* [`port`](#port)
-* [`host`](#host)
-* [`options`](#options)
-* [`ssl`](#ssl)
-* [`order`](#order)
+* [`title`](#-squid--http_port--title)
+* [`port`](#-squid--http_port--port)
+* [`host`](#-squid--http_port--host)
+* [`options`](#-squid--http_port--options)
+* [`ssl`](#-squid--http_port--ssl)
+* [`order`](#-squid--http_port--order)
 
-##### <a name="title"></a>`title`
+##### <a name="-squid--http_port--title"></a>`title`
 
 The title/namevar may be in the form `port` or `host:port` to provide the below values. Otherwise,
 specify `port` explicitly, and `host` if desired.
 
-##### <a name="port"></a>`port`
+##### <a name="-squid--http_port--port"></a>`port`
 
 Data type: `Optional[Stdlib::Port]`
 
 Defaults to the port of the namevar and is the port number to listen on.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="host"></a>`host`
+##### <a name="-squid--http_port--host"></a>`host`
 
 Data type: `Optional[Stdlib::Host]`
 
 Defaults to the host part of the namevar and is the interface to listen on. If not specified, Squid listens on all interfaces.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="options"></a>`options`
+##### <a name="-squid--http_port--options"></a>`options`
 
 Data type: `Optional[String[1]]`
 
 A string to specify any options for the default.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="ssl"></a>`ssl`
+##### <a name="-squid--http_port--ssl"></a>`ssl`
 
 Data type: `Boolean`
 
 When set to `true` creates https_port entries. Defaults to `false`.
 
-Default value: ``false``
+Default value: `false`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--http_port--order"></a>`order`
 
 Data type: `String`
 
@@ -1084,7 +1084,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-### <a name="squidhttps_port"></a>`squid::https_port`
+### <a name="squid--https_port"></a>`squid::https_port`
 
 Defines https_port entries for a squid server. Results are the same with http_port and ssl set to `true`.
 
@@ -1095,11 +1095,11 @@ Defines https_port entries for a squid server. Results are the same with http_po
 
 The following parameters are available in the `squid::https_port` defined type:
 
-* [`port`](#port)
-* [`options`](#options)
-* [`order`](#order)
+* [`port`](#-squid--https_port--port)
+* [`options`](#-squid--https_port--options)
+* [`order`](#-squid--https_port--order)
 
-##### <a name="port"></a>`port`
+##### <a name="-squid--https_port--port"></a>`port`
 
 Data type: `Variant[Pattern[/\d+/], Integer]`
 
@@ -1107,15 +1107,15 @@ defaults to the namevar and is the port number.
 
 Default value: `$title`
 
-##### <a name="options"></a>`options`
+##### <a name="-squid--https_port--options"></a>`options`
 
 Data type: `Optional[String[1]]`
 
 A string to specify any options to add to the https_port line.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--https_port--order"></a>`order`
 
 Data type: `String`
 
@@ -1123,7 +1123,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-### <a name="squidicp_access"></a>`squid::icp_access`
+### <a name="squid--icp_access"></a>`squid::icp_access`
 
 Defines icp_access entries for a squid server.
 
@@ -1147,11 +1147,11 @@ icp_access allow our_networks hosts
 
 The following parameters are available in the `squid::icp_access` defined type:
 
-* [`action`](#action)
-* [`order`](#order)
-* [`value`](#value)
+* [`action`](#-squid--icp_access--action)
+* [`order`](#-squid--icp_access--order)
+* [`value`](#-squid--icp_access--value)
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--icp_access--action"></a>`action`
 
 Data type: `Enum['allow', 'deny']`
 
@@ -1160,7 +1160,7 @@ all allows appear before all denys. This can be overidden with the `order` param
 
 Default value: `'allow'`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--icp_access--order"></a>`order`
 
 Data type: `String`
 
@@ -1168,7 +1168,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--icp_access--value"></a>`value`
 
 Data type: `String`
 
@@ -1176,7 +1176,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidrefresh_pattern"></a>`squid::refresh_pattern`
+### <a name="squid--refresh_pattern"></a>`squid::refresh_pattern`
 
 Defines refresh_pattern entries for a squid server.
 
@@ -1241,24 +1241,24 @@ squid::refresh_patterns:
 
 The following parameters are available in the `squid::refresh_pattern` defined type:
 
-* [`case_sensitive`](#case_sensitive)
-* [`comment`](#comment)
-* [`min`](#min)
-* [`max`](#max)
-* [`percent`](#percent)
-* [`options`](#options)
-* [`order`](#order)
-* [`pattern`](#pattern)
+* [`case_sensitive`](#-squid--refresh_pattern--case_sensitive)
+* [`comment`](#-squid--refresh_pattern--comment)
+* [`min`](#-squid--refresh_pattern--min)
+* [`max`](#-squid--refresh_pattern--max)
+* [`percent`](#-squid--refresh_pattern--percent)
+* [`options`](#-squid--refresh_pattern--options)
+* [`order`](#-squid--refresh_pattern--order)
+* [`pattern`](#-squid--refresh_pattern--pattern)
 
-##### <a name="case_sensitive"></a>`case_sensitive`
+##### <a name="-squid--refresh_pattern--case_sensitive"></a>`case_sensitive`
 
 Data type: `Boolean`
 
 If true (default) the regex is case sensitive, when false the case insensitive flag '-i' is added to the pattern
 
-Default value: ``true``
+Default value: `true`
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--refresh_pattern--comment"></a>`comment`
 
 Data type: `String`
 
@@ -1266,33 +1266,33 @@ Comment added before refresh rule, defaults to refresh_pattern fragment for `tit
 
 Default value: `"refresh_pattern fragment for ${pattern}"`
 
-##### <a name="min"></a>`min`
+##### <a name="-squid--refresh_pattern--min"></a>`min`
 
 Data type: `Integer`
 
 Must be defined, the time (in minutes) an object without an explicit expiry time should be considered fresh.
 
-##### <a name="max"></a>`max`
+##### <a name="-squid--refresh_pattern--max"></a>`max`
 
 Data type: `Integer`
 
 Must be defined, the upper limit (in minutes) on how long objects without an explicit expiry time will be considered fresh.
 
-##### <a name="percent"></a>`percent`
+##### <a name="-squid--refresh_pattern--percent"></a>`percent`
 
 Data type: `Integer`
 
 Must be defined, is a percentage of the objects age (time since last modification age)
 
-##### <a name="options"></a>`options`
+##### <a name="-squid--refresh_pattern--options"></a>`options`
 
 Data type: `Optional[String[1]]`
 
 See squid documentation for available options.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--refresh_pattern--order"></a>`order`
 
 Data type: `String`
 
@@ -1300,7 +1300,7 @@ Each refresh_pattern has an order `05` by default this can be specified if order
 
 Default value: `'05'`
 
-##### <a name="pattern"></a>`pattern`
+##### <a name="-squid--refresh_pattern--pattern"></a>`pattern`
 
 Data type: `String`
 
@@ -1308,7 +1308,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidsend_hit"></a>`squid::send_hit`
+### <a name="squid--send_hit"></a>`squid::send_hit`
 
 Defines send_hit for a squid server.
 
@@ -1332,12 +1332,12 @@ send_hit deny PragmaNoCache
 
 The following parameters are available in the `squid::send_hit` defined type:
 
-* [`value`](#value)
-* [`action`](#action)
-* [`order`](#order)
-* [`comment`](#comment)
+* [`value`](#-squid--send_hit--value)
+* [`action`](#-squid--send_hit--action)
+* [`order`](#-squid--send_hit--order)
+* [`comment`](#-squid--send_hit--comment)
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--send_hit--value"></a>`value`
 
 Data type: `String`
 
@@ -1345,7 +1345,7 @@ Defaults to the `namevar`. The rule to allow or deny.
 
 Default value: `$title`
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--send_hit--action"></a>`action`
 
 Data type: `Enum['allow', 'deny']`
 
@@ -1353,7 +1353,7 @@ Must one of `deny` or `allow`
 
 Default value: `'allow'`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--send_hit--order"></a>`order`
 
 Data type: `String`
 
@@ -1361,7 +1361,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--send_hit--comment"></a>`comment`
 
 Data type: `String`
 
@@ -1369,7 +1369,7 @@ A preceeding comment to add to the configuration file.
 
 Default value: `"send_hit fragment for ${value}"`
 
-### <a name="squidsnmp_access"></a>`squid::snmp_access`
+### <a name="squid--snmp_access"></a>`squid::snmp_access`
 
 Defines snmp_access entries for a squid server.
 
@@ -1406,12 +1406,12 @@ snmp_access allow monitoring hosts
 
 The following parameters are available in the `squid::snmp_access` defined type:
 
-* [`action`](#action)
-* [`order`](#order)
-* [`comment`](#comment)
-* [`value`](#value)
+* [`action`](#-squid--snmp_access--action)
+* [`order`](#-squid--snmp_access--order)
+* [`comment`](#-squid--snmp_access--comment)
+* [`value`](#-squid--snmp_access--value)
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--snmp_access--action"></a>`action`
 
 Data type: `Enum['allow', 'deny']`
 
@@ -1419,7 +1419,7 @@ Allow or deny access for $title
 
 Default value: `'allow'`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--snmp_access--order"></a>`order`
 
 Data type: `String`
 
@@ -1427,7 +1427,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-##### <a name="comment"></a>`comment`
+##### <a name="-squid--snmp_access--comment"></a>`comment`
 
 Data type: `String`
 
@@ -1435,7 +1435,7 @@ snmp_access entry's preceding comment
 
 Default value: `"snmp_access fragment for ${value}"`
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--snmp_access--value"></a>`value`
 
 Data type: `String`
 
@@ -1443,7 +1443,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidsnmp_port"></a>`squid::snmp_port`
+### <a name="squid--snmp_port"></a>`squid::snmp_port`
 
 Defines snmp_port entries for a squid server.
 
@@ -1469,12 +1469,12 @@ endif
 
 The following parameters are available in the `squid::snmp_port` defined type:
 
-* [`port`](#port)
-* [`options`](#options)
-* [`process_number`](#process_number)
-* [`order`](#order)
+* [`port`](#-squid--snmp_port--port)
+* [`options`](#-squid--snmp_port--options)
+* [`process_number`](#-squid--snmp_port--process_number)
+* [`order`](#-squid--snmp_port--order)
 
-##### <a name="port"></a>`port`
+##### <a name="-squid--snmp_port--port"></a>`port`
 
 Data type: `Variant[Pattern[/\d+/], Stdlib::Port]`
 
@@ -1482,23 +1482,23 @@ Defaults to the namevar and is the port number.
 
 Default value: `$title`
 
-##### <a name="options"></a>`options`
+##### <a name="-squid--snmp_port--options"></a>`options`
 
 Data type: `Optional[String[1]]`
 
 A string to specify any options for the default.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="process_number"></a>`process_number`
+##### <a name="-squid--snmp_port--process_number"></a>`process_number`
 
 Data type: `Optional[Integer]`
 
 If set to and integer the snmp\_port is enabled only for a particular squid thread. Defaults to undef.
 
-Default value: ``undef``
+Default value: `undef`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--snmp_port--order"></a>`order`
 
 Data type: `String`
 
@@ -1506,7 +1506,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-### <a name="squidssl_bump"></a>`squid::ssl_bump`
+### <a name="squid--ssl_bump"></a>`squid::ssl_bump`
 
 Defines ssl_bump entries for a squid server.
 
@@ -1530,16 +1530,16 @@ ssl_bump bump all
 
 The following parameters are available in the `squid::ssl_bump` defined type:
 
-* [`title`](#title)
-* [`action`](#action)
-* [`order`](#order)
-* [`value`](#value)
+* [`title`](#-squid--ssl_bump--title)
+* [`action`](#-squid--ssl_bump--action)
+* [`order`](#-squid--ssl_bump--order)
+* [`value`](#-squid--ssl_bump--value)
 
-##### <a name="title"></a>`title`
+##### <a name="-squid--ssl_bump--title"></a>`title`
 
 The name of acl the ssl_bump rule is applied to
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--ssl_bump--action"></a>`action`
 
 Data type: `Squid::Action::SslBump`
 
@@ -1547,7 +1547,7 @@ The type of the ssl_bump, must be defined, e.g bump, peek, ..
 
 Default value: `'bump'`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--ssl_bump--order"></a>`order`
 
 Data type: `String`
 
@@ -1555,7 +1555,7 @@ Order can be used to configure where in `squid.conf`this configuration section s
 
 Default value: `'05'`
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--ssl_bump--value"></a>`value`
 
 Data type: `String`
 
@@ -1563,7 +1563,7 @@ Data type: `String`
 
 Default value: `$title`
 
-### <a name="squidsslproxy_cert_error"></a>`squid::sslproxy_cert_error`
+### <a name="squid--sslproxy_cert_error"></a>`squid::sslproxy_cert_error`
 
 Defines sslproxy_cert_error entries for a squid server.
 
@@ -1587,11 +1587,11 @@ sslproxy_cert_error allow all
 
 The following parameters are available in the `squid::sslproxy_cert_error` defined type:
 
-* [`value`](#value)
-* [`action`](#action)
-* [`order`](#order)
+* [`value`](#-squid--sslproxy_cert_error--value)
+* [`action`](#-squid--sslproxy_cert_error--action)
+* [`order`](#-squid--sslproxy_cert_error--order)
 
-##### <a name="value"></a>`value`
+##### <a name="-squid--sslproxy_cert_error--value"></a>`value`
 
 Data type: `String`
 
@@ -1599,7 +1599,7 @@ Defaults to the `namevar` the rule to allow or deny.
 
 Default value: `$title`
 
-##### <a name="action"></a>`action`
+##### <a name="-squid--sslproxy_cert_error--action"></a>`action`
 
 Data type: `Enum['allow', 'deny']`
 
@@ -1608,7 +1608,7 @@ all allows appear before all denys. This can be overidden with the `order` param
 
 Default value: `'allow'`
 
-##### <a name="order"></a>`order`
+##### <a name="-squid--sslproxy_cert_error--order"></a>`order`
 
 Data type: `String`
 
@@ -1618,33 +1618,21 @@ Default value: `'05'`
 
 ## Data types
 
-### <a name="squidactionsslbump"></a>`Squid::Action::SslBump`
+### <a name="Squid--Action--SslBump"></a>`Squid::Action::SslBump`
 
 Possible SSLBump options
 
-Alias of
+Alias of `Enum['bump', 'client-first', 'none', 'peek', 'peek-and-splice', 'server-first', 'splice', 'stare', 'terminate']`
 
-```puppet
-Enum['bump', 'client-first', 'none', 'peek', 'peek-and-splice', 'server-first', 'splice', 'stare', 'terminate']
-```
-
-### <a name="squidpkgensure"></a>`Squid::PkgEnsure`
+### <a name="Squid--PkgEnsure"></a>`Squid::PkgEnsure`
 
 Custom type representing package status and/or version
 
-Alias of
+Alias of `Variant[Pattern[/^\d.*/], Enum['present', 'latest', 'absent', 'purged', 'held', 'installed']]`
 
-```puppet
-Variant[Pattern[/^\d.*/], Enum['present', 'latest', 'absent', 'purged', 'held', 'installed']]
-```
-
-### <a name="squidsize"></a>`Squid::Size`
+### <a name="Squid--Size"></a>`Squid::Size`
 
 Custom type containing the numeral value and the unit of messurement (Kilo- or Megabyte)
 
-Alias of
-
-```puppet
-Pattern[/^\d+ [KM]B$/]
-```
+Alias of `Pattern[/^\d+ [KM]B$/]`
 
