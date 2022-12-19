@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v4.0.0](https://github.com/voxpupuli/puppet-squid/tree/v4.0.0) (2022-12-19)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v3.0.0...v4.0.0)
+
+**Breaking changes:**
+
+- Drop Puppet 5; Add Puppet 7 support [\#164](https://github.com/voxpupuli/puppet-squid/pull/164) ([bastelfreak](https://github.com/bastelfreak))
+- Drop EL6 support [\#159](https://github.com/voxpupuli/puppet-squid/pull/159) ([ekohl](https://github.com/ekohl))
+
+**Implemented enhancements:**
+
+- Allow multiple logformat directives in squid.conf [\#167](https://github.com/voxpupuli/puppet-squid/pull/167) ([gcoxmoz](https://github.com/gcoxmoz))
+
+**Merged pull requests:**
+
+- Avoid Type=notify for squid service in github CI [\#170](https://github.com/voxpupuli/puppet-squid/pull/170) ([traylenator](https://github.com/traylenator))
+- Remove default empty string parameters [\#169](https://github.com/voxpupuli/puppet-squid/pull/169) ([traylenator](https://github.com/traylenator))
+- Allow up-to-date dependencies [\#160](https://github.com/voxpupuli/puppet-squid/pull/160) ([smortex](https://github.com/smortex))
+
 ## [v3.0.0](https://github.com/voxpupuli/puppet-squid/tree/v3.0.0) (2020-09-29)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v2.2.2...v3.0.0)
