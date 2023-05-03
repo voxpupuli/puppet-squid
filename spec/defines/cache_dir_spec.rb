@@ -40,17 +40,9 @@ describe 'squid::cache_dir' do
             it { is_expected.to contain_file('/data').with_group('proxy') }
           end
         when 'Ubuntu'
-          case facts[:operatingsystemrelease]
-          when '14.04'
-            context 'when on Ubuntu 14.04' do
-              it { is_expected.to contain_file('/data').with_owner('proxy') }
-              it { is_expected.to contain_file('/data').with_group('proxy') }
-            end
-          when '16.04'
-            context 'when on Ubuntu 16.04' do
-              it { is_expected.to contain_file('/data').with_owner('proxy') }
-              it { is_expected.to contain_file('/data').with_group('proxy') }
-            end
+          context 'when on Ubuntu' do
+            it { is_expected.to contain_file('/data').with_owner('proxy') }
+            it { is_expected.to contain_file('/data').with_group('proxy') }
           end
         else
           context 'when on any other non-debian OS' do
