@@ -350,7 +350,7 @@ Default value: `$squid::params::workers`
 
 ##### <a name="-squid--snmp_incoming_address"></a>`snmp_incoming_address`
 
-Data type: `Optional[Stdlib::Compat::Ip_address]`
+Data type: `Optional[Stdlib::Ip::Address]`
 
 Defaults to undef. Can be set to an IP address to only listen for snmp requests on an individual interface. http://www.squid-cache.org/Doc/config/snmp_incoming_address/
 
