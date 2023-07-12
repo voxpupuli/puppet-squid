@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.0.0](https://github.com/voxpupuli/puppet-squid/tree/v5.0.0) (2023-07-12)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v4.0.0...v5.0.0)
+
+**Breaking changes:**
+
+- Drop EOL Debian 9 and Ubuntu 16.04 [\#177](https://github.com/voxpupuli/puppet-squid/pull/177) ([traylenator](https://github.com/traylenator))
+- Drop Puppet 6 support [\#176](https://github.com/voxpupuli/puppet-squid/pull/176) ([bastelfreak](https://github.com/bastelfreak))
+
+**Implemented enhancements:**
+
+- Add Puppet 8 support [\#180](https://github.com/voxpupuli/puppet-squid/pull/180) ([bastelfreak](https://github.com/bastelfreak))
+- puppetlabs/stdlib: Allow 9.x [\#179](https://github.com/voxpupuli/puppet-squid/pull/179) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Puppet 7 support [\#172](https://github.com/voxpupuli/puppet-squid/issues/172)
+- Request release of v3.0.1 [\#168](https://github.com/voxpupuli/puppet-squid/issues/168)
+
 ## [v4.0.0](https://github.com/voxpupuli/puppet-squid/tree/v4.0.0) (2022-12-19)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v3.0.0...v4.0.0)
