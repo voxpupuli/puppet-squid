@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v5.1.0](https://github.com/voxpupuli/puppet-squid/tree/v5.1.0) (2023-07-13)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v5.0.0...v5.1.0)
+
+**Implemented enhancements:**
+
+- Add AlmaLinux/Rocky support [\#184](https://github.com/voxpupuli/puppet-squid/pull/184) ([bastelfreak](https://github.com/bastelfreak))
+
+**Merged pull requests:**
+
+- Allow puppet-selinux 4.x [\#183](https://github.com/voxpupuli/puppet-squid/pull/183) ([smortex](https://github.com/smortex))
+- Allow puppetlabs-concat 9.x [\#182](https://github.com/voxpupuli/puppet-squid/pull/182) ([smortex](https://github.com/smortex))
+
 ## [v5.0.0](https://github.com/voxpupuli/puppet-squid/tree/v5.0.0) (2023-07-12)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v4.0.0...v5.0.0)
