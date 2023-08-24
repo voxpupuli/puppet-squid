@@ -5,10 +5,10 @@ require 'spec_helper_acceptance'
 describe 'squid class' do
   context 'configure http_access with default service type' do
     it 'works idempotently with no errors' do
-      pending('the default Type=notify in squid.service working again on CentOS 8') if fact('os.family') == 'RedHat' && fact('os.release.major') != '7'
+      pending('the default Type=notify in squid.service fail on CentOS 8') if fact('os.family') == 'RedHat' && fact('os.release.major') == '8'
       pp = <<-EOS
       # The default Type=notify is problematic in github CI.
-      if $facts['os']['family'] == 'RedHat' and $facts['os']['release']['major'] != '7' {
+      if $facts['os']['family'] == 'RedHat' and $facts['os']['release']['major'] == '8' {
         systemd::dropin_file{'simple.conf':
           ensure => absent,
           unit   => 'squid.service',
