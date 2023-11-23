@@ -9,7 +9,7 @@ describe 'squid::refresh_pattern' do
         facts
       end
       let :pre_condition do
-        ' class{"::squid":
+        ' class{"squid":
             config => "/tmp/squid.conf"
           }
         '
