@@ -133,7 +133,7 @@ acl remote_urls url_regex http://example.org/path
 acl remote_urls url_regex http://example.com/anotherpath
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 #### Parameters for  Type squid::acl
 * `type` The acltype of the acl, must be defined, e.g url_regex, urlpath_regex, port, ..
@@ -269,7 +269,7 @@ Adds a squid.conf line
 snmp_access allow monitoring hosts
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 ### Defined Type squid::icp\_access
 Defines [icp_access entries](http://www.squid-cache.org/Doc/config/icp_access/) for a squid server.
@@ -286,7 +286,7 @@ Adds a squid.conf line
 icp_access allow our_networks hosts
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 #### Parameters for Type squid::http\_allow
 * `value` defaults to the `namevar` the rule to allow or deny.
@@ -381,7 +381,7 @@ refresh_pattern ^ftp: 1440 20% 10080
 refresh_pattern (/cgi-bin/|\?) -i 0 0% 0
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 YAML example:
 ```
@@ -465,7 +465,7 @@ auth_param basic realm Squid Basic Authentication
 auth_param basic credentialsttl 5 hours
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 #### Parameters for  Type squid::auth_param
 * `scheme` the scheme used for authentication must be defined
@@ -487,7 +487,7 @@ Adds a squid.conf line
 ssl_bump bump all
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 #### Parameters for Type squid::ssl\_bump
 * `value` The type of the ssl_bump, must be defined, e.g bump, peek, ..
@@ -509,7 +509,7 @@ Adds a squid.conf line
 sslproxy_cert_error allow all
 ```
 
-These may be defined as a hash passed to ::squid
+These may be defined as a hash passed to squid
 
 #### Parameters for Type squid::sslproxy\_cert\_error
 * `value` defaults to the `namevar` the rule to allow or deny.

@@ -9,7 +9,7 @@ describe 'squid::sslproxy_cert_error' do
         facts
       end
       let :pre_condition do
-        ' class{"::squid":
+        ' class{"squid":
            config => "/tmp/squid.conf"
          }
         '
