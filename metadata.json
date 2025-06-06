@@ -45,6 +45,12 @@
       ]
     },
     {
+      "operatingsystem": "FreeBSD",
+      "operatingsystemrelease": [
+        "13"
+      ]
+    },
+    {
       "operatingsystem": "AlmaLinux",
       "operatingsystemrelease": [
         "8",
