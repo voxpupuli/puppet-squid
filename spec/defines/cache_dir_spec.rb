@@ -33,7 +33,7 @@ describe 'squid::cache_dir' do
         it { is_expected.to contain_concat_fragment('squid_cache_dir_/data').with_content(%r{^if \${process_number} = 2$}) }
         it { is_expected.to contain_file('/data').with_ensure('directory') }
 
-        case facts[:operatingsystem]
+        case facts[:os]['name']
         when 'Debian'
           context 'when on Debian' do
             it { is_expected.to contain_file('/data').with_owner('proxy') }
