@@ -65,6 +65,12 @@
       ]
     },
     {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "11"
+      ]
+    },
+    {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
         "8"
