@@ -26,25 +26,16 @@ describe 'squid class' do
   context 'configure http_access with simple service type' do
     it 'works idempotently with no errors' do
       pp = <<-EOS
-      # The default Type=notify is problematic in github CI.
-      if $facts['os']['family'] == 'RedHat' and $facts['os']['release']['major'] != '7' {
-        systemd::dropin_file{'simple.conf':
-          ensure  => present,
-          unit    => 'squid.service',
-          content => "[Service]\nType=simple\n",
-          before  => Service['squid'],
+        class { 'squid':}
+        squid::http_port{'3128':}
+        squid::acl{'our_networks':
+          type    => src,
+          entries => ['all'],
         }
-      }
-      class { 'squid':}
-      squid::http_port{'3128':}
-      squid::acl{'our_networks':
-        type    => src,
-        entries => ['all'],
-      }
-      squid::http_access{'our_networks':
-        action    => 'allow',
-        comment   => 'Our networks hosts are allowed',
-      }
+        squid::http_access{'our_networks':
+          action    => 'allow',
+          comment   => 'Our networks hosts are allowed',
+        }
       EOS
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: true)

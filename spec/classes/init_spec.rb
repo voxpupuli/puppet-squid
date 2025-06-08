@@ -28,7 +28,6 @@ describe 'squid' do
         it { is_expected.to contain_concat("#{etc_dir}/squid/squid.conf").with_owner('root') }
         it { is_expected.to contain_concat("#{etc_dir}/squid/squid.conf").with_validate_cmd('/usr/sbin/squid -k parse -f %') }
         it { is_expected.to contain_concat_fragment('squid_header').with_target("#{etc_dir}/squid/squid.conf") }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/var/log/squid/access.log\s+squid$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^cache_mem\s+256 MB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^maximum_object_size_in_memory\s+512 KB$}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^memory_cache_shared}) }
@@ -39,6 +38,15 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^workers}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^error_directory}) }
         it { is_expected.to contain_concat_fragment('squid_header').without_content(%r{^err_page_stylesheet}) }
+
+        it {
+          is_expected.to contain_squid__access_log('daemon-827b3dcc2c0a5f9e0f8647f5acf60379').with(
+            {
+              'module'  => 'daemon',
+              'entries' => '/var/log/squid/access.log squid',
+            }
+          )
+        }
       end
 
       context 'with all parameters set' do
@@ -52,7 +60,7 @@ describe 'squid' do
             httpd_suppress_version_string: true,
             forwarded_for: false,
             logformat: 'squid %tl.%03tu %6tr %>a %Ss/%03Hs',
-            access_log: '/var/log/out.log',
+            access_log: { foo: { module: 'daemon', entries: %w[bar baz] } },
             coredump_dir: '/tmp/core',
             max_filedescriptors: 1000,
             workers: 8,
@@ -70,12 +78,20 @@ describe 'squid' do
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^httpd_suppress_version_string\s+on$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^forwarded_for\s+off$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^logformat\s+squid %tl.%03tu %6tr %>a %Ss/%03Hs$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+/var/log/out.log$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^coredump_dir\s+/tmp/core$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^max_filedescriptors\s+1000$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^workers\s+8$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_program\s+/some/test/program$}) }
         it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^url_rewrite_children\s+16\stestoption=a$}) }
+
+        it {
+          is_expected.to contain_squid__access_log('foo').with(
+            {
+              'module'  => 'daemon',
+              'entries' => %w[bar baz],
+            }
+          )
+        }
       end
 
       context 'with logformat parameter set to an array' do
@@ -94,12 +110,27 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            access_log: ['daemon:/somepath/access.log squid', 'syslog:daemon.info squid']
+            access_log: ['daemon:foo', { module: 'syslog', entries: %w[foo bar] }]
           }
         end
 
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+daemon:/somepath/access.log\s+squid$}) }
-        it { is_expected.to contain_concat_fragment('squid_header').with_content(%r{^access_log\s+syslog:daemon.info\s+squid$}) }
+        it {
+          is_expected.to contain_squid__access_log('daemon-acbd18db4cc2f85cedef654fccc4a4d8').with(
+            {
+              'module'  => 'daemon',
+              'entries' => 'foo',
+            }
+          )
+        }
+
+        it {
+          is_expected.to contain_squid__access_log('syslog-acbd18db4cc2f85cedef654fccc4a4d8').with(
+            {
+              'module'  => 'syslog',
+              'entries' => %w[foo bar],
+            }
+          )
+        }
       end
 
       context 'with buffered_logs parameter set to true' do

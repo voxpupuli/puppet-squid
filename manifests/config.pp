@@ -65,21 +65,28 @@ class squid::config (
     if $access_log =~ Hash {
       # Use create_resources if $access_log is a hash
       create_resources('squid::access_log', $access_log)
-    } elsif $access_log =~ Array {
-      # Use a loop to iterate over the $access_log array if it's an array
-      $access_log.each |$log| {
-        squid::access_log { $log['module']:
-          entries => $log['entries'],
+    } else {
+      any2array($access_log). each |$log| {
+        if $log =~ String {
+          # Use regsubst to extract the module and the remaining entries
+          $module = regsubst($log, '^(\w+):.*$', '\1')
+          $entries = regsubst($log, '^\w+:(.*)$', '\1')
+          # Create a single access_log resource using the extracted module and entries
+          squid::access_log { "${module}-${entries.md5}":
+            module  => $module,
+            entries => $entries,
+          }
+        } else {
+          $access_log_name = if $log['entries'] =~ String {
+            "${log['module']}-${log['entries'].md5}"
+          } else {
+            pick($log['access_log_name'], "${log['module']}-${log['entries'][0].md5}")
+          }
+          squid::access_log { $access_log_name:
+            module  => $log['module'],
+            entries => $log['entries'],
+          }
         }
-      }
-    } elsif $access_log =~ String {
-      # Use regsubst to extract the module and the remaining entries
-      $module = regsubst($access_log, '^(\w+):(.*)$', '\1')
-      $entries = regsubst($access_log, '^(\w+):(.*)$', '\2')  
-      # Create a single access_log resource using the extracted module and entries
-      squid::access_log { $module:
-        module  => $module,
-        entries => $entries,
       }
     }
   }
