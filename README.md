@@ -20,7 +20,9 @@ The set up a simple squid server with a cache to forward
 http port 80 requests.
 
 ```puppet
-class { 'squid': }
+class { 'squid':
+  http_ports => { '3128' => {} },
+}
 squid::acl { 'Safe_ports':
   type    => port,
   entries => ['80'],

@@ -22,6 +22,7 @@ for parameters see `squid` class
 
 ### Defined types
 
+* [`squid::access_log`](#squid--access_log): Defines access_log entries for a squid server.
 * [`squid::acl`](#squid--acl): Defines acl entries for a squid server.
 * [`squid::auth_param`](#squid--auth_param): Defines auth_param entries for a squid server.
 * [`squid::cache`](#squid--cache): Defines cache entries for a squid server.
@@ -57,7 +58,9 @@ The module will set the SELINUX-context for the cache_dir and port, needs puppet
 ##### The set up a simple squid server with a cache to forward http port 80 requests.
 
 ```puppet
-class { 'squid': }
+class { 'squid':
+  http_ports => { '3128' => {} },
+}
 squid::acl { 'Safe_ports':
   type    => port,
   entries => ['80'],
@@ -67,6 +70,20 @@ squid::http_access { 'Safe_ports':
 }
 squid::http_access{ '!Safe_ports':
   action => deny,
+}
+```
+
+##### 
+
+```puppet
+class { 'squid':
+  access_log => [
+    'daemon:/var/logs/squid/access.log squid',
+    {
+      module  => 'syslog',
+      entries => ['daemon.info squid', 'local0 squid'],
+    },
+  ],
 }
 ```
 
@@ -278,7 +295,15 @@ Default value: `$squid::params::url_rewrite_child_options`
 
 ##### <a name="-squid--access_log"></a>`access_log`
 
-Data type: `Variant[String, Array[String]]`
+Data type:
+
+```puppet
+Variant[
+    String[1],
+    Array[Variant[String[1],Hash]],
+    Hash[String[1],Hash]
+  ]
+```
 
 Defaults to `daemon:/var/logs/squid/access.log squid`.  May be passed an Array.  http://www.squid-cache.org/Doc/config/access_log/
 
@@ -542,6 +567,66 @@ Data type: `Optional[Hash]`
 Default value: `$squid::params::snmp_access`
 
 ## Defined types
+
+### <a name="squid--access_log"></a>`squid::access_log`
+
+}
+
+* **See also**
+  * http://www.squid-cache.org/Doc/config/access_log/
+
+#### Examples
+
+##### Adds a squid.conf line:
+
+```puppet
+squid::access_log: syslog:daemon squid hasRequest
+
+squid::access_log: { 'myAccessLog' :
+   module    => 'syslog'
+   entries => [
+     'place daemon'
+     'logformat squid'
+     'acl hasRequest'
+  ],
+```
+
+#### Parameters
+
+The following parameters are available in the `squid::access_log` defined type:
+
+* [`module`](#-squid--access_log--module)
+* [`entries`](#-squid--access_log--entries)
+* [`order`](#-squid--access_log--order)
+* [`access_log_name`](#-squid--access_log--access_log_name)
+
+##### <a name="-squid--access_log--module"></a>`module`
+
+Data type: `Enum['none', 'stdio', 'daemon', 'syslog', 'udp', 'tcp']`
+
+Location of access log
+
+##### <a name="-squid--access_log--entries"></a>`entries`
+
+Data type: `Variant[String[1], Array[String[1]]]`
+
+Access log entry's preceding comment
+
+##### <a name="-squid--access_log--order"></a>`order`
+
+Data type: `String[1]`
+
+Order can be used to configure where in `squid.conf`this configuration section should occur.
+
+Default value: `'50'`
+
+##### <a name="-squid--access_log--access_log_name"></a>`access_log_name`
+
+Data type: `String[1]`
+
+
+
+Default value: `$title`
 
 ### <a name="squid--acl"></a>`squid::acl`
 
