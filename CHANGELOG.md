@@ -4,6 +4,44 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v6.0.0](https://github.com/voxpupuli/puppet-squid/tree/v6.0.0) (2025-06-08)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v5.1.0...v6.0.0)
+
+**Breaking changes:**
+
+- Drop Debian 10 [\#209](https://github.com/voxpupuli/puppet-squid/pull/209) ([lbetz](https://github.com/lbetz))
+- Drop Ubuntu 20.04 support [\#208](https://github.com/voxpupuli/puppet-squid/pull/208) ([lbetz](https://github.com/lbetz))
+- Drop FreeBSD 11 support [\#207](https://github.com/voxpupuli/puppet-squid/pull/207) ([lbetz](https://github.com/lbetz))
+- Drop FreeBSD 10 support [\#206](https://github.com/voxpupuli/puppet-squid/pull/206) ([lbetz](https://github.com/lbetz))
+- Drop CentOS 8 support [\#204](https://github.com/voxpupuli/puppet-squid/pull/204) ([lbetz](https://github.com/lbetz))
+- Drop EL7 support [\#203](https://github.com/voxpupuli/puppet-squid/pull/203) ([lbetz](https://github.com/lbetz))
+- Drop Ubuntu 18.04 support [\#198](https://github.com/voxpupuli/puppet-squid/pull/198) ([zilchms](https://github.com/zilchms))
+
+**Implemented enhancements:**
+
+- Moving access\_log addition below acls in squid.conf [\#217](https://github.com/voxpupuli/puppet-squid/pull/217) ([lbetz](https://github.com/lbetz))
+- Add freebsd14 [\#216](https://github.com/voxpupuli/puppet-squid/pull/216) ([lbetz](https://github.com/lbetz))
+- Add Debian 12 [\#215](https://github.com/voxpupuli/puppet-squid/pull/215) ([lbetz](https://github.com/lbetz))
+- Add Ubuntu 24.04 support [\#214](https://github.com/voxpupuli/puppet-squid/pull/214) ([lbetz](https://github.com/lbetz))
+- Add FreeBSD 13 support [\#213](https://github.com/voxpupuli/puppet-squid/pull/213) ([lbetz](https://github.com/lbetz))
+- Add Debian 11 support [\#212](https://github.com/voxpupuli/puppet-squid/pull/212) ([lbetz](https://github.com/lbetz))
+- Add RedHat 9 support [\#211](https://github.com/voxpupuli/puppet-squid/pull/211) ([lbetz](https://github.com/lbetz))
+- Add OracleLinux 9 support [\#210](https://github.com/voxpupuli/puppet-squid/pull/210) ([lbetz](https://github.com/lbetz))
+- puppet-selinux: support for 5.x [\#202](https://github.com/voxpupuli/puppet-squid/pull/202) ([lbetz](https://github.com/lbetz))
+- metadata.json: Add OpenVox [\#199](https://github.com/voxpupuli/puppet-squid/pull/199) ([jstraw](https://github.com/jstraw))
+- Add Ubuntu 20.04 and 22.04 support [\#197](https://github.com/voxpupuli/puppet-squid/pull/197) ([zilchms](https://github.com/zilchms))
+- Add EL9 support [\#185](https://github.com/voxpupuli/puppet-squid/pull/185) ([bastelfreak](https://github.com/bastelfreak))
+
+**Closed issues:**
+
+- Dependencies blocking upgrade of other modules [\#201](https://github.com/voxpupuli/puppet-squid/issues/201)
+- no option for squid configuration directive 'hosts\_file' [\#165](https://github.com/voxpupuli/puppet-squid/issues/165)
+
+**Merged pull requests:**
+
+- Remove legacy top-scope syntax [\#188](https://github.com/voxpupuli/puppet-squid/pull/188) ([smortex](https://github.com/smortex))
+
 ## [v5.1.0](https://github.com/voxpupuli/puppet-squid/tree/v5.1.0) (2023-07-13)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-squid/compare/v5.0.0...v5.1.0)
@@ -233,7 +271,7 @@ These should not affect the functionality of the module.
 
 - release 0.6.0 [\#70](https://github.com/voxpupuli/puppet-squid/pull/70) ([bastelfreak](https://github.com/bastelfreak))
 - Fix the tests [\#67](https://github.com/voxpupuli/puppet-squid/pull/67) ([ekohl](https://github.com/ekohl))
-- Clean up docs [\#62](https://github.com/voxpupuli/puppet-squid/pull/62) ([alexharv074](https://github.com/alexharv074))
+- Clean up docs [\#62](https://github.com/voxpupuli/puppet-squid/pull/62) ([alex-harvey-z3q](https://github.com/alex-harvey-z3q))
 - Add refresh\_pattern defined type [\#57](https://github.com/voxpupuli/puppet-squid/pull/57) ([matonb](https://github.com/matonb))
 - Use ruby 2.4.1 for beaker tests [\#56](https://github.com/voxpupuli/puppet-squid/pull/56) ([traylenator](https://github.com/traylenator))
 - Modulesync 0.21.3 [\#55](https://github.com/voxpupuli/puppet-squid/pull/55) ([traylenator](https://github.com/traylenator))
