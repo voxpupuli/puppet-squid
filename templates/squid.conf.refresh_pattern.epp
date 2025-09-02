@@ -8,4 +8,4 @@
   Optional[String[1]] $options,
 | -%>
 # <%= $comment %>
-refresh_pattern <% unless $case_sensitive { %> -i <% } %><%= $pattern %> <%= $min %> <%= $percent %>% <%= $max %><% if $options { %> <%= $options %><% } %>
+refresh_pattern <% unless $case_sensitive { %>-i <% } %><%= $pattern %> <%= $min %> <%= $percent %>% <%= $max %><% if $options { %> <%= $options %><% } %>
