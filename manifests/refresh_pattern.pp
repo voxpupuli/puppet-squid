@@ -75,13 +75,13 @@ define squid::refresh_pattern (
   concat::fragment { "squid_refresh_pattern_${pattern}":
     target  => $squid::config,
     content => epp('squid/squid.conf.refresh_pattern.epp', {
-        'comment'        => $comment,
-        'case_sensitive' => $case_sensitive,
-        'pattern'        => $pattern,
-        'max'            => $max,
-        'min'            => $min,
-        'options'        => $options,
-        'percent'        => $percent,
+      'comment'        => $comment,
+      'case_sensitive' => $case_sensitive,
+      'pattern'        => $pattern,
+      'max'            => $max,
+      'min'            => $min,
+      'options'        => $options,
+      'percent'        => $percent,
     }),
     order   => "45-${order}",
   }

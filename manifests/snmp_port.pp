@@ -29,9 +29,9 @@ define squid::snmp_port (
   concat::fragment { "squid_snmp_port_${port}":
     target  => $squid::config,
     content => epp('squid/squid.conf.snmp_port.epp', {
-        'port'           => $port,
-        'options'        => $options,
-        'process_number' => $process_number,
+      'port'           => $port,
+      'options'        => $options,
+      'process_number' => $process_number,
     }),
     order   => "40-${order}",
   }
