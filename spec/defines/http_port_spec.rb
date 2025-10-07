@@ -71,6 +71,19 @@ describe 'squid::http_port' do
         it { is_expected.to contain_concat_fragment('squid_http_port_host:1650').with_content(%r{^http_port\s+1650$}) }
       end
 
+      context 'with IPv6' do
+        let(:title) { 'ipv6_host' }
+        let(:params) do
+          {
+            host: '2001:db8::1',
+            port: 1650,
+          }
+        end
+
+        # Wrap IPv6addresses in square brackets
+        it { is_expected.to contain_concat_fragment('squid_http_port_ipv6_host').with_content(%r{^http_port\s+\[2001:db8::1\]:1650$}) }
+      end
+
       context 'without a port specified' do
         let(:title) { 'garbage' }
         let(:params) do
