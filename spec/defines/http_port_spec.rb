@@ -80,7 +80,7 @@ describe 'squid::http_port' do
           }
         end
 
-        # Wrap IPv6addresses in square brackets
+        # Wrap IPv6 addresses in square brackets
         it { is_expected.to contain_concat_fragment('squid_http_port_ipv6_host').with_content(%r{^http_port\s+\[2001:db8::1\]:1650$}) }
       end
 
