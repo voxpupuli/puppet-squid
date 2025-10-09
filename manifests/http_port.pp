@@ -61,10 +61,10 @@ define squid::http_port (
     fail('port parameter was not specified and could not be determined from title')
   }
 
-  if $_host != undef {
-    $_host_port = "${_host}:${_port}"
-  } else {
-    $_host_port = String($_port)
+  $_host_port = $_host ? {
+    undef                   => String($_port),
+    Stdlib::IP::Address::V6 => "[${_host}]:${_port}",
+    default                 => "${_host}:${_port}",
   }
 
   $protocol = $ssl ? {
