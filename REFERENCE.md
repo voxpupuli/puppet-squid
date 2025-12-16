@@ -44,7 +44,7 @@ By setting optional `ssl` parameter to `true` will create https_port entries ins
 
 * [`Squid::Action::SslBump`](#Squid--Action--SslBump): Possible SSLBump options
 * [`Squid::PkgEnsure`](#Squid--PkgEnsure): Custom type representing package status and/or version
-* [`Squid::Size`](#Squid--Size): Custom type containing the numeral value and the unit of messurement (Kilo-, Mega- or Gigabyte)
+* [`Squid::Size`](#Squid--Size): Custom type containing the numeral value and the unit of messurement (Kilo- or Megabyte)
 
 ## Classes
 
@@ -1717,7 +1717,7 @@ Alias of `Variant[Pattern[/^\d.*/], Enum['present', 'latest', 'absent', 'purged'
 
 ### <a name="Squid--Size"></a>`Squid::Size`
 
-Custom type containing the numeral value and the unit of messurement (Kilo-, Mega- or Gigabyte)
+Custom type containing the numeral value and the unit of messurement (Kilo- or Megabyte)
 
-Alias of `Pattern[/^\d+ [KMG]B$/]`
+Alias of `Pattern[/^\d+ [KM]B$/]`
 
