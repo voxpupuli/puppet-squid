@@ -29,7 +29,7 @@ describe 'squid::snmp_access' do
             action: 'deny',
             value: 'this and that',
             order: '08',
-            comment: 'Deny this and that'
+            comment: 'Deny this and that',
           }
         end
 
@@ -42,7 +42,7 @@ describe 'squid::snmp_access' do
       context 'with unknown action' do
         let(:params) do
           {
-            action: 'unknown_action'
+            action: 'unknown_action',
           }
         end
 

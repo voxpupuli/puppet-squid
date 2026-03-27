@@ -22,7 +22,7 @@ describe 'squid::cache_dir' do
             type: 'special',
             order: '07',
             process_number: 2,
-            options: 'my options for special type'
+            options: 'my options for special type',
           }
         end
 
@@ -57,7 +57,7 @@ describe 'squid::cache_dir' do
           {
             type: 'special',
             order: '07',
-            options: 'my options for special type'
+            options: 'my options for special type',
           }
         end
 

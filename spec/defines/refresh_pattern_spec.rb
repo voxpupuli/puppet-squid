@@ -23,7 +23,7 @@ describe 'squid::refresh_pattern' do
             max: 10_080,
             min: 1440,
             percent: 20,
-            comment: 'Refresh Patterns'
+            comment: 'Refresh Patterns',
           }
         end
 
@@ -42,7 +42,7 @@ describe 'squid::refresh_pattern' do
             min: 1440,
             percent: 20,
             options: 'override-expire ignore-no-cache',
-            comment: 'Refresh Patterns'
+            comment: 'Refresh Patterns',
           }
         end
 
@@ -61,7 +61,7 @@ describe 'squid::refresh_pattern' do
             max: 0,
             min: 0,
             order: '07',
-            percent: 0
+            percent: 0,
           }
         end
 

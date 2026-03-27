@@ -9,11 +9,11 @@ describe 'squid' do
       end
 
       let(:etc_dir) do
-        facts[:kernel] == 'FreeBSD' ? '/usr/local/etc' : '/etc'
+        (facts[:kernel] == 'FreeBSD') ? '/usr/local/etc' : '/etc'
       end
 
       let(:config_group) do
-        facts[:os]['family'] == 'Debian' ? 'root' : 'squid'
+        (facts[:os]['family'] == 'Debian') ? 'root' : 'squid'
       end
 
       context 'with defaults for all parameters' do
@@ -44,7 +44,7 @@ describe 'squid' do
             {
               'module'  => 'daemon',
               'entries' => '/var/log/squid/access.log squid',
-            }
+            },
           )
         }
       end
@@ -66,7 +66,7 @@ describe 'squid' do
             workers: 8,
             url_rewrite_program: '/some/test/program',
             url_rewrite_children: 16,
-            url_rewrite_child_options: 'testoption=a'
+            url_rewrite_child_options: 'testoption=a',
           }
         end
 
@@ -89,7 +89,7 @@ describe 'squid' do
             {
               'module'  => 'daemon',
               'entries' => %w[bar baz],
-            }
+            },
           )
         }
       end
@@ -98,7 +98,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            logformat: ['squid_test_1 %ts.%03tu %6tr', 'squid_test_2 %ts.%03tu duration=%tr']
+            logformat: ['squid_test_1 %ts.%03tu %6tr', 'squid_test_2 %ts.%03tu duration=%tr'],
           }
         end
 
@@ -110,7 +110,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            access_log: ['daemon:foo', { module: 'syslog', entries: %w[foo bar] }]
+            access_log: ['daemon:foo', { module: 'syslog', entries: %w[foo bar] }],
           }
         end
 
@@ -119,7 +119,7 @@ describe 'squid' do
             {
               'module'  => 'daemon',
               'entries' => 'foo',
-            }
+            },
           )
         }
 
@@ -128,7 +128,7 @@ describe 'squid' do
             {
               'module'  => 'syslog',
               'entries' => %w[foo bar],
-            }
+            },
           )
         }
       end
@@ -137,7 +137,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            buffered_logs: true
+            buffered_logs: true,
           }
         end
 
@@ -148,7 +148,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            buffered_logs: false
+            buffered_logs: false,
           }
         end
 
@@ -159,7 +159,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            memory_cache_shared: true
+            memory_cache_shared: true,
           }
         end
 
@@ -170,7 +170,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            error_directory: '/some/path/file'
+            error_directory: '/some/path/file',
           }
         end
 
@@ -181,7 +181,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            err_page_stylesheet: '/some/path/file'
+            err_page_stylesheet: '/some/path/file',
           }
         end
 
@@ -192,7 +192,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            memory_cache_shared: 'on'
+            memory_cache_shared: 'on',
           }
         end
 
@@ -203,7 +203,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            memory_cache_shared: false
+            memory_cache_shared: false,
           }
         end
 
@@ -214,7 +214,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            memory_cache_shared: 'off'
+            memory_cache_shared: 'off',
           }
         end
 
@@ -225,7 +225,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            forwarded_for: 'off'
+            forwarded_for: 'off',
           }
         end
 
@@ -236,7 +236,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            forwarded_for: 'on'
+            forwarded_for: 'on',
           }
         end
 
@@ -247,7 +247,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            forwarded_for: 'delete'
+            forwarded_for: 'delete',
           }
         end
 
@@ -258,7 +258,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            forwarded_for: 'transparent'
+            forwarded_for: 'transparent',
           }
         end
 
@@ -269,7 +269,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            cache_replacement_policy: 'LRU'
+            cache_replacement_policy: 'LRU',
           }
         end
 
@@ -280,7 +280,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            memory_replacement_policy: 'LRU'
+            memory_replacement_policy: 'LRU',
           }
         end
 
@@ -295,9 +295,9 @@ describe 'squid' do
               'myacl' => {
                 'type' => 'urlregex',
                 'order' => '07',
-                'entries' => ['http://example.org/', 'http://example.com/']
-              }
-            }
+                'entries' => ['http://example.org/', 'http://example.com/'],
+              },
+            },
           }
         end
 
@@ -315,14 +315,14 @@ describe 'squid' do
               'myacl' => {
                 'type' => 'urlregex',
                 'order' => '07',
-                'entries' => ['http://example.org/', 'http://example.com/']
+                'entries' => ['http://example.org/', 'http://example.com/'],
               },
               'mysecondacl' => {
                 'type' => 'urlregex',
                 'order' => '08',
-                'entries' => ['http://example2.org/', 'http://example2.com/']
-              }
-            }
+                'entries' => ['http://example2.org/', 'http://example2.com/'],
+              },
+            },
           }
         end
 
@@ -343,9 +343,9 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'deny',
                 'value' => 'this and that',
-                'order' => '08'
-              }
-            }
+                'order' => '08',
+              },
+            },
           }
         end
 
@@ -363,9 +363,9 @@ describe 'squid' do
               'myacl' => {
                 'action' => 'deny',
                 'value' => 'this and that',
-                'order' => '08'
-              }
-            }
+                'order' => '08',
+              },
+            },
           }
         end
 
@@ -383,15 +383,15 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'deny',
                 'value' => 'this and that',
-                'order' => '08'
+                'order' => '08',
               },
               'secondrule' => {
                 'action' => 'deny',
                 'value' => 'this too',
                 'order' => '09',
-                'comment' => 'Deny this and too'
-              }
-            }
+                'comment' => 'Deny this and too',
+              },
+            },
 
           }
         end
@@ -415,15 +415,15 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'deny',
                 'value' => 'this and that',
-                'order' => '08'
+                'order' => '08',
               },
               'secondrule' => {
                 'action' => 'deny',
                 'value' => 'this too',
                 'order' => '09',
-                'comment' => 'Deny this and too'
-              }
-            }
+                'comment' => 'Deny this and too',
+              },
+            },
 
           }
         end
@@ -447,9 +447,9 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'bump',
                 'value' => 'step1',
-                'order' => '08'
-              }
-            }
+                'order' => '08',
+              },
+            },
           }
         end
 
@@ -467,9 +467,9 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'allow',
                 'value' => 'all',
-                'order' => '08'
-              }
-            }
+                'order' => '08',
+              },
+            },
           }
         end
 
@@ -487,9 +487,9 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'deny',
                 'value' => 'this and that',
-                'order' => '08'
-              }
-            }
+                'order' => '08',
+              },
+            },
           }
         end
 
@@ -507,14 +507,14 @@ describe 'squid' do
               'myrule' => {
                 'action' => 'deny',
                 'value' => 'this and that',
-                'order' => '08'
+                'order' => '08',
               },
               'secondrule' => {
                 'action' => 'deny',
                 'value' => 'this too',
-                'order' => '09'
-              }
-            }
+                'order' => '09',
+              },
+            },
 
           }
         end
@@ -531,7 +531,7 @@ describe 'squid' do
       context 'with http_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',
-            http_ports: { 2000 => { 'options' => 'special for 2000' } } }
+            http_ports: { 2000 => { 'options' => 'special for 2000' } }, }
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -542,7 +542,7 @@ describe 'squid' do
       context 'with https_port parameters set' do
         let :params do
           { config: '/tmp/squid.conf',
-            https_ports: { 2001 => { 'options' => 'special for 2001' } } }
+            https_ports: { 2001 => { 'options' => 'special for 2001' } }, }
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -554,7 +554,7 @@ describe 'squid' do
         context 'with http_port parameters set + SELINUX' do
           let :params do
             { config: '/tmp/squid.conf',
-              http_ports: { 2000 => { 'options' => 'special for 2000' } } }
+              http_ports: { 2000 => { 'options' => 'special for 2000' } }, }
           end
           let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
 
@@ -567,7 +567,7 @@ describe 'squid' do
         context 'with https_port parameters set' do
           let :params do
             { config: '/tmp/squid.conf',
-              https_ports: { 2001 => { 'options' => 'special for 2001' } } }
+              https_ports: { 2001 => { 'options' => 'special for 2001' } }, }
           end
           let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
 
@@ -580,7 +580,7 @@ describe 'squid' do
         context 'with duplicate ports on different ip' do
           let :params do
             { config: '/tmp/squid.conf',
-              http_ports: { 'ipA' => { 'port' => 3128, 'host' => '192.168.1.10' }, 'ipB' => { 'port' => 3128, 'host' => '192.168.1.11' } } }
+              http_ports: { 'ipA' => { 'port' => 3128, 'host' => '192.168.1.10' }, 'ipB' => { 'port' => 3128, 'host' => '192.168.1.11' } }, }
           end
 
           let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
@@ -597,7 +597,7 @@ describe 'squid' do
           let :params do
             { config: '/tmp/squid.conf',
               cache_dirs: { '/data' => { 'type' => 'special',
-                                         'options' => 'my options for special type' } } }
+                                         'options' => 'my options for special type', } }, }
           end
           let(:facts) { override_facts(super(), os: { selinux: { enabled: true } }) }
 
@@ -612,7 +612,7 @@ describe 'squid' do
         let :params do
           {
             config: '/tmp/squid.conf',
-            snmp_incoming_address: '4.2.2.2'
+            snmp_incoming_address: '4.2.2.2',
           }
         end
 
@@ -623,7 +623,7 @@ describe 'squid' do
         let :params do
           { config: '/tmp/squid.conf',
             snmp_ports: { 2000 => { 'options' => 'special for 2000',
-                                    'process_number' => 3 } } }
+                                    'process_number' => 3, } }, }
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -636,7 +636,7 @@ describe 'squid' do
         let :params do
           { config: '/tmp/squid.conf',
             cache_dirs: { '/data' => { 'type' => 'special',
-                                       'options' => 'my options for special type' } } }
+                                       'options' => 'my options for special type', } }, }
         end
 
         it { is_expected.to contain_concat_fragment('squid_header').with_target('/tmp/squid.conf') }
@@ -652,16 +652,16 @@ describe 'squid' do
                 'order' => '22',
                 'config_entries' => {
                   'mail_from' => 'squid@example.com',
-                  'mail_program' => 'mail'
-                }
+                  'mail_program' => 'mail',
+                },
               },
               'other settings' => {
                 'order' => '42',
                 'config_entries' => {
-                  'dns_timeout' => '5 seconds'
-                }
-              }
-            }
+                  'dns_timeout' => '5 seconds',
+                },
+              },
+            },
           }
         end
 

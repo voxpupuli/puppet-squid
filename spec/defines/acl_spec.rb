@@ -22,7 +22,7 @@ describe 'squid::acl' do
             type: 'urlregex',
             order: '07',
             entries: ['http://example.org/', 'http://example.com/'],
-            comment: 'Example company website'
+            comment: 'Example company website',
           }
         end
 
@@ -39,7 +39,7 @@ describe 'squid::acl' do
             type: 'ssl::servername',
             order: '07',
             entries: ['.foo.bar'],
-            comment: 'Example company website'
+            comment: 'Example company website',
           }
         end
 

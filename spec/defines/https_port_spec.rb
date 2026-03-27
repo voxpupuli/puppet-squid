@@ -17,7 +17,7 @@ describe 'squid::https_port' do
       let(:title) { '4000' }
       let(:params) do
         {
-          options: 'some options'
+          options: 'some options',
         }
       end
 

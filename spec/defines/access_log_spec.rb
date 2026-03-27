@@ -31,7 +31,7 @@ describe 'squid::access_log' do
               'target'  => '/tmp/squid.conf',
               'content' => %r{^access_log syslog:foo$},
               'order'   => '38-57-syslog',
-            }
+            },
           )
         }
 
@@ -41,7 +41,7 @@ describe 'squid::access_log' do
               'target'  => '/tmp/squid.conf',
               'content' => %r{^access_log syslog:bar$},
               'order'   => '38-57-syslog',
-            }
+            },
           )
         }
       end

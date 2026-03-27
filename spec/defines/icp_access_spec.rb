@@ -27,7 +27,7 @@ describe 'squid::icp_access' do
           {
             action: 'deny',
             value: 'this and that',
-            order: '08'
+            order: '08',
           }
         end
 
@@ -39,7 +39,7 @@ describe 'squid::icp_access' do
       context 'with unknown action' do
         let(:params) do
           {
-            action: 'unknown_action'
+            action: 'unknown_action',
           }
         end
 
