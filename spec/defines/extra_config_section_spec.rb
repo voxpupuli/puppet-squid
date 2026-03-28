@@ -22,8 +22,8 @@ describe 'squid::extra_config_section' do
             config_entries: {
               'ssl_bump' => 'server-first all',
               'sslcrtd_program' => '/usr/lib64/squid/ssl_crtd -s /var/lib/ssl_db -M 4MB',
-              'sslcrtd_children' => '8 startup=1 idle=1'
-            }
+              'sslcrtd_children' => '8 startup=1 idle=1',
+            },
           }
         end
 
@@ -48,8 +48,8 @@ describe 'squid::extra_config_section' do
             config_entries: {
               'ssl_bump' => %w[server-first all],
               'sslcrtd_program' => ['/usr/lib64/squid/ssl_crtd', '-s', '/var/lib/ssl_db', '-M', '4MB'],
-              'sslcrtd_children' => ['8', 'startup=1', 'idle=1']
-            }
+              'sslcrtd_children' => ['8', 'startup=1', 'idle=1'],
+            },
           }
         end
 
@@ -71,8 +71,8 @@ describe 'squid::extra_config_section' do
             config_entries: [{
               'always_direct' => ['deny    www.reallyreallybadplace.com',
                                   'allow   my-good-dst',
-                                  'allow   my-other-good-dst']
-            }]
+                                  'allow   my-other-good-dst',],
+            }],
           }
         end
 

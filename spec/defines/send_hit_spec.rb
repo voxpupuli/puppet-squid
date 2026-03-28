@@ -29,7 +29,7 @@ describe 'squid::send_hit' do
             action: 'deny',
             value: 'this and that',
             order: '03',
-            comment: 'send_hit this and that'
+            comment: 'send_hit this and that',
           }
         end
 
@@ -42,7 +42,7 @@ describe 'squid::send_hit' do
       context 'with unknown action' do
         let(:params) do
           {
-            action: 'unknown_action'
+            action: 'unknown_action',
           }
         end
 

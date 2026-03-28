@@ -63,7 +63,7 @@ describe 'squid::http_port' do
         let(:title) { 'host:1650' }
         let(:params) do
           {
-            port: 1650
+            port: 1650,
           }
         end
 
@@ -88,7 +88,7 @@ describe 'squid::http_port' do
         let(:title) { 'garbage' }
         let(:params) do
           {
-            host: 'host'
+            host: 'host',
           }
         end
 
@@ -100,7 +100,7 @@ describe 'squid::http_port' do
         let(:params) do
           {
             port: 1700,
-            host: '127.0.0.1'
+            host: '127.0.0.1',
           }
         end
 
@@ -113,7 +113,7 @@ describe 'squid::http_port' do
           {
             port: 2000,
             options: 'special for 2000',
-            order: '08'
+            order: '08',
           }
         end
 
@@ -127,7 +127,7 @@ describe 'squid::http_port' do
         let(:params) do
           {
             port: 2100,
-            host: 'host'
+            host: 'host',
           }
         end
 
@@ -138,7 +138,7 @@ describe 'squid::http_port' do
         let(:title) { '3000' }
         let(:params) do
           {
-            ssl: true
+            ssl: true,
           }
         end
 

@@ -20,13 +20,13 @@ describe 'squid::auth_param' do
         entries = ['program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
                    'children 5',
                    'realm Squid Basic Authentication',
-                   'credentialsttl 5 hours']
+                   'credentialsttl 5 hours',]
 
         let(:params) do
           {
             scheme: 'basic',
             order: '07',
-            entries: entries
+            entries: entries,
           }
         end
 
@@ -42,13 +42,13 @@ describe 'squid::auth_param' do
         entries = ['program /usr/lib64/squid/basic_ncsa_auth /etc/squid/.htpasswd',
                    'children 5',
                    'realm Squid Digest Authentication',
-                   'credentialsttl 5 hours']
+                   'credentialsttl 5 hours',]
 
         let(:params) do
           {
             scheme: 'digest',
             order: '08',
-            entries: entries
+            entries: entries,
           }
         end
 
@@ -67,7 +67,7 @@ describe 'squid::auth_param' do
           {
             scheme: 'unknown_scheme',
             order: '09',
-            entries: entries
+            entries: entries,
           }
         end
 

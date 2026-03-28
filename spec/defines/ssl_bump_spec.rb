@@ -27,7 +27,7 @@ describe 'squid::ssl_bump' do
           {
             action: 'peek',
             value: 'step1',
-            order: '08'
+            order: '08',
           }
         end
 
@@ -39,7 +39,7 @@ describe 'squid::ssl_bump' do
       context 'with unknown action' do
         let(:params) do
           {
-            action: 'unknown_action'
+            action: 'unknown_action',
           }
         end
 

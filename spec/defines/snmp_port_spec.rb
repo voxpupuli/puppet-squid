@@ -30,7 +30,7 @@ describe 'squid::snmp_port' do
             port: 2000,
             options: 'special for 2000',
             order: '08',
-            process_number: 3
+            process_number: 3,
           }
         end
 
