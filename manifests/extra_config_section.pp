@@ -59,9 +59,9 @@ define squid::extra_config_section (
   Variant[Array,Hash] $config_entries = {},
   String              $order   = '60',
 ) {
-  concat::fragment { "squid_extra_config_section_${comment}":
+  concat::fragment { "squid_extra_config_section_${title}":
     target  => $squid::config,
     content => template('squid/squid.conf.extra_config_section.erb'),
-    order   => "${order}-${comment}",
+    order   => "${order}-${title}",
   }
 }
