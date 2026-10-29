@@ -73,7 +73,7 @@ squid::http_access{ '!Safe_ports':
 }
 ```
 
-##### 
+#####
 
 ```puppet
 class { 'squid':
@@ -87,7 +87,7 @@ class { 'squid':
 }
 ```
 
-##### 
+#####
 
 ```puppet
 class { 'squid':
@@ -97,7 +97,7 @@ class { 'squid':
 }
 ```
 
-##### 
+#####
 
 ```puppet
 class { 'squid':
@@ -704,7 +704,7 @@ Defines auth_param entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::auth_param { 'basic auth_param':
@@ -769,7 +769,7 @@ Defines cache entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::cache { 'our_network_hosts_acl':
@@ -832,7 +832,7 @@ Defines cache_dir entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::cache_dir { '/data':
@@ -1013,7 +1013,7 @@ Defines http_access entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::http_access { 'our_networks hosts':
@@ -1025,7 +1025,7 @@ Adds a squid.conf line
 http_access allow our_networks hosts
 ```
 
-##### 
+#####
 
 ```puppet
 squid::http_access { 'our_networks hosts':
@@ -1094,7 +1094,7 @@ By setting optional `ssl` parameter to `true` will create https_port entries ins
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::http_port { '10000':
@@ -1217,7 +1217,7 @@ Defines icp_access entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::icp_access { 'our_networks hosts':
@@ -1270,7 +1270,7 @@ Defines refresh_pattern entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::refresh_pattern { '^ftp:':
@@ -1402,7 +1402,7 @@ Defines send_hit for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid:::send_hit{'PragmaNoCache':
@@ -1463,7 +1463,7 @@ Defines snmp_access entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::snmp_access { 'monitoring hosts':
@@ -1475,7 +1475,7 @@ Adds a squid.conf line
 snmp_access allow monitoring hosts
 ```
 
-##### 
+#####
 
 ```puppet
 squid::snmp_access { 'monitoring hosts':
@@ -1537,7 +1537,7 @@ Defines snmp_port entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::snmp_port { '1000':
@@ -1600,7 +1600,7 @@ Defines ssl_bump entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::ssl_bump { 'all':
@@ -1657,7 +1657,7 @@ Defines sslproxy_cert_error entries for a squid server.
 
 #### Examples
 
-##### 
+#####
 
 ```puppet
 squid::sslproxy_cert_error { 'all':
@@ -1720,4 +1720,3 @@ Alias of `Variant[Pattern[/^\d.*/], Enum['present', 'latest', 'absent', 'purged'
 Custom type containing the numeral value and the unit of messurement (Kilo-, Mega-, or Gigabyte)
 
 Alias of `Pattern[/^\d+ [KMG]B$/]`
-
